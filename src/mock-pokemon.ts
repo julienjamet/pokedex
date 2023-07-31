@@ -1,11 +1,4 @@
-export interface IPokemon {
-    id: number,
-    name: string,
-    hp: number,
-    cp: number,
-    picture: string,
-    types: string[]
-}
+import { IPokemon } from "./interface"
 
 export const pokemonList: IPokemon[] = [
     {
@@ -98,10 +91,10 @@ export const pokemonList: IPokemon[] = [
     },
     {
         id: 12,
-        name: "Groupix",
+        name: "Goupix",
         hp: 17,
         cp: 8,
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png",
         types: ["Feu"]
     }
-];
+]
