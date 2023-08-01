@@ -49,8 +49,11 @@ export const updateOne: Function = (req: { params: { id: string }, body: IPokemo
             if (pokemon !== null) {
                 Pokemon.updateOne({ _id: req.params.id }, { ...req.body })
 
-                const message: string = `Tu as modifié ton ${pokemon.name} !`
-                res.status(200).json(success(message, pokemon))
+                    .then(() => {
+                        const message: string = `Tu as modifié ton ${pokemon.name} !`
+                        res.status(200).json(success(message, pokemon))
+                    })
+                    .catch((error: string) => res.status(500).json({ error }))
             }
             else {
                 res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` })
@@ -66,8 +69,11 @@ export const deleteOne: Function = (req: { params: { id: string }, body: IPokemo
             if (pokemon !== null) {
                 Pokemon.deleteOne({ _id: req.params.id })
 
-                const message: string = `Tu as relâché ton ${pokemon.name} !`
-                res.status(200).json(success(message, pokemon))
+                    .then(() => {
+                        const message: string = `Tu as relâché ton ${pokemon.name} !`
+                        res.status(200).json(success(message, pokemon))
+                    })
+                    .catch((error: string) => res.status(500).json({ error }))
             }
             else {
                 res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` })

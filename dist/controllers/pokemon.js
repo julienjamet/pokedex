@@ -48,9 +48,12 @@ const updateOne = (req, res) => {
     pokemon_1.default.findOne({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
-            pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, req.body));
-            const message = `Tu as modifié ton ${pokemon.name} !`;
-            res.status(200).json((0, helper_js_1.success)(message, pokemon));
+            pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, req.body))
+                .then(() => {
+                const message = `Tu as modifié ton ${pokemon.name} !`;
+                res.status(200).json((0, helper_js_1.success)(message, pokemon));
+            })
+                .catch((error) => res.status(500).json({ error }));
         }
         else {
             res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` });
@@ -64,9 +67,12 @@ const deleteOne = (req, res) => {
     pokemon_1.default.findOne({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
-            pokemon_1.default.deleteOne({ _id: req.params.id });
-            const message = `Tu as relâché ton ${pokemon.name} !`;
-            res.status(200).json((0, helper_js_1.success)(message, pokemon));
+            pokemon_1.default.deleteOne({ _id: req.params.id })
+                .then(() => {
+                const message = `Tu as relâché ton ${pokemon.name} !`;
+                res.status(200).json((0, helper_js_1.success)(message, pokemon));
+            })
+                .catch((error) => res.status(500).json({ error }));
         }
         else {
             res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` });
