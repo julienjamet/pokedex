@@ -10,7 +10,10 @@ export const getAll: Function = (req: {}, res: { status: Function, json: Functio
             const message: string = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`
             res.status(200).json(success(message, pokemonList))
         })
-        .catch((error: string) => res.status(500).json({ error }))
+        .catch((error: string) => {
+            const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+            res.status(500).json(success(message, error))
+        })
 }
 /****************************************************************GET ONE*/
 export const getOne: Function = (req: { params: { id: string } }, res: { status: Function, json: Function }): void => {
@@ -22,10 +25,14 @@ export const getOne: Function = (req: { params: { id: string } }, res: { status:
                 res.status(200).json(success(message, pokemon))
             }
             else {
-                res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` })
+                const message: string = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`
+                res.status(404).json(success(message))
             }
         })
-        .catch((error: string) => res.status(500).json({ error }))
+        .catch((error: string) => {
+            const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+            res.status(500).json(success(message, error))
+        })
 }
 /**************************************************************CATCH ONE*/
 export const catchOne: Function = (req: { body: IPokemon }, res: { status: Function, json: Function }): void => {
@@ -39,7 +46,10 @@ export const catchOne: Function = (req: { body: IPokemon }, res: { status: Funct
             const message: string = `Tu as capturé un ${pokemon.name} !`
             res.status(201).json(success(message, pokemon))
         })
-        .catch((error: string) => res.status(500).json({ error }))
+        .catch((error: string) => {
+            const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+            res.status(500).json(success(message, error))
+        })
 }
 /*************************************************************UPDATE ONE*/
 export const updateOne: Function = (req: { params: { id: string }, body: IPokemon }, res: { status: Function, json: Function }): void => {
@@ -51,15 +61,22 @@ export const updateOne: Function = (req: { params: { id: string }, body: IPokemo
 
                     .then(() => {
                         const message: string = `Tu as modifié ton ${pokemon.name} !`
-                        res.status(200).json(success(message))
+                        res.status(201).json(success(message))
                     })
-                    .catch((error: string) => res.status(500).json({ error }))
+                    .catch((error: string) => {
+                        const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+                        res.status(500).json(success(message, error))
+                    })
             }
             else {
-                res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` })
+                const message: string = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`
+                res.status(404).json(success(message))
             }
         })
-        .catch((error: string) => res.status(500).json({ error }))
+        .catch((error: string) => {
+            const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+            res.status(500).json(success(message, error))
+        })
 }
 /*************************************************************DELETE ONE*/
 export const deleteOne: Function = (req: { params: { id: string }, body: IPokemon }, res: { status: Function, json: Function }): void => {
@@ -73,11 +90,18 @@ export const deleteOne: Function = (req: { params: { id: string }, body: IPokemo
                         const message: string = `Tu as relâché ton ${pokemon.name} !`
                         res.status(200).json(success(message))
                     })
-                    .catch((error: string) => res.status(500).json({ error }))
+                    .catch((error: string) => {
+                        const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+                        res.status(500).json(success(message, error))
+                    })
             }
             else {
-                res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` })
+                const message: string = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`
+                res.status(404).json(success(message))
             }
         })
-        .catch((error: string) => res.status(500).json({ error }))
+        .catch((error: string) => {
+            const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+            res.status(500).json(success(message, error))
+        })
 }
