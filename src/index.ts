@@ -3,6 +3,8 @@ const express: Function = require('express')
 const morgan: Function = require('morgan')
 const favicon: Function = require('serve-favicon')
 const bodyParser: { json: Function } = require('body-parser')
+const mongoose: { connect: Function } = require('mongoose')
+require('dotenv').config()
 
 import { success } from "./helper.js"
 import { pokemonList } from "./mock-pokemon.js"
@@ -13,6 +15,10 @@ import { IApp, IPokemon } from "./interface.js"
 /********************************************************************APP*/
 const app: IApp = express()
 const port: number = 3000
+
+mongoose.connect(process.env.DATABASE_CREDENTIALS, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connection à MongoDB établie !'))
+    .catch(() => console.log('Connection à MongoDB échouée !'))
 
 
 

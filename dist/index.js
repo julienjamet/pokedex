@@ -5,11 +5,16 @@ const express = require('express');
 const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+require('dotenv').config();
 const helper_js_1 = require("./helper.js");
 const mock_pokemon_js_1 = require("./mock-pokemon.js");
 /********************************************************************APP*/
 const app = express();
 const port = 3000;
+mongoose.connect(process.env.DATABASE_CREDENTIALS, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connection à MongoDB établie !'))
+    .catch(() => console.log('Connection à MongoDB échouée !'));
 /************************************************************MIDDLEWARES*/
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(morgan("dev"));
