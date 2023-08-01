@@ -23,6 +23,6 @@ mongoose_1.default.connect(connectionString)
 app.use((0, serve_favicon_1.default)(__dirname + '/favicon.ico'));
 app.use((0, morgan_1.default)("dev"));
 app.use(body_parser_1.default.json());
-app.use('api/pokemon', pokemon_1.default);
+app.use('/api/pokemon', pokemon_1.default);
 /*****************************************************************LISTEN*/
 app.listen(port, () => console.log(`Ecoute sur le port ${port}`));

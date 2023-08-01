@@ -19,6 +19,6 @@ mongoose.connect(connectionString)
 app.use(favicon(__dirname + '/favicon.ico'))
 app.use(morgan("dev"))
 app.use(bodyParser.json())
-app.use('api/pokemon', router)
+app.use('/api/pokemon', router)
 /*****************************************************************LISTEN*/
 app.listen(port, () => console.log(`Ecoute sur le port ${port}`))
