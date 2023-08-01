@@ -14,7 +14,10 @@ const getAll = (req, res) => {
         const message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
         res.status(200).json((0, helper_js_1.success)(message, pokemonList));
     })
-        .catch((error) => res.status(500).json({ error }));
+        .catch((error) => {
+        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+        res.status(500).json((0, helper_js_1.success)(message, error));
+    });
 };
 exports.getAll = getAll;
 /****************************************************************GET ONE*/
@@ -26,10 +29,14 @@ const getOne = (req, res) => {
             res.status(200).json((0, helper_js_1.success)(message, pokemon));
         }
         else {
-            res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` });
+            const message = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`;
+            res.status(404).json((0, helper_js_1.success)(message));
         }
     })
-        .catch((error) => res.status(500).json({ error }));
+        .catch((error) => {
+        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+        res.status(500).json((0, helper_js_1.success)(message, error));
+    });
 };
 exports.getOne = getOne;
 /**************************************************************CATCH ONE*/
@@ -40,7 +47,10 @@ const catchOne = (req, res) => {
         const message = `Tu as capturé un ${pokemon.name} !`;
         res.status(201).json((0, helper_js_1.success)(message, pokemon));
     })
-        .catch((error) => res.status(500).json({ error }));
+        .catch((error) => {
+        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+        res.status(500).json((0, helper_js_1.success)(message, error));
+    });
 };
 exports.catchOne = catchOne;
 /*************************************************************UPDATE ONE*/
@@ -51,15 +61,22 @@ const updateOne = (req, res) => {
             pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, req.body))
                 .then(() => {
                 const message = `Tu as modifié ton ${pokemon.name} !`;
-                res.status(200).json((0, helper_js_1.success)(message));
+                res.status(201).json((0, helper_js_1.success)(message));
             })
-                .catch((error) => res.status(500).json({ error }));
+                .catch((error) => {
+                const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                res.status(500).json((0, helper_js_1.success)(message, error));
+            });
         }
         else {
-            res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` });
+            const message = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`;
+            res.status(404).json((0, helper_js_1.success)(message));
         }
     })
-        .catch((error) => res.status(500).json({ error }));
+        .catch((error) => {
+        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+        res.status(500).json((0, helper_js_1.success)(message, error));
+    });
 };
 exports.updateOne = updateOne;
 /*************************************************************DELETE ONE*/
@@ -72,12 +89,19 @@ const deleteOne = (req, res) => {
                 const message = `Tu as relâché ton ${pokemon.name} !`;
                 res.status(200).json((0, helper_js_1.success)(message));
             })
-                .catch((error) => res.status(500).json({ error }));
+                .catch((error) => {
+                const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                res.status(500).json((0, helper_js_1.success)(message, error));
+            });
         }
         else {
-            res.status(404).json({ message: `Oups ! Ton Pokemon a disparu ! Reviens plus tard !` });
+            const message = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`;
+            res.status(404).json((0, helper_js_1.success)(message));
         }
     })
-        .catch((error) => res.status(500).json({ error }));
+        .catch((error) => {
+        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+        res.status(500).json((0, helper_js_1.success)(message, error));
+    });
 };
 exports.deleteOne = deleteOne;
