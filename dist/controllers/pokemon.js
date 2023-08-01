@@ -51,7 +51,7 @@ const updateOne = (req, res) => {
             pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, req.body))
                 .then(() => {
                 const message = `Tu as modifié ton ${pokemon.name} !`;
-                res.status(200).json((0, helper_js_1.success)(message, pokemon));
+                res.status(200).json((0, helper_js_1.success)(message));
             })
                 .catch((error) => res.status(500).json({ error }));
         }
@@ -70,7 +70,7 @@ const deleteOne = (req, res) => {
             pokemon_1.default.deleteOne({ _id: req.params.id })
                 .then(() => {
                 const message = `Tu as relâché ton ${pokemon.name} !`;
-                res.status(200).json((0, helper_js_1.success)(message, pokemon));
+                res.status(200).json((0, helper_js_1.success)(message));
             })
                 .catch((error) => res.status(500).json({ error }));
         }

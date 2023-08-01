@@ -51,7 +51,7 @@ export const updateOne: Function = (req: { params: { id: string }, body: IPokemo
 
                     .then(() => {
                         const message: string = `Tu as modifié ton ${pokemon.name} !`
-                        res.status(200).json(success(message, pokemon))
+                        res.status(200).json(success(message))
                     })
                     .catch((error: string) => res.status(500).json({ error }))
             }
@@ -71,7 +71,7 @@ export const deleteOne: Function = (req: { params: { id: string }, body: IPokemo
 
                     .then(() => {
                         const message: string = `Tu as relâché ton ${pokemon.name} !`
-                        res.status(200).json(success(message, pokemon))
+                        res.status(200).json(success(message))
                     })
                     .catch((error: string) => res.status(500).json({ error }))
             }
