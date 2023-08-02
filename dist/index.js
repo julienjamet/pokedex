@@ -7,10 +7,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const pokemon_1 = __importDefault(require("./routes/pokemon"));
+const pokemon_1 = require("./routes/pokemon");
 /********************************************************************APP*/
 const app = (0, express_1.default)();
-const port = 3000;
+/*************************************************************DB CONNECT*/
 dotenv_1.default.config();
 const connectionString = process.env.DATABASE_CREDENTIALS || 'Insert your MongoDB string here';
 mongoose_1.default.connect(connectionString)
@@ -18,6 +18,6 @@ mongoose_1.default.connect(connectionString)
     .catch(() => console.log('Connection à MongoDB échouée !'));
 /********************************************************************USE*/
 app.use(express_1.default.json());
-app.use('/api/pokemon', pokemon_1.default);
+app.use('/api/pokemon', pokemon_1.router);
 /*****************************************************************LISTEN*/
-app.listen(port, () => console.log(`Ecoute sur le port ${port}`));
+app.listen(3000, () => console.log('Ecoute sur le port 3000'));
