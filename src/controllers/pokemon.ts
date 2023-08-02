@@ -4,8 +4,8 @@ import Pokemon from '../models/pokemon'
 import IPokemon from "../interfaces/pokemon.js"
 import { data } from '../data/pokemon'
 /****************************************************************GET ALL*/
-export const getAll = (req: Request, res: Response): void => {
-    Pokemon.find()
+export const seeAll = (req: Request, res: Response): void => {
+    Pokemon.find().select({ "__v": 0 })
 
         .then((pokemonList: IPokemon[]): void => {
             let message: string = ""
@@ -20,22 +20,21 @@ export const getAll = (req: Request, res: Response): void => {
                 message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`
             }
 
-            res.status(200).json({ message: message, data: pokemonList })
+            res.status(200).json({ message: message, pokedex: pokemonList })
         })
         .catch((error: Error): void => {
             const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
-
             res.status(500).json({ message: message, error: error })
         })
 }
 /****************************************************************GET ONE*/
-export const getOne = (req: Request, res: Response): void => {
-    Pokemon.findById({ _id: req.params.id })
+export const seeOne = (req: Request, res: Response): void => {
+    Pokemon.findById({ _id: req.params.id }).select({ "__v": 0, "_id": 0 })
 
         .then((pokemon: IPokemon | null): void => {
             if (pokemon !== null) {
                 const message: string = `Ton ${pokemon.name} est très heureux !`
-                res.status(200).json({ message: message, data: pokemon })
+                res.status(200).json({ message: message, pokemon: pokemon })
             }
             else {
                 const message: string = `Ce Pokemon n'est pas présent dans ton Pokedex !`
@@ -49,29 +48,36 @@ export const getOne = (req: Request, res: Response): void => {
 }
 /**************************************************************CATCH ONE*/
 export const catchOne = (req: Request, res: Response): Response | void => {
-    const name: string = req.body.name
+    let newPokemon: IPokemon = { number: 0, name: "", picture: "", description: "", type: [] }
+    let i: number = 0
+    let index: IPokemon = data[i]
 
-    if (!(name in data)) {
-        const message: string = `Ce Pokemon n'existe pas !`
-        return res.status(400).json({ error: message })
+    while (i < data.length && index.name !== req.body.name) {
+        i++
+        index = data[i]
     }
 
-    const pokemon: any = new Pokemon({ ...req.body })
-    pokemon.picture = data[pokemon.name]
+    if (i === data.length) {
+        const message: string = `Ce Pokemon n'existe pas !`
+        res.status(400).json({ error: message })
+    }
+    else {
+        newPokemon = index
+        const pokemonModel = new Pokemon(newPokemon)
+        pokemonModel.save()
 
-    pokemon.save()
-
-        .then((pokemon: IPokemon): void => {
-            const message: string = `Tu as capturé un ${pokemon.name} !`
-            res.status(201).json({ message: message, data: pokemon })
-        })
-        .catch((error: Error): void => {
-            const message: string = `Echec de la capture !`
-            res.status(400).json({ message: message, error: error })
-        })
+            .then((index: IPokemon): void => {
+                const message: string = `Tu as capturé un ${index.name} !`
+                res.status(201).json({ message: message, pokemon: index })
+            })
+            .catch((error: Error): void => {
+                const message: string = `Tu possèdes déjà un ${index.name} !`
+                res.status(400).json({ message: message, error: error })
+            })
+    }
 }
 /*************************************************************UPDATE ONE*/
-export const updateOne = (req: Request, res: Response): void => {
+export const evolveOne = (req: Request, res: Response): void => {
     Pokemon.findById({ _id: req.params.id })
 
         .then((pokemon: IPokemon | null): void => {

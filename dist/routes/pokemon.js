@@ -10,8 +10,8 @@ const pokemon_1 = require("../controllers/pokemon");
 /*****************************************************************ROUTER*/
 exports.router = express_1.default.Router();
 /*****************************************************************ROUTES*/
-exports.router.get('/', pokemon_1.getAll);
-exports.router.get('/:id', pokemon_1.getOne);
+exports.router.get('/', pokemon_1.seeAll);
+exports.router.get('/:id', pokemon_1.seeOne);
 exports.router.post('/', pokemon_1.catchOne);
-exports.router.put('/:id', pokemon_1.updateOne);
+exports.router.put('/:id', pokemon_1.evolveOne);
 exports.router.delete('/:id', pokemon_1.deleteOne);

@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteOne = exports.updateOne = exports.catchOne = exports.getOne = exports.getAll = void 0;
+exports.deleteOne = exports.evolveOne = exports.catchOne = exports.seeOne = exports.seeAll = void 0;
 const pokemon_1 = __importDefault(require("../models/pokemon"));
 const pokemon_2 = require("../data/pokemon");
 /****************************************************************GET ALL*/
-const getAll = (req, res) => {
-    pokemon_1.default.find()
+const seeAll = (req, res) => {
+    pokemon_1.default.find().select({ "__v": 0 })
         .then((pokemonList) => {
         let message = "";
         if (pokemonList.length === 0) {
@@ -20,21 +20,21 @@ const getAll = (req, res) => {
         else {
             message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
         }
-        res.status(200).json({ message: message, data: pokemonList });
+        res.status(200).json({ message: message, pokedex: pokemonList });
     })
         .catch((error) => {
         const message = `Le Pokedex est en panne ! Reviens plus tard !`;
         res.status(500).json({ message: message, error: error });
     });
 };
-exports.getAll = getAll;
+exports.seeAll = seeAll;
 /****************************************************************GET ONE*/
-const getOne = (req, res) => {
-    pokemon_1.default.findById({ _id: req.params.id })
+const seeOne = (req, res) => {
+    pokemon_1.default.findById({ _id: req.params.id }).select({ "__v": 0, "_id": 0 })
         .then((pokemon) => {
         if (pokemon !== null) {
             const message = `Ton ${pokemon.name} est très heureux !`;
-            res.status(200).json({ message: message, data: pokemon });
+            res.status(200).json({ message: message, pokemon: pokemon });
         }
         else {
             const message = `Ce Pokemon n'est pas présent dans ton Pokedex !`;
@@ -46,29 +46,37 @@ const getOne = (req, res) => {
         res.status(400).json({ message: message, error: error });
     });
 };
-exports.getOne = getOne;
+exports.seeOne = seeOne;
 /**************************************************************CATCH ONE*/
 const catchOne = (req, res) => {
-    const name = req.body.name;
-    if (!(name in pokemon_2.data)) {
-        const message = `Ce Pokemon n'existe pas !`;
-        return res.status(400).json({ error: message });
+    let newPokemon = { number: 0, name: "", picture: "", description: "", type: [] };
+    let i = 0;
+    let index = pokemon_2.data[i];
+    while (i < pokemon_2.data.length && index.name !== req.body.name) {
+        i++;
+        index = pokemon_2.data[i];
     }
-    const pokemon = new pokemon_1.default(Object.assign({}, req.body));
-    pokemon.picture = pokemon_2.data[pokemon.name];
-    pokemon.save()
-        .then((pokemon) => {
-        const message = `Tu as capturé un ${pokemon.name} !`;
-        res.status(201).json({ message: message, data: pokemon });
-    })
-        .catch((error) => {
-        const message = `Echec de la capture !`;
-        res.status(400).json({ message: message, error: error });
-    });
+    if (i === pokemon_2.data.length) {
+        const message = `Ce Pokemon n'existe pas !`;
+        res.status(400).json({ error: message });
+    }
+    else {
+        newPokemon = index;
+        const pokemonModel = new pokemon_1.default(newPokemon);
+        pokemonModel.save()
+            .then((index) => {
+            const message = `Tu as capturé un ${index.name} !`;
+            res.status(201).json({ message: message, pokemon: index });
+        })
+            .catch((error) => {
+            const message = `Tu possèdes déjà un ${index.name} !`;
+            res.status(400).json({ message: message, error: error });
+        });
+    }
 };
 exports.catchOne = catchOne;
 /*************************************************************UPDATE ONE*/
-const updateOne = (req, res) => {
+const evolveOne = (req, res) => {
     pokemon_1.default.findById({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
@@ -92,7 +100,7 @@ const updateOne = (req, res) => {
         res.status(400).json({ message: message, error: error });
     });
 };
-exports.updateOne = updateOne;
+exports.evolveOne = evolveOne;
 /*************************************************************DELETE ONE*/
 const deleteOne = (req, res) => {
     pokemon_1.default.findById({ _id: req.params.id })
