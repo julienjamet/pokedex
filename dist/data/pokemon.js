@@ -197,28 +197,159 @@ exports.data = [
         description: "Le corps de Sablaireau est recouvert de pointes très dures, qui sont des extensions de sa peau. Une fois par an, ce Pokémon mue et les vieilles pointes tombent, remplacées par de nouvelles.",
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/028.png",
         type: ["Sol"]
-    } //,
-    /*"Nidoran femelle": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/029.png",
-    "Nidorina": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/030.png",
-    "Nidoqueen": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/031.png",
-    "Nidoran mâle": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png",
-    "Nidorino": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/033.png",
-    "Nidokin": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/034.png",
-    "Mélofée": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png",
-    "Mélodelfe": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/036.png",
-    "Goupix": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png",
-    "Feunard": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/038.png",
-    "Rondoudou": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/039.png",
-    "Grodoudou": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/040.png",
-    "Nosferapti": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/041.png",
-    "Nosferalto": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/042.png",
-    "Mystherbe": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/043.png",
-    "Ortide": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/044.png",
-    "Rafflesia": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/045.png",
-    "Paras": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/046.png",
-    "Parasect": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/047.png",
-    "Mimitoss": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/048.png",
-    "Aéromite": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/049.png",
-    "Taupiqueur": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png",
-    "Triopikeur": "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/051.png",*/
+    },
+    {
+        number: 29,
+        name: "Nidoran f",
+        description: "Nidoran♀ est couvert de pointes qui secrètent un poison puissant. On pense que ce petit Pokémon a développé ces pointes pour se défendre. Lorsqu'il est en colère, une horrible toxine sort de sa corne.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/029.png",
+        type: ["Poison"]
+    },
+    {
+        number: 30,
+        name: "Nidorina",
+        description: "Lorsqu'un Nidorina est avec ses amis ou sa famille, il replie ses pointes pour ne pas blesser ses proches. Ce Pokémon devient vite nerveux lorsqu'il est séparé de son groupe.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/030.png",
+        type: ["Poison"]
+    },
+    {
+        number: 31,
+        name: "Nidoqueen",
+        description: "Le corps de Nidoqueen est protégé par des écailles extrêmement dures. Il aime envoyer ses ennemis voler en leur fonçant dessus. Ce Pokémon utilise toute sa puissance lorsqu'il protège ses petits.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/031.png",
+        type: ["Poison", "Sol"]
+    },
+    {
+        number: 32,
+        name: "Nidoran m",
+        description: "Nidoran♂ a développé des muscles pour bouger ses oreilles. Ainsi, il peut les orienter à sa guise. Ce Pokémon peut entendre le plus discret des bruits.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png",
+        type: ["Poison"]
+    },
+    {
+        number: 33,
+        name: "Nidorino",
+        description: "Nidorino dispose d'une corne plus dure que du diamant. S'il sent une présence hostile, toutes les pointes de son dos se hérissent d'un coup, puis il défie son ennemi.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/033.png",
+        type: ["Poison"]
+    },
+    {
+        number: 34,
+        name: "Nidoking",
+        description: "L'épaisse queue de Nidoking est d'une puissance incroyable. En un seul coup, il peut renverser une tour métallique. Lorsque ce Pokémon se déchaîne, plus rien ne peut l'arrêter.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/034.png",
+        type: ["Poison", "Sol"]
+    },
+    {
+        number: 35,
+        name: "Mélofée",
+        description: "Les nuits de pleine lune, des groupes de ces Pokémon sortent jouer. Lorsque l'aube commence à poindre, les Mélofée fatigués rentrent dans leur retraite montagneuse et vont dormir, blottis les uns contre les autres.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png",
+        type: ["Fée"]
+    },
+    {
+        number: 36,
+        name: "Mélodelfe",
+        description: "Les Mélodelfe se déplacent en sautant doucement, comme s'ils volaient. Leur démarche légère leur permet même de marcher sur l'eau. On raconte qu'ils se promènent sur les lacs, les soirs où la lune est claire.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/036.png",
+        type: ["Fée"]
+    },
+    {
+        number: 37,
+        name: "Goupix",
+        description: "À sa naissance, Goupix a une queue blanche. Cette queue se divise en six si le Pokémon reçoit de l'amitié de la part de son Dresseur. Les six queues sont courbées et magnifiques.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png",
+        type: ["Feu"]
+    },
+    {
+        number: 38,
+        name: "Feunard",
+        description: "Feunard peut envoyer un inquiétant rayon avec ses yeux rouge vif pour prendre le contrôle de l'esprit de son ennemi. On raconte que ce Pokémon peut vivre 1 000 ans.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/038.png",
+        type: ["Feu"]
+    },
+    {
+        number: 39,
+        name: "Rondoudou",
+        description: "Rondoudou utilise ses cordes vocales pour ajuster librement la longueur d'onde de sa voix. Cela permet à ce Pokémon de chanter en utilisant une longueur d'onde qui endort ses ennemis.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/039.png",
+        type: ["Normal", "Fée"]
+    },
+    {
+        number: 40,
+        name: "Grodoudou",
+        description: "Grodoudou a des yeux immenses et écarquillés. La surface de ses yeux est couverte d'une fine couche de larmes. Si de la poussière est projetée dans les yeux de ce Pokémon, elle est rapidement évacuée.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/040.png",
+        type: ["Normal", "Fée"]
+    },
+    {
+        number: 41,
+        name: "Nosferapti",
+        description: "Nosferapti reste calme et immobile dans un coin sombre pendant la journée. En effet, une exposition trop longue à la lumière du soleil lui brûle légèrement la peau.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/041.png",
+        type: ["Poison", "Vol"]
+    },
+    {
+        number: 42,
+        name: "Nosferalto",
+        description: "Nosferalto adore boire le sang des créatures vivantes. Il est particulièrement actif pendant les nuits noires. Ce Pokémon se balade dans les cieux étoilés, à la recherche de sang frais.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/042.png",
+        type: ["Poison", "Vol"]
+    },
+    {
+        number: 43,
+        name: "Mystherbe",
+        description: "Pendant la journée, Mystherbe s'enterre dans le sol pour absorber avec son corps tout entier les nutriments présents dans la terre. Plus le sol est fertile, plus ses feuilles sont brillantes.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/043.png",
+        type: ["Plante", "Poison"]
+    },
+    {
+        number: 44,
+        name: "Ortide",
+        description: "La plupart du temps, Ortide dégage un parfum immonde du pistil de sa fleur. Lorsqu'il se sent en danger, la puanteur est encore pire. Lorsque ce Pokémon se sent bien en sécurité, il ne dégage aucune odeur nauséabonde.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/044.png",
+        type: ["Plante", "Poison"]
+    },
+    {
+        number: 45,
+        name: "Rafflesia",
+        description: "Le pollen toxique de Rafflesia déclenche d'affreuses réactions allergiques. C'est pourquoi il est conseillé de ne jamais s'approcher des jolies fleurs trouvées dans la jungle, même lorsqu'elles sont magnifiques.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/045.png",
+        type: ["Plante", "Poison"]
+    },
+    {
+        number: 46,
+        name: "Paras",
+        description: "Paras accueille des champignons parasites appelés tochukaso qui poussent sur son dos. Ils grandissent grâce aux nutriments trouvés sur le dos de ce Pokémon Insecte.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/046.png",
+        type: ["Insecte", "Plante"]
+    },
+    {
+        number: 47,
+        name: "Parasect",
+        description: "On sait que les Parasect vivent en groupe dans les grands arbres et se nourrissent des nutriments contenus dans le tronc et les racines. Lorsqu'un arbre infesté meurt, ils se précipitent vers le prochain.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/047.png",
+        type: ["Insecte", "Plante"]
+    },
+    {
+        number: 48,
+        name: "Mimitoss",
+        description: "On raconte que Mimitoss a évolué avec une fourrure de poils fins et drus qui protège son corps tout entier. Il est doté de grands yeux capables de repérer ses proies, même minuscules.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/048.png",
+        type: ["Insecte", "Poison"]
+    },
+    {
+        number: 49,
+        name: "Aéromite",
+        description: "Aéromite est un Pokémon nocturne, il ne sort donc que la nuit. Ses proies préférées sont les petits insectes qui se rassemblent autour des réverbères, attirés par la lumière.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/049.png",
+        type: ["Insecte", "Poison"]
+    },
+    {
+        number: 50,
+        name: "Taupiqueur",
+        description: "Les Taupiqueur sont élevés dans la plupart des fermes. En effet, lorsque ce Pokémon creuse quelque part, le sol est comme labouré, prêt à recevoir les semences. On peut alors y planter de délicieux légumes.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png",
+        type: ["Sol"]
+    }
 ];
