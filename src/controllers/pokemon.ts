@@ -1,17 +1,30 @@
 /****************************************************************IMPORTS*/
 import { Request, Response } from 'express'
 import Pokemon from '../models/pokemon'
-import IPokemon from "../interface.js"
+import IPokemon from "../interfaces/pokemon.js"
+import { data } from '../data/pokemon'
 /****************************************************************GET ALL*/
 export const getAll = (req: Request, res: Response): void => {
     Pokemon.find()
 
         .then((pokemonList: IPokemon[]): void => {
-            const message: string = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`
+            let message: string = ""
+
+            if (pokemonList.length === 0) {
+                message = `Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`
+            }
+            else if (pokemonList.length === 151) {
+                message = `Tu as attrapé tous les Pokemon ! Félicitations !`
+            }
+            else {
+                message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`
+            }
+
             res.status(200).json({ message: message, data: pokemonList })
         })
         .catch((error: Error): void => {
             const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+
             res.status(500).json({ message: message, error: error })
         })
 }
@@ -35,10 +48,16 @@ export const getOne = (req: Request, res: Response): void => {
         })
 }
 /**************************************************************CATCH ONE*/
-export const catchOne = (req: Request, res: Response): void => {
-    const pokemon: { save: Function } = new Pokemon({
-        ...req.body
-    })
+export const catchOne = (req: Request, res: Response): Response | void => {
+    const name: string = req.body.name
+
+    if (!(name in data)) {
+        const message: string = `Ce Pokemon n'existe pas !`
+        return res.status(400).json({ error: message })
+    }
+
+    const pokemon: any = new Pokemon({ ...req.body })
+    pokemon.picture = data[pokemon.name]
 
     pokemon.save()
 

@@ -5,11 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteOne = exports.updateOne = exports.catchOne = exports.getOne = exports.getAll = void 0;
 const pokemon_1 = __importDefault(require("../models/pokemon"));
+const pokemon_2 = require("../data/pokemon");
 /****************************************************************GET ALL*/
 const getAll = (req, res) => {
     pokemon_1.default.find()
         .then((pokemonList) => {
-        const message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
+        let message = "";
+        if (pokemonList.length === 0) {
+            message = `Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
+        }
+        else if (pokemonList.length === 151) {
+            message = `Tu as attrapé tous les Pokemon ! Félicitations !`;
+        }
+        else {
+            message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
+        }
         res.status(200).json({ message: message, data: pokemonList });
     })
         .catch((error) => {
@@ -39,7 +49,13 @@ const getOne = (req, res) => {
 exports.getOne = getOne;
 /**************************************************************CATCH ONE*/
 const catchOne = (req, res) => {
+    const name = req.body.name;
+    if (!(name in pokemon_2.data)) {
+        const message = `Ce Pokemon n'existe pas !`;
+        return res.status(400).json({ error: message });
+    }
     const pokemon = new pokemon_1.default(Object.assign({}, req.body));
+    pokemon.picture = pokemon_2.data[pokemon.name];
     pokemon.save()
         .then((pokemon) => {
         const message = `Tu as capturé un ${pokemon.name} !`;

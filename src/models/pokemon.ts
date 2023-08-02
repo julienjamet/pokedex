@@ -1,14 +1,11 @@
 /****************************************************************IMPORTS*/
 import mongoose, { Schema } from 'mongoose'
-import IPokemon from "../interface"
+import IPokemon from "../interfaces/pokemon"
 /*****************************************************************SCHEMA*/
 const pokemon: Schema<IPokemon> = new mongoose.Schema(
     {
         name: { type: String, required: true, unique: true },
-        hp: { type: Number, required: true },
-        cp: { type: Number, required: true },
-        picture: { type: String, required: true, unique: true },
-        types: { type: [String], required: true },
+        picture: { type: String, unique: true }
     }
 )
 /****************************************************************EXPORTS*/

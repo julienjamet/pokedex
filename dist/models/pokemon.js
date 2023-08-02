@@ -8,10 +8,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 /*****************************************************************SCHEMA*/
 const pokemon = new mongoose_1.default.Schema({
     name: { type: String, required: true, unique: true },
-    hp: { type: Number, required: true },
-    cp: { type: Number, required: true },
-    picture: { type: String, required: true, unique: true },
-    types: { type: [String], required: true },
+    picture: { type: String, unique: true }
 });
 /****************************************************************EXPORTS*/
 exports.default = mongoose_1.default.model('Pokemon', pokemon);
