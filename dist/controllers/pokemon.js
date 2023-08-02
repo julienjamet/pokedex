@@ -22,7 +22,7 @@ const getAll = (req, res) => {
 exports.getAll = getAll;
 /****************************************************************GET ONE*/
 const getOne = (req, res) => {
-    pokemon_1.default.findOne({ _id: req.params.id })
+    pokemon_1.default.findById({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
             const message = `Ton ${pokemon.name} est très heureux !`;
@@ -55,7 +55,7 @@ const catchOne = (req, res) => {
 exports.catchOne = catchOne;
 /*************************************************************UPDATE ONE*/
 const updateOne = (req, res) => {
-    pokemon_1.default.findOne({ _id: req.params.id })
+    pokemon_1.default.findById({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
             pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, req.body))
@@ -81,7 +81,7 @@ const updateOne = (req, res) => {
 exports.updateOne = updateOne;
 /*************************************************************DELETE ONE*/
 const deleteOne = (req, res) => {
-    pokemon_1.default.findOne({ _id: req.params.id })
+    pokemon_1.default.findById({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
             pokemon_1.default.deleteOne({ _id: req.params.id })

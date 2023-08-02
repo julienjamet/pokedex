@@ -17,7 +17,7 @@ export const getAll: Function = (req: {}, res: { status: Function, json: Functio
 }
 /****************************************************************GET ONE*/
 export const getOne: Function = (req: { params: { id: string } }, res: { status: Function, json: Function }): void => {
-    Pokemon.findOne({ _id: req.params.id })
+    Pokemon.findById({ _id: req.params.id })
 
         .then((pokemon: IPokemon | null) => {
             if (pokemon !== null) {
@@ -53,7 +53,7 @@ export const catchOne: Function = (req: { body: IPokemon }, res: { status: Funct
 }
 /*************************************************************UPDATE ONE*/
 export const updateOne: Function = (req: { params: { id: string }, body: IPokemon }, res: { status: Function, json: Function }): void => {
-    Pokemon.findOne({ _id: req.params.id })
+    Pokemon.findById({ _id: req.params.id })
 
         .then((pokemon: IPokemon | null) => {
             if (pokemon !== null) {
@@ -80,7 +80,7 @@ export const updateOne: Function = (req: { params: { id: string }, body: IPokemo
 }
 /*************************************************************DELETE ONE*/
 export const deleteOne: Function = (req: { params: { id: string }, body: IPokemon }, res: { status: Function, json: Function }): void => {
-    Pokemon.findOne({ _id: req.params.id })
+    Pokemon.findById({ _id: req.params.id })
 
         .then((pokemon: IPokemon | null) => {
             if (pokemon !== null) {
