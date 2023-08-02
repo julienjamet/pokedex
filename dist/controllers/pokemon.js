@@ -16,7 +16,7 @@ const getAll = (req, res) => {
     })
         .catch((error) => {
         const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-        res.status(500).json((0, helper_js_1.success)(message, error));
+        res.status(500).json((0, helper_js_1.success)(message, undefined, error));
     });
 };
 exports.getAll = getAll;
@@ -29,13 +29,13 @@ const getOne = (req, res) => {
             res.status(200).json((0, helper_js_1.success)(message, pokemon));
         }
         else {
-            const message = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`;
+            const message = `Ce Pokemon n'est pas présent dans ton Pokedex !`;
             res.status(404).json((0, helper_js_1.success)(message));
         }
     })
         .catch((error) => {
-        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-        res.status(500).json((0, helper_js_1.success)(message, error));
+        const message = `Cet identifiant n'est pas valable !`;
+        res.status(400).json((0, helper_js_1.success)(message, undefined, error));
     });
 };
 exports.getOne = getOne;
@@ -48,8 +48,8 @@ const catchOne = (req, res) => {
         res.status(201).json((0, helper_js_1.success)(message, pokemon));
     })
         .catch((error) => {
-        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-        res.status(500).json((0, helper_js_1.success)(message, error));
+        const message = `Echec de la capture !`;
+        res.status(400).json((0, helper_js_1.success)(message, undefined, error));
     });
 };
 exports.catchOne = catchOne;
@@ -64,18 +64,18 @@ const updateOne = (req, res) => {
                 res.status(201).json((0, helper_js_1.success)(message));
             })
                 .catch((error) => {
-                const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                res.status(500).json((0, helper_js_1.success)(message, error));
+                const message = `Echec de la modification !`;
+                res.status(400).json((0, helper_js_1.success)(message, undefined, error));
             });
         }
         else {
-            const message = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`;
+            const message = `Ce Pokemon n'est pas présent dans ton Pokedex !`;
             res.status(404).json((0, helper_js_1.success)(message));
         }
     })
         .catch((error) => {
-        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-        res.status(500).json((0, helper_js_1.success)(message, error));
+        const message = `Cet identifiant n'est pas valable !`;
+        res.status(400).json((0, helper_js_1.success)(message, undefined, error));
     });
 };
 exports.updateOne = updateOne;
@@ -91,17 +91,17 @@ const deleteOne = (req, res) => {
             })
                 .catch((error) => {
                 const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                res.status(500).json((0, helper_js_1.success)(message, error));
+                res.status(500).json((0, helper_js_1.success)(message, undefined, error));
             });
         }
         else {
-            const message = `Oups ! Ton Pokemon a disparu ! Reviens plus tard !`;
+            const message = `Ce Pokemon n'est pas présent dans ton Pokedex !`;
             res.status(404).json((0, helper_js_1.success)(message));
         }
     })
         .catch((error) => {
-        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-        res.status(500).json((0, helper_js_1.success)(message, error));
+        const message = `Cet identifiant n'est pas valable !`;
+        res.status(400).json((0, helper_js_1.success)(message, undefined, error));
     });
 };
 exports.deleteOne = deleteOne;
