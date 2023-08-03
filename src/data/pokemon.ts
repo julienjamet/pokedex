@@ -350,5 +350,355 @@ export const data: IPokemon[] = [
         description: "Les Taupiqueur sont élevés dans la plupart des fermes. En effet, lorsque ce Pokémon creuse quelque part, le sol est comme labouré, prêt à recevoir les semences. On peut alors y planter de délicieux légumes.",
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/050.png",
         type: ["Sol"]
+    },
+    {
+        number: 51,
+        name: "Triopikeur",
+        description: "Les Triopikeur sont en fait des triplés qui ont émergé du même corps. C'est pourquoi chaque triplé pense exactement comme les deux autres. Ils creusent inlassablement, dans une coopération parfaite.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/051.png",
+        type: ["Sol"]
+    },
+    {
+        number: 52,
+        name: "Miaouss",
+        description: "Miaouss peut rentrer ses griffes dans ses pattes pour rôder gracieusement sans laisser de traces. Étrangement, ce Pokémon raffole des pièces d'or qui brillent à la lumière.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/052.png",
+        type: ["Normal"]
+    },
+    {
+        number: 53,
+        name: "Persian",
+        description: "Persian a six grosses vibrisses qui lui donnent un air costaud et lui permettent de sentir les mouvements de l'air pour savoir ce qui se trouve à proximité. Il devient docile lorsqu'on l'attrape par les moustaches.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/053.png",
+        type: ["Normal"]
+    },
+    {
+        number: 54,
+        name: "Psykokwak",
+        description: "Psykokwak utilise un mystérieux pouvoir. Ce Pokémon peut générer des ondes cérébrales normalement observées chez les dormeurs. Cette découverte a lancé une polémique dans le milieu universitaire.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/054.png",
+        type: ["Eau"]
+    },
+    {
+        number: 55,
+        name: "Akwakwak",
+        description: "Les pattes avant et arrière palmées et le corps aérodynamique d'Akwakwak lui donnent une vitesse effrayante. Ce Pokémon est bien plus rapide que les plus grands champions de natation.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/055.png",
+        type: ["Eau"]
+    },
+    {
+        number: 56,
+        name: "Férosinge",
+        description: "Lorsque Férosinge commence à trembler et que sa respiration devient haletante, cela signifie qu'il est en colère. En outre, la moutarde lui monte au nez tellement vite qu'il est presque impossible d'échapper à sa colère.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/056.png",
+        type: ["Combat"]
+    },
+    {
+        number: 57,
+        name: "Colossinge",
+        description: "Lorsque Colossinge devient furieux, sa circulation sanguine s'accélère. Du coup, ses muscles sont encore plus puissants. En revanche, il devient bien moins intelligent.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/057.png",
+        type: ["Combat"]
+    },
+    {
+        number: 58,
+        name: "Caninos",
+        description: "Caninos a un odorat très développé. Ce Pokémon n'oublie jamais un parfum, quel qu'il soit. Il utilise son puissant sens olfactif pour deviner les émotions des autres créatures vivantes.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/058.png",
+        type: ["Feu"]
+    },
+    {
+        number: 59,
+        name: "Arcanin",
+        description: "Arcanin est célèbre pour son extraordinaire vitesse. On le dit capable de parcourir plus de 10 000 km en 24 h. Le feu qui fait rage à l'intérieur du corps de ce Pokémon est la source de son pouvoir.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/059.png",
+        type: ["Feu"]
+    },
+    {
+        number: 60,
+        name: "Ptitard",
+        description: "Ptitard a une peau très fine. On peut même voir les entrailles en spirale de ce Pokémon à travers sa peau. Malgré sa finesse, cette peau est aussi très élastique. Même les crocs les plus acérés rebondissent dessus.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/060.png",
+        type: ["Eau"]
+    },
+    {
+        number: 61,
+        name: "Têtarte",
+        description: "La peau de Têtarte est toujours maintenue humide par un liquide huileux. Grâce à cette protection graisseuse, il peut facilement se glisser hors de l'étreinte de n'importe quel ennemi.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/061.png",
+        type: ["Eau"]
+    },
+    {
+        number: 62,
+        name: "Tartard",
+        description: "Les muscles solides et surdéveloppés de Tartard ne se fatiguent jamais, quels que soient les efforts qu'il produit. Ce Pokémon est tellement endurant qu'il peut traverser un océan à la nage avec une étonnante facilité.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/062.png",
+        type: ["Eau", "Combat"]
+    },
+    {
+        number: 63,
+        name: "Abra",
+        description: "Abra dort dix-huit heures par jour. Pourtant, il peut sentir la présence de ses ennemis, même endormi. Dans ce genre de situation, ce Pokémon se téléporte en lieu sûr.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/063.png",
+        type: ["Psy"]
+    },
+    {
+        number: 64,
+        name: "Kadabra",
+        description: "Kadabra émet une onde alpha si particulière qu'elle vous donne mal à la tête. Seuls les gens avec un psychisme puissant peuvent espérer devenir Dresseur de ce Pokémon.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/064.png",
+        type: ["Psy"]
+    },
+    {
+        number: 65,
+        name: "Alakazam",
+        description: "Le cerveau d'Alakazam grossit sans arrêt, si bien que sa tête devient trop lourde pour son cou. Ce Pokémon maintient sa tête relevée grâce à son pouvoir télékinétique.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/065.png",
+        type: ["Psy"]
+    },
+    {
+        number: 66,
+        name: "Machoc",
+        description: "Les muscles de Machoc sont spéciaux. Quels que soient les efforts qu'il produit, il n'a jamais de courbature. Ce Pokémon est assez puissant pour lancer une centaine d'hommes adultes.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/066.png",
+        type: ["Combat"]
+    },
+    {
+        number: 67,
+        name: "Machopeur",
+        description: "Les muscles toniques de Machopeur sont durs comme de l'acier. Ce Pokémon est si fort qu'il peut facilement soulever un sumo avec un seul doigt.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/067.png",
+        type: ["Combat"]
+    },
+    {
+        number: 68,
+        name: "Mackogneur",
+        description: "Mackogneur est capable de déplacer n'importe quelle masse. Cependant ses bras s'emmêlent dès qu'il essaie de réaliser un travail délicat ou minutieux. Ce Pokémon a tendance à cogner d'abord et à réfléchir ensuite.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/068.png",
+        type: ["Combat"]
+    },
+    {
+        number: 69,
+        name: "Chétiflor",
+        description: "Le corps long et flexible de Chétiflor lui permet de se tordre et d'osciller pour éviter tout type d'attaque, mêmes les plus puissantes. Ce Pokémon crache un fluide corrosif qui peut même dissoudre le fer.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/069.png",
+        type: ["Plante", "Poison"]
+    },
+    {
+        number: 70,
+        name: "Boustiflor",
+        description: "Boustiflor est doté d'un gros crochet. La nuit, ce Pokémon s'accroche à une branche pour s'endormir. Quand il a le sommeil agité, il se réveille par terre.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/070.png",
+        type: ["Plante", "Poison"]
+    },
+    {
+        number: 71,
+        name: "Empiflor",
+        description: "Empiflor est doté d'une longue liane qui part de sa tête. Cette liane se balance et remue comme un animal pour attirer ses proies. Lorsque l'une d'elles s'approche un peu trop près, ce Pokémon l'avale entièrement.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/071.png",
+        type: ["Plante", "Poison"]
+    },
+    {
+        number: 72,
+        name: "Tentacool",
+        description: "Le corps de Tentacool est principalement aqueux. Si on le retire de l'eau, il se déshydrate complètement. Si cela arrive, il suffit de le replonger dans un liquide pour qu'il reprenne sa forme normale.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/072.png",
+        type: ["Eau", "Poison"]
+    },
+    {
+        number: 73,
+        name: "Tentacruel",
+        description: "Tentacruel a deux gros globes sur la tête. Les globes s'illuminent lorsqu'il va envoyer un violent rayon d'ultrasons. Lorsque ce Pokémon se déchaîne, il crée d'énormes vagues autour de lui.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/073.png",
+        type: ["Eau", "Poison"]
+    },
+    {
+        number: 74,
+        name: "Racaillou",
+        description: "Lorsqu'un Racaillou prend de l'âge, ses bords s'ébrèchent et s'usent, ce qui lui donne une apparence plus ronde. Cependant, le cœur de ce Pokémon reste dur, rocailleux et rugueux.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/074.png",
+        type: ["Roche", "Sol"]
+    },
+    {
+        number: 75,
+        name: "Gravalanch",
+        description: "Gravalanch grandit en se nourrissant de cailloux. Apparemment, il a une préférence pour les cailloux recouverts de mousse. En moyenne, il mange une tonne de rochers par jour.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/075.png",
+        type: ["Roche", "Sol"]
+    },
+    {
+        number: 76,
+        name: "Grolem",
+        description: "Grolem vit à la montagne. Lorsqu'il y a un tremblement de terre, ces Pokémon roulent en groupe vers les contreforts montagneux.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0756.png",
+        type: ["Roche", "Sol"]
+    },
+    {
+        number: 77,
+        name: "Ponyta",
+        description: "À sa naissance, Ponyta est très faible. Il peut à peine tenir debout. Ce Pokémon se muscle en trébuchant et en tombant, lorsqu'il essaie de suivre ses parents.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/077.png",
+        type: ["Feu"]
+    },
+    {
+        number: 78,
+        name: "Galopa",
+        description: "On voit souvent Galopa trotter dans les champs et les plaines. Cependant, lorsque ce Pokémon s'en donne la peine, il peut galoper à plus de 240 km/h et sa crinière flamboyante s'embrase.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/078.png",
+        type: ["Feu"]
+    },
+    {
+        number: 79,
+        name: "Ramoloss",
+        description: "Ramoloss trempe sa queue dans l'eau au bord des rivières pour attraper ses proies. Cependant, ce Pokémon oublie souvent ce qu'il fait là et passe des jours entiers à traîner au bord de l'eau.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/079.png",
+        type: ["Eau", "Psy"]
+    },
+    {
+        number: 80,
+        name: "Flagadoss",
+        description: "Flagadoss a un Kokiyas solidement attaché à sa queue. Du coup, il ne peut plus l'utiliser pour pêcher. Flagadoss s'est donc obligé, à contrecœur, de nager pour attraper ses proies.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/080.png",
+        type: ["Eau", "Psy"]
+    },
+    {
+        number: 81,
+        name: "Magnéti",
+        description: "Magnéti s'attache aux lignes à haute tension pour se charger en électricité. Si une maison a une panne de courant, il est conseillé de vérifier les fusibles car on trouve parfois ces Pokémon amassés sur la boîte à fusibles.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/081.png",
+        type: ["Electrik", "Acier"]
+    },
+    {
+        number: 82,
+        name: "Magnéton",
+        description: "Magnéton émet un puissant champ magnétique qui neutralise les appareils électroniques. Lorsque ces Pokémon débarquent en masse, les villes sonnent l'alarme et préviennent les habitants.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/082.png",
+        type: ["Electrik", "Acier"]
+    },
+    {
+        number: 83,
+        name: "Canarticho",
+        description: "On voit souvent des Canarticho avec une tige, récupérée sur une plante quelconque. Apparemment, ils peuvent distinguer les bonnes des mauvaises. On a vu ces Pokémon se battre pour des histoires de tiges.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/083.png",
+        type: ["Normal", "Vol"]
+    },
+    {
+        number: 84,
+        name: "Doduo",
+        description: "Les deux têtes de Doduo ne dorment jamais en même temps. Elles se reposent à tour de rôle pour que l'une puisse monter la garde pendant que l'autre dort.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/084.png",
+        type: ["Normal", "Vol"]
+    },
+    {
+        number: 85,
+        name: "Dodrio",
+        description: "Il faut se méfier lorsque les trois têtes de Dodrio regardent dans des directions différentes. Cela signifie qu'il est sur ses gardes. Si c'est le cas, il vaut mieux ne pas s'approcher de ce Pokémon, il pourrait décider d'attaquer.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/085.png",
+        type: ["Normal", "Vol"]
+    },
+    {
+        number: 86,
+        name: "Otaria",
+        description: "Otaria chasse ses proie dans l'eau gelée, sous la couche de glace. Lorsqu'il cherche à respirer, il perce un trou en frappant la glace avec la partie saillante de sa tête.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/086.png",
+        type: ["Eau"]
+    },
+    {
+        number: 87,
+        name: "Lamantine",
+        description: "Lamantine adore piquer un roupillon à même la glace. Il y a très longtemps, un marin ayant aperçu ce Pokémon dormant sur un glacier a cru voir une sirène.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/087.png",
+        type: ["Eau", "Glace"]
+    },
+    {
+        number: 88,
+        name: "Tadmorv",
+        description: "Le corps boueux et gélatineux de Tadmorv peut s'enfoncer dans n'importe quelle ouverture, même la plus petite. Ce Pokémon se promène dans les tuyaux des égouts pour boire de l'eau croupie.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/088.png",
+        type: ["Poison"]
+    },
+    {
+        number: 89,
+        name: "Grotadmorv",
+        description: "Un fluide nauséabond suinte du corps de Grotadmorv, agressant les narines de ses ennemis. Une seule goutte de ce fluide suffit à faire croupir un bassin d'eau propre.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/089.png",
+        type: ["Poison"]
+    },
+    {
+        number: 90,
+        name: "Kokiyas",
+        description: "La nuit, ce Pokémon utilise sa grande langue pour creuser un trou dans le sable des fonds marins afin d'y dormir. Une fois endormi, Kokiyas referme sa coquille, mais laisse sa langue dépasser.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/090.png",
+        type: ["Eau"]
+    },
+    {
+        number: 91,
+        name: "Crustabri",
+        description: "Crustabri est capable de se déplacer dans les fonds marins en avalant de l'eau et en la rejetant vers l'arrière. Ce Pokémon envoie des pointes en utilisant la même méthode.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/091.png",
+        type: ["Eau", "Glace"]
+    },
+    {
+        number: 92,
+        name: "Fantominus",
+        description: "Fantominus est principalement constitué de matière gazeuse. Lorsqu'il est exposé au vent, son corps gazeux se disperse et diminue. Des groupes de ce Pokémon se rassemblent sous les auvents des maisons pour se protéger.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/092.png",
+        type: ["Spectre", "Poison"]
+    },
+    {
+        number: 93,
+        name: "Spectrum",
+        description: "Spectrum est un Pokémon dangereux. Si l'un d'entre eux fait signe d'approcher, il ne faut jamais l'écouter. Ce Pokémon risque de sortir sa langue pour essayer de voler votre vie.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/093.png",
+        type: ["Spectre", "Poison"]
+    },
+    {
+        number: 94,
+        name: "Ectoplasma",
+        description: "Parfois, pendant les nuits noires, une ombre projetée par une réverbère peut tout à coup vous dépasser. Il s'agit d'un Ectoplasma qui court, en se faisant passer pour l'ombre de quelqu'un d'autre.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/094.png",
+        type: ["Spectre", "Poison"]
+    },
+    {
+        number: 95,
+        name: "Onyx",
+        description: "Onix a dans le cerveau un aimant qui lui sert de boussole. Il permet à ce Pokémon de ne pas se perdre pendant qu'il creuse. En prenant de l'âge, son corps s'arrondit et se polit.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/095.png",
+        type: ["Roche", "Sol"]
+    },
+    {
+        number: 96,
+        name: "Soporifik",
+        description: "Lorsque les enfants ont le nez qui les démange en dormant, c'est sans doute parce que ce Pokémon se tient au-dessus de leur oreiller, afin d'essayer de manger leurs rêves par leurs narines.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/096.png",
+        type: ["Psy"]
+    },
+    {
+        number: 97,
+        name: "Hypnomade",
+        description: "Hypnomade tient un pendule dans sa main. Le mouvement de balancier et les reflets brillants du pendule hypnotisent profondément son ennemi. Lorsque ce Pokémon cherche ses proies, il nettoie son pendule.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/097.png",
+        type: ["Psy"]
+    },
+    {
+        number: 98,
+        name: "Krabby",
+        description: "Krabby vit sur les plages, enterré dans le sable. Sur les plages où on trouve un peu de nourriture, on peut voir ces Pokémon se disputer pour défendre leur territoire.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/098.png",
+        type: ["Eau"]
+    },
+    {
+        number: 99,
+        name: "Krabboss",
+        description: "Krabboss est doté d'une pince gigantesque, surdimensionnée. Il l'agite en l'air pour communiquer avec ses semblables. En revanche, sa pince est tellement lourde que ce Pokémon se fatigue très vite.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/099.png",
+        type: ["Eau"]
+    },
+    {
+        number: 100,
+        name: "Voltorbe",
+        description: "La première fois qu'on a vu Voltorbe, c'était dans une usine qui fabrique des Poké Balls. Personne n'a jamais pu expliquer le lien entre cet évènement et la ressemblance frappante de ce Pokémon avec une Poké Ball.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/100.png",
+        type: ["Electrik"]
     }
 ]
