@@ -8,8 +8,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 /*****************************************************************SCHEMA*/
 const trainer = new mongoose_1.default.Schema({
     name: { type: String, unique: true, required: true, uppercase: true },
-    password: { type: String, unique: true, required: true },
-    pokemon: { type: [Number] }
+    password: { type: String, required: true }
 });
 /****************************************************************EXPORTS*/
 exports.default = mongoose_1.default.model('Trainer', trainer);

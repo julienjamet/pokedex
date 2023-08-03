@@ -49,7 +49,7 @@ const seeOne = (req, res) => {
 exports.seeOne = seeOne;
 /**************************************************************CATCH ONE*/
 const catchOne = (req, res) => {
-    let newPokemon = { number: 0, name: "", evolve: "", picture: "", description: "", type: [] };
+    let newPokemon = { number: 0, name: "", evolve: "", picture: "", description: "", type: [], trainers: [] };
     let i = 0;
     let index = pokemon_2.data[i];
     while (i < pokemon_2.data.length && index.name !== req.body.name) {

@@ -38,16 +38,13 @@ export const signUp = (req: Request, res: Response): Response | void => {
                     .then((hash: string): void => {
                         const trainer: ITrainer = new Trainer<ITrainer>({
                             name: req.body.name,
-                            password: hash,
-                            pokemon: []
+                            password: hash
                         })
                         const trainerModel = new Trainer<ITrainer>(trainer)
                         trainerModel.save()
 
                             .then((): void => {
-                                const message: string = `Bienvenue ${trainer.name} !`
-                                trainer.password = '*******************'
-                                res.status(201).json({ message: message, trainer: trainer })
+                                res.status(201).json({ message: `Bienvenue ${trainer.name} !` })
                             })
                             .catch((error: Error): void => {
                                 const message: string = `Ce nom est déjà utilisé par un autre dresseur !`

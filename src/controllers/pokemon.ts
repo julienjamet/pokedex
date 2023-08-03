@@ -48,7 +48,7 @@ export const seeOne = (req: Request, res: Response): void => {
 }
 /**************************************************************CATCH ONE*/
 export const catchOne = (req: Request, res: Response): void => {
-    let newPokemon: IPokemon = { number: 0, name: "", evolve: "", picture: "", description: "", type: [] }
+    let newPokemon: IPokemon = { number: 0, name: "", evolve: "", picture: "", description: "", type: [], trainers: [] }
     let i: number = 0
     let index: IPokemon = data[i]
 

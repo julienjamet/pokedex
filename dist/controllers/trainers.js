@@ -38,15 +38,12 @@ const signUp = (req, res) => {
                     .then((hash) => {
                     const trainer = new trainer_1.default({
                         name: req.body.name,
-                        password: hash,
-                        pokemon: []
+                        password: hash
                     });
                     const trainerModel = new trainer_1.default(trainer);
                     trainerModel.save()
                         .then(() => {
-                        const message = `Bienvenue ${trainer.name} !`;
-                        trainer.password = '*******************';
-                        res.status(201).json({ message: message, trainer: trainer });
+                        res.status(201).json({ message: `Bienvenue ${trainer.name} !` });
                     })
                         .catch((error) => {
                         const message = `Ce nom est déjà utilisé par un autre dresseur !`;
