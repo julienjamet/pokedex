@@ -800,5 +800,413 @@ export const data: IPokemon[] = [
         description: "La première fois qu'on a vu Voltorbe, c'était dans une usine qui fabrique des Poké Balls. Personne n'a jamais pu expliquer le lien entre cet évènement et la ressemblance frappante de ce Pokémon avec une Poké Ball.",
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/100.png",
         type: ["Electrik"]
+    },
+    {
+        number: 101,
+        name: "Electrode",
+        evolve: "",
+        description: "Électrode mange l'électricité qui se trouve dans l'atmosphère. Les jours d'orage, on peut voir ce Pokémon exploser sans arrêt parce qu'il a avalé trop d'électricité.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/101.png",
+        type: ["Electrik"]
+    },
+    {
+        number: 102,
+        name: "Noeunoeuf",
+        evolve: "Noadkoko",
+        description: "Ce Pokémon est constitué de six œufs formant une grappe serrée. Ces six œufs s'attirent mutuellement et pivotent. Quand des fissures apparaissent sur les coquilles, ça signifie que Noeunoeuf est sur le point d'évoluer.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/102.png",
+        type: ["Plante", "Psy"]
+    },
+    {
+        number: 103,
+        name: "Noadkoko",
+        evolve: "",
+        description: "Noadkoko vient des tropiques. À force de vivre sous un soleil ardent, ses têtes ont rapidement grandi. On raconte que lorsque ses têtes tombent, elles se rassemblent et forment un Noeunoeuf.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/103.png",
+        type: ["Plante", "Psy"]
+    },
+    {
+        number: 104,
+        name: "Osselait",
+        evolve: "Ossatueur",
+        description: "La maman d'Osselait lui manque terriblement et il ne la reverra jamais. La lune le fait pleurer, car elle lui rappelle sa mère. Les taches sur le crâne que porte ce Pokémon sont les marques de ses larmes.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/104.png",
+        type: ["Sol"]
+    },
+    {
+        number: 105,
+        name: "Ossatueur",
+        evolve: "",
+        description: "Ossatueur est la forme évoluée d'Osselait. il a surmonté le chagrin causé par la perte de sa maman et s'est endurci. Le tempérament décidé et entier de ce Pokémon le rend très difficile à amadouer.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/105.png",
+        type: ["Sol"]
+    },
+    {
+        number: 106,
+        name: "Kicklee",
+        evolve: "",
+        description: "Les jambes de Kicklee peuvent se contracter et s'étirer à volonté. Grâce à ces jambes à ressort, il terrasse ses ennemis en les rouant de coups de pied. Après les combats, il masse ses jambes pour éviter de sentir la fatigue.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/106.png",
+        type: ["Combat"]
+    },
+    {
+        number: 107,
+        name: "Tygnon",
+        evolve: "",
+        description: "On raconte que Tygnon dispose de l'état d'esprit d'un boxeur qui s'entraîne pour le championnat du monde. Ce Pokémon est doté d'une ténacité à toute épreuve et n'abandonne jamais face à l'adversité.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/107.png",
+        type: ["Combat"]
+    },
+    {
+        number: 108,
+        name: "Excelangue",
+        evolve: "",
+        description: "Chaque fois qu'Excelangue découvre quelque chose de nouveau, il le lèche. Sa mémoire est basée sur le goût et la texture des objets. Il n'aime pas les choses acides.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/108.png",
+        type: ["Normal"]
+    },
+    {
+        number: 109,
+        name: "Smogo",
+        evolve: "Smogogo",
+        description: "Lorsque Smogo s'agite, ça augmente la toxicité de ses gaz internes. Il les projette ensuite par les nombreux orifices de son corps. Ce Pokémon peut aussi gonfler son corps et le faire exploser.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/109.png",
+        type: ["Poison"]
+    },
+    {
+        number: 110,
+        name: "Smogogo",
+        evolve: "",
+        description: "Smogogo adore les gaz qui se dégagent des aliments pourris dans les poubelles. Ce Pokémon cherche généralement les maisons sales et mal tenues pour y habiter. La nuit, quand tout le monde est endormi, il fouille les détritus.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/110.png",
+        type: ["Poison"]
+    },
+    {
+        number: 111,
+        name: "Rhinocorne",
+        evolve: "Rhinoféros",
+        description: "Rhinocorne charge droit devant lui, détruisant tout sur son passage. Il ne s'arrête jamais, même lorsqu'il charge un bloc d'acier. Malgré tout, il sent la douleur le lendemain.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/111.png",
+        type: ["Sol", "Roche"]
+    },
+    {
+        number: 112,
+        name: "Rhinoféros",
+        evolve: "",
+        description: "La corne de Rhinoféros peut même casser du diamant brut. Et avec un simple coup de queue, il peut détruire un bâtiment. La peau de ce Pokémon est incroyablement dure. Un boulet de canon ne lui ferait même pas une égratignure.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/112.png",
+        type: ["Sol", "Roche"]
+    },
+    {
+        number: 113,
+        name: "Leveinard",
+        evolve: "",
+        description: "Leveinard pond tous les jours des œufs pleins de vitamines. Ces œufs sont tellement bons que les gens les mangent même quand ils n'ont pas faim.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/113.png",
+        type: ["Normal"]
+    },
+    {
+        number: 114,
+        name: "Saquedeneu",
+        evolve: "",
+        description: "Les lianes de Saquedeneu se brisent facilement lorsqu'on les attrape. Cela ne lui fait pas mal et lui permet simplement de s'échapper rapidement. Les lianes cassées repoussent le lendemain.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/114.png",
+        type: ["Plante"]
+    },
+    {
+        number: 115,
+        name: "Kangourex",
+        evolve: "",
+        description: "Lorsqu'on rencontre un petit Kangourex qui joue tout seul, il ne faut jamais le déranger ou essayer de l'attraper. Les parents du bébé Pokémon sont sûrement dans le coin et ils risquent d'entrer dans une colère noire.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/115.png",
+        type: ["Normal"]
+    },
+    {
+        number: 116,
+        name: "Hypotrempe",
+        evolve: "Hypocéan",
+        description: "Hypotrempe mange des petits insectes et de la mousse trouvée sur les cailloux. Lorsque les courants océaniques sont trop forts, ce Pokémon peut s'ancrer en accrochant sa queue aux rochers ou aux coraux.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/116.png",
+        type: ["Eau"]
+    },
+    {
+        number: 117,
+        name: "Hypocéan",
+        evolve: "",
+        description: "Hypocéan déclenche des tourbillons en faisant tournoyer son corps. Ces tourbillons sont assez puissants pour engloutir des bateaux de pêche. Ce Pokémon affaiblit sa proie grâce à ces courants, puis l'avale en une bouchée.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/117.png",
+        type: ["Eau"]
+    },
+    {
+        number: 118,
+        name: "Poissirène",
+        evolve: "Poissoroy",
+        description: "Poissirène est un Pokémon magnifique doté de nageoires qui ondulent élégamment dans les profondeurs. Il ne faut pourtant pas baisser sa garde face à ce Pokémon, car il peut charger avec sa puissante corne.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/118.png",
+        type: ["Eau"]
+    },
+    {
+        number: 119,
+        name: "Poissoroy",
+        evolve: "",
+        description: "En automne, on peut voir les Poissoroy mâles effectuer des danses nuptiales dans les rivières pour plaire aux femelles. C'est pendant cette saison que le corps de ce Pokémon prend ses plus belles couleurs.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/119.png",
+        type: ["Eau"]
+    },
+    {
+        number: 120,
+        name: "Stari",
+        evolve: "Staross",
+        description: "Au centre de Stari se trouve un organe rouge et brillant appelé le cœur. À la fin de l'été, sur les plages, les cœurs de ces Pokémon brillent comme les étoiles dans le ciel.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/120.png",
+        type: ["Eau"]
+    },
+    {
+        number: 121,
+        name: "Staross",
+        evolve: "",
+        description: "Le centre de Staross, son cœur, resplendit de sept différentes couleurs. Du fait de sa brillance naturelle, on appelle ce Pokémon le «joyau des mers».",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/121.png",
+        type: ["Eau", "Psy"]
+    },
+    {
+        number: 122,
+        name: "M. Mime",
+        evolve: "",
+        description: "M. Mime est un pantomime hors pair. Ses gestes et ses mouvements parviennent à faire croire que quelque chose d'invisible existe réellement. Lorsqu'on y croit, ces choses deviennent palpables.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/122.png",
+        type: ["Psy", "Fée"]
+    },
+    {
+        number: 123,
+        name: "Insécateur",
+        evolve: "",
+        description: "Insécateur est incroyablement rapide. Sa vitesse fulgurante améliore l'efficacité des deux lames situées sur ses avant-bras. Elles sont si coupantes qu'elles peuvent trancher un énorme tronc d'arbre en un coup.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/123.png",
+        type: ["Insecte", "Vol"]
+    },
+    {
+        number: 124,
+        name: "Lippoutou",
+        evolve: "",
+        description: "Lippoutou marche en rythme, ondule de tout son corps et se déhanche comme s'il dansait. Ses mouvements sont si communicatifs que les gens qui le voient sont soudain pris d'une terrible envie de bouger les hanches, sans réfléchir.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/124.png",
+        type: ["Glace", "Psy"]
+    },
+    {
+        number: 125,
+        name: "Elektek",
+        evolve: "",
+        description: "Lorsqu'une tempête approche, des groupes entiers de ce Pokémon se battent pour grimper sur les hauteurs, où la foudre a le plus de chance de tomber. Certaines villes se servent d'Élektek en guise de paratonnerres.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/125.png",
+        type: ["Electrik"]
+    },
+    {
+        number: 126,
+        name: "Magmar",
+        evolve: "",
+        description: "Lorsqu'il se bat, Magmar fait jaillir des flammes de son corps pour intimider son adversaire. Les explosions enflammées de ce Pokémon déclenchent des vagues de chaleur qui embrasent la végétation environnante.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/126.png",
+        type: ["Feu"]
+    },
+    {
+        number: 127,
+        name: "Scarabrute",
+        evolve: "",
+        description: "Scarabrute est incroyablement fort. Il peut attraper un ennemi qui pèse deux fois son poids dans ses mandibules et le soulever sans le moindre problème. Lorsqu'il fait froid, les mouvements de ce Pokémon sont un peu ralentis.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/127.png",
+        type: ["Insecte"]
+    },
+    {
+        number: 128,
+        name: "Tauros",
+        evolve: "",
+        description: "Ce Pokémon n'est pas satisfait s'il ne détruit pas tout sur son passage. Lorsque Tauros ne trouve pas d'adversaire, il se rue sur de gros arbres et les déracine pour passer ses nerfs.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/128.png",
+        type: ["Normal"]
+    },
+    {
+        number: 129,
+        name: "Magicarpe",
+        evolve: "Léviator",
+        description: "Magicarpe est un Pokémon ridicule qui ne sait faire que des ronds dans l'eau ou se laisser porter par les courants. Son comportement a donné envie aux savants d'étudier son cas.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/129.png",
+        type: ["Eau"]
+    },
+    {
+        number: 130,
+        name: "Léviator",
+        evolve: "",
+        description: "Quand Magicarpe évolue et devient Léviator, la structure de ses cellules cérébrales est modifiée. On pense que l'extrême violence de ce Pokémon découle de cette modification.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/130.png",
+        type: ["Eau", "Vol"]
+    },
+    {
+        number: 131,
+        name: "Lokhlass",
+        evolve: "",
+        description: "Les Lokhlass sont en voie d'extinction. Le soir, on entend ce Pokémon chantonner une complainte mélancolique, espérant retrouver ses rares congénères.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/131.png",
+        type: ["Eau", "Glace"]
+    },
+    {
+        number: 132,
+        name: "Métamorph",
+        evolve: "",
+        description: "Métamorph peut modifier sa structure moléculaire pour prendre d'autres formes. Lorsqu'il essaie de se transformer de mémoire, il lui arrive de se tromper sur certains détails.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/132.png",
+        type: ["Normal"]
+    },
+    {
+        number: 133,
+        name: "Evoli",
+        evolve: "Aquali",
+        description: "Évoli a une structure génétique instable qui se transforme en fonction de l'environnement dans lequel il vit. Ce Pokémon peut évoluer grâce aux radiations de diverses pierres.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/133.png",
+        type: ["Normal"]
+    },
+    {
+        number: 134,
+        name: "Aquali",
+        evolve: "",
+        description: "Aquali a subi une mutation spontanée. Des nageoires et des branchies sont apparues sur son corps, ce qui lui permet de vivre dans les fonds marins. Ce Pokémon peut contrôler l'eau à volonté.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/134.png",
+        type: ["Eau"]
+    },
+    {
+        number: 135,
+        name: "Voltali",
+        evolve: "",
+        description: "Les cellules de Voltali génèrent un courant de faible intensité. Ce pouvoir est amplifié par l'électricité statique de ses poils, ce qui lui permet d'envoyer des éclairs. Sa fourrure hérissée est faite d'aiguilles chargées d'électricité.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/135.png",
+        type: ["Electrik"]
+    },
+    {
+        number: 136,
+        name: "Pyroli",
+        evolve: "",
+        description: "La fourrure soyeuse de Pyroli a une fonction anatomique. Elle rejette la chaleur dans l'air pour que son corps ne surchauffe pas. La température du corps de ce Pokémon peut atteindre 900 °C.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/136.png",
+        type: ["Feu"]
+    },
+    {
+        number: 137,
+        name: "Porygon",
+        evolve: "",
+        description: "Porygon est capable de se décompiler et de retourner à l'état de programme informatique pour entrer dans le cyberespace. Ce Pokémon est protégé contre le piratage, il est donc impossible de le copier.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/137.png",
+        type: ["Normal"]
+    },
+    {
+        number: 138,
+        name: "Amonita",
+        evolve: "Amonistar",
+        description: "Amonita est l'un des Pokémon disparus depuis longtemps et qui furent ressuscités à partir de fossiles. Lorsqu'il est attaqué par un ennemi, il se rétracte dans sa coquille.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/138.png",
+        type: ["Roche", "Eau"]
+    },
+    {
+        number: 139,
+        name: "Amonistar",
+        evolve: "",
+        description: "Amonistar utilise ses tentacules pour capturer ses proies. On pense que l'espèce s'est éteinte parce que sa coquille était devenue trop grande et trop lourde, ce qui rendait ses mouvements lents et pesants.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/139.png",
+        type: ["Roche", "Eau"]
+    },
+    {
+        number: 140,
+        name: "Kabuto",
+        evolve: "Kabutops",
+        description: "Kabuto est un Pokémon ressuscité à partir d'un fossile. Cependant, on a découvert des spécimens vivants. Ce Pokémon n'a pas changé depuis 300 millions d'années.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/140.png",
+        type: ["Roche", "Eau"]
+    },
+    {
+        number: 141,
+        name: "Kabutops",
+        evolve: "",
+        description: "Jadis, Kabutops plongeait dans les profondeurs pour trouver ses proies. Apparemment, ce Pokémon vivant sur terre est l'évolution d'une créature marine, comme le prouvent les changements dans ses branchies.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/141.png",
+        type: ["Roche", "Eau"]
+    },
+    {
+        number: 142,
+        name: "Ptéra",
+        evolve: "",
+        description: "Ptéra est un Pokémon de l'ère des dinosaures. Il fut ressuscité à partir de cellules extraites d'un morceau d'ambre. On pense qu'il était le roi des cieux à l'époque préhistorique.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/142.png",
+        type: ["Roche", "Vol"]
+    },
+    {
+        number: 143,
+        name: "Ronflex",
+        evolve: "",
+        description: "Les journées de Ronflex se résument aux repas et aux siestes. C'est un Pokémon tellement gentil que les enfants n'hésitent pas à jouer sur son énorme ventre.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/143.png",
+        type: ["Normal"]
+    },
+    {
+        number: 144,
+        name: "Artikodin",
+        evolve: "",
+        description: "Artikodin est un Pokémon Oiseau légendaire qui peut contrôler la glace. Le battement de ses ailes gèle l'air tout autour de lui. C'est pourquoi on dit que lorsque ce Pokémon vole, il va neiger.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/144.png",
+        type: ["Glace", "Vol"]
+    },
+    {
+        number: 145,
+        name: "Electhor",
+        evolve: "",
+        description: "Électhor est un Pokémon Oiseau légendaire capable de contrôler l'électricité. Il vit généralement dans les nuages orageux. Ce Pokémon gagne en puissance lorsqu'il est frappé par la foudre.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/145.png",
+        type: ["Electrik", "Vol"]
+    },
+    {
+        number: 146,
+        name: "Sulfura",
+        evolve: "",
+        description: "Sulfura est un Pokémon Oiseau légendaire capable de contrôler le feu. On raconte que lorsque ce Pokémon est blessé, il se baigne dans le magma en ébullition d'un volcan pour se soigner.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/146.png",
+        type: ["Feu", "Vol"]
+    },
+    {
+        number: 147,
+        name: "Minidraco",
+        evolve: "Draco",
+        description: "Minidraco mue constamment, renouvelant sans arrêt sa peau. En effet, l'énergie vitale de son corps augmente régulièrement et sa mue lui permet d'éviter d'atteindre des niveaux incontrôlables.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/147.png",
+        type: ["Dragon"]
+    },
+    {
+        number: 148,
+        name: "Draco",
+        evolve: "Dracolosse",
+        description: "Draco stocke une quantité d'énergie considérable dans son corps. On raconte qu'il peut modifier les conditions climatiques autour de lui en déchargeant l'énergie contenue dans les cristaux de son cou et de sa queue.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/148.png",
+        type: ["Dragon"]
+    },
+    {
+        number: 149,
+        name: "Dracolosse",
+        evolve: "",
+        description: "Dracolosse est capable de faire le tour de la planète en seize heures à peine. C'est un Pokémon au grand cœur qui ramène à bon port les navires perdus dans les tempêtes.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/149.png",
+        type: ["Dragon", "Vol"]
+    },
+    {
+        number: 150,
+        name: "Mewtwo",
+        evolve: "",
+        description: "Mewtwo est un Pokémon créé par manipulation génétique. Cependant, bien que les connaissances scientifiques des humains aient réussi à créer son corps, elles n'ont pas pu doter Mewtwo d'un cœur sensible.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/150.png",
+        type: ["Psy"]
+    },
+    {
+        number: 151,
+        name: "Mew",
+        evolve: "",
+        description: "On dit que Mew possède le code génétique de tous les autres Pokémon. Il peut se rendre invisible à sa guise, ce qui lui permet de ne pas se faire remarquer quand il s'approche des gens.",
+        picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/151.png",
+        type: ["Psy"]
     }
 ]
