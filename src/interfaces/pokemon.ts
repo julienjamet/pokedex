@@ -1,7 +1,8 @@
 export default interface IPokemon {
     number: number,
     name: string,
-    picture: string,
+    evolve: string,
     description: string,
+    picture: string,
     type: string[]
 }

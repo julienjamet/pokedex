@@ -4,11 +4,12 @@ import IPokemon from "../interfaces/pokemon"
 /*****************************************************************SCHEMA*/
 const pokemon: Schema<IPokemon> = new mongoose.Schema(
     {
-        number: { type: Number, unique: true },
-        name: { type: String, required: true, unique: true },
-        picture: { type: String, unique: true },
-        description: { type: String, unique: true },
-        type: { type: [String] }
+        number: { type: Number, unique: true, required: true },
+        name: { type: String, unique: true, required: true },
+        evolve: { type: String, required: true },
+        description: { type: String, unique: true, required: true },
+        picture: { type: String, unique: true, required: true },
+        type: { type: [String], required: true }
     }
 )
 /****************************************************************EXPORTS*/

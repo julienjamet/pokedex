@@ -5,7 +5,7 @@ import IPokemon from "../interfaces/pokemon.js"
 import { data } from '../data/pokemon'
 /****************************************************************GET ALL*/
 export const seeAll = (req: Request, res: Response): void => {
-    Pokemon.find().select({ "__v": 0 })
+    Pokemon.find().select({ "__v": 0, "evolve": 0 })
 
         .then((pokemonList: IPokemon[]): void => {
             let message: string = ""
@@ -29,7 +29,7 @@ export const seeAll = (req: Request, res: Response): void => {
 }
 /****************************************************************GET ONE*/
 export const seeOne = (req: Request, res: Response): void => {
-    Pokemon.findById({ _id: req.params.id }).select({ "__v": 0, "_id": 0 })
+    Pokemon.findById({ _id: req.params.id }).select({ "__v": 0, "_id": 0, "evolve": 0 })
 
         .then((pokemon: IPokemon | null): void => {
             if (pokemon !== null) {
@@ -48,7 +48,7 @@ export const seeOne = (req: Request, res: Response): void => {
 }
 /**************************************************************CATCH ONE*/
 export const catchOne = (req: Request, res: Response): void => {
-    let newPokemon: IPokemon = { number: 0, name: "", picture: "", description: "", type: [] }
+    let newPokemon: IPokemon = { number: 0, name: "", evolve: "", picture: "", description: "", type: [] }
     let i: number = 0
     let index: IPokemon = data[i]
 
@@ -68,6 +68,7 @@ export const catchOne = (req: Request, res: Response): void => {
 
             .then((index: IPokemon): void => {
                 const message: string = `Tu as capturé un ${index.name} !`
+                index.evolve = '???'
                 res.status(201).json({ message: message, pokemon: index })
             })
             .catch((error: Error): void => {
@@ -82,16 +83,31 @@ export const evolveOne = (req: Request, res: Response): void => {
 
         .then((pokemon: IPokemon | null): void => {
             if (pokemon !== null) {
-                Pokemon.updateOne({ _id: req.params.id }, { ...req.body })
+                let i: number = 0
+                let index: IPokemon = data[i]
 
-                    .then((): void => {
-                        const message: string = `Tu as modifié ton ${pokemon.name} !`
-                        res.status(201).json({ message: message })
-                    })
-                    .catch((error: Error): void => {
-                        const message: string = `Echec de la modification !`
-                        res.status(400).json({ message: message, error: error })
-                    })
+                while (i < data.length && index.name !== pokemon.evolve) {
+                    i++
+                    index = data[i]
+                }
+
+                if (i === data.length) {
+                    const message: string = `${pokemon.name} ne peut pas évoluer !`
+                    res.status(400).json({ error: message })
+                }
+                else {
+                    Pokemon.updateOne({ _id: req.params.id }, { ...index })
+
+                        .then((): void => {
+                            const message: string = `Ton ${pokemon.name} évolue en ${index.name} !`
+                            index.evolve = '???'
+                            res.status(201).json({ message: message, evolution: index })
+                        })
+                        .catch((error: Error): void => {
+                            const message: string = `Echec du processus d'évolution !`
+                            res.status(500).json({ message: message, error: error })
+                        })
+                }
             }
             else {
                 const message: string = `Ce Pokemon n'est pas présent dans ton Pokedex !`

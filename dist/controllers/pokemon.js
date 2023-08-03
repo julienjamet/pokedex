@@ -8,7 +8,7 @@ const pokemon_1 = __importDefault(require("../models/pokemon"));
 const pokemon_2 = require("../data/pokemon");
 /****************************************************************GET ALL*/
 const seeAll = (req, res) => {
-    pokemon_1.default.find().select({ "__v": 0 })
+    pokemon_1.default.find().select({ "__v": 0, "evolve": 0 })
         .then((pokemonList) => {
         let message = "";
         if (pokemonList.length === 0) {
@@ -30,7 +30,7 @@ const seeAll = (req, res) => {
 exports.seeAll = seeAll;
 /****************************************************************GET ONE*/
 const seeOne = (req, res) => {
-    pokemon_1.default.findById({ _id: req.params.id }).select({ "__v": 0, "_id": 0 })
+    pokemon_1.default.findById({ _id: req.params.id }).select({ "__v": 0, "_id": 0, "evolve": 0 })
         .then((pokemon) => {
         if (pokemon !== null) {
             const message = `Ton ${pokemon.name} est très heureux !`;
@@ -49,7 +49,7 @@ const seeOne = (req, res) => {
 exports.seeOne = seeOne;
 /**************************************************************CATCH ONE*/
 const catchOne = (req, res) => {
-    let newPokemon = { number: 0, name: "", picture: "", description: "", type: [] };
+    let newPokemon = { number: 0, name: "", evolve: "", picture: "", description: "", type: [] };
     let i = 0;
     let index = pokemon_2.data[i];
     while (i < pokemon_2.data.length && index.name !== req.body.name) {
@@ -66,6 +66,7 @@ const catchOne = (req, res) => {
         pokemonModel.save()
             .then((index) => {
             const message = `Tu as capturé un ${index.name} !`;
+            index.evolve = '???';
             res.status(201).json({ message: message, pokemon: index });
         })
             .catch((error) => {
@@ -80,15 +81,28 @@ const evolveOne = (req, res) => {
     pokemon_1.default.findById({ _id: req.params.id })
         .then((pokemon) => {
         if (pokemon !== null) {
-            pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, req.body))
-                .then(() => {
-                const message = `Tu as modifié ton ${pokemon.name} !`;
-                res.status(201).json({ message: message });
-            })
-                .catch((error) => {
-                const message = `Echec de la modification !`;
-                res.status(400).json({ message: message, error: error });
-            });
+            let i = 0;
+            let index = pokemon_2.data[i];
+            while (i < pokemon_2.data.length && index.name !== pokemon.evolve) {
+                i++;
+                index = pokemon_2.data[i];
+            }
+            if (i === pokemon_2.data.length) {
+                const message = `${pokemon.name} ne peut pas évoluer !`;
+                res.status(400).json({ error: message });
+            }
+            else {
+                pokemon_1.default.updateOne({ _id: req.params.id }, Object.assign({}, index))
+                    .then(() => {
+                    const message = `Ton ${pokemon.name} évolue en ${index.name} !`;
+                    index.evolve = '???';
+                    res.status(201).json({ message: message, evolution: index });
+                })
+                    .catch((error) => {
+                    const message = `Echec du processus d'évolution !`;
+                    res.status(500).json({ message: message, error: error });
+                });
+            }
         }
         else {
             const message = `Ce Pokemon n'est pas présent dans ton Pokedex !`;
