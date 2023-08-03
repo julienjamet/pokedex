@@ -1061,7 +1061,7 @@ exports.data = [
     {
         number: 133,
         name: "Evoli",
-        evolve: "Aquali",
+        evolve: "",
         description: "Évoli a une structure génétique instable qui se transforme en fonction de l'environnement dans lequel il vit. Ce Pokémon peut évoluer grâce aux radiations de diverses pierres.",
         picture: "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/133.png",
         type: ["Normal"]

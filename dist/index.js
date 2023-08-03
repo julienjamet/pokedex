@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const auth_1 = require("./controllers/auth");
 const trainer_1 = require("./routes/trainer");
 const pokemon_1 = require("./routes/pokemon");
 /********************************************************************APP*/
@@ -20,6 +21,6 @@ mongoose_1.default.connect(connectionString)
 /********************************************************************USE*/
 app.use(express_1.default.json());
 app.use('/api/trainer', trainer_1.trainerRouter);
-app.use('/api/pokemon', pokemon_1.pokemonRouter);
+app.use('/api/pokemon', auth_1.auth, pokemon_1.pokemonRouter);
 /*****************************************************************LISTEN*/
 app.listen(3000, () => console.log('Ecoute sur le port 3000'));

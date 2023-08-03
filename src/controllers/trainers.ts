@@ -2,7 +2,6 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
 import Trainer from '../models/trainer'
 import { ITrainer } from "../interfaces/interfaces.js"
 /****************************************************************SIGN IN*/
@@ -103,17 +102,11 @@ export const login = (req: Request, res: Response): Response | void => {
                                         res.status(401).json({ message: `Le mot de passe est incorrect !` })
                                     }
                                     else {
-                                        dotenv.config()
+                                        const message: string = `Bienvenue ${trainer.name} !`
                                         const tokenKey: string = process.env.TOKEN_KEY || 'token_key'
+                                        const token = jwt.sign({ name: trainer.name }, tokenKey, { expiresIn: '1h' })
 
-                                        res.status(200).json({
-                                            message: `Bienvenue ${trainer.name} !`,
-                                            token: jwt.sign(
-                                                { name: trainer.name },
-                                                tokenKey,
-                                                { expiresIn: '1h' }
-                                            )
-                                        })
+                                        res.status(200).json({ message: message, token: token })
                                     }
                                 })
                                 .catch((error: Error): void => {

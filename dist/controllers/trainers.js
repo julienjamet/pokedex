@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.signUp = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const dotenv_1 = __importDefault(require("dotenv"));
 const trainer_1 = __importDefault(require("../models/trainer"));
 /****************************************************************SIGN IN*/
 const signUp = (req, res) => {
@@ -99,12 +98,10 @@ const login = (req, res) => {
                                 res.status(401).json({ message: `Le mot de passe est incorrect !` });
                             }
                             else {
-                                dotenv_1.default.config();
+                                const message = `Bienvenue ${trainer.name} !`;
                                 const tokenKey = process.env.TOKEN_KEY || 'token_key';
-                                res.status(200).json({
-                                    message: `Bienvenue ${trainer.name} !`,
-                                    token: jsonwebtoken_1.default.sign({ name: trainer.name }, tokenKey, { expiresIn: '1h' })
-                                });
+                                const token = jsonwebtoken_1.default.sign({ name: trainer.name }, tokenKey, { expiresIn: '1h' });
+                                res.status(200).json({ message: message, token: token });
                             }
                         })
                             .catch((error) => {

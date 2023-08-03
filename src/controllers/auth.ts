@@ -1,21 +1,27 @@
 /****************************************************************IMPORTS*/
-import { NextFunction } from 'express'
+import { RequestHandler, Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
-/*******************************************************************AUTH*/
-module.exports = (req: Request, res: Response, next: NextFunction): Response | void => {
-    const authorization: string | null = req.headers.get('authorization')
 
-    if (!authorization) {
+interface authRequest extends Request {
+    auth?: {
+        name: string
+    }
+}
+/*******************************************************************AUTH*/
+export const auth: RequestHandler = (req: authRequest, res: Response, next: NextFunction): Response | void => {
+    const authorization: string | undefined = req.headers.authorization
+
+    if (authorization === undefined) {
         return res.status(401).json({ message: `Accès non-autorisé !` })
     }
     else {
         const token: string = authorization.split(' ')[1]
-        dotenv.config()
         const tokenKey: string = process.env.TOKEN_KEY || 'token_key'
-        const decodedToken = jwt.verify(token, tokenKey)
-        const name = decodedToken.name
-        req.auth = { email: email }
+
+        const decodedToken: { name: string } = jwt.verify(token, tokenKey) as { name: string }
+        const name: string = decodedToken.name
+        req.auth = { name: name }
+
         next()
     }
 }
