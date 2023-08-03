@@ -1,7 +1,7 @@
 /****************************************************************IMPORTS*/
 import { Request, Response } from 'express'
 import Pokemon from '../models/pokemon'
-import IPokemon from "../interfaces/pokemon.js"
+import { IPokemon } from "../interfaces/interfaces.js"
 import { data } from '../data/pokemon'
 /****************************************************************GET ALL*/
 export const seeAll = (req: Request, res: Response): void => {
@@ -63,7 +63,7 @@ export const catchOne = (req: Request, res: Response): void => {
     }
     else {
         newPokemon = index
-        const pokemonModel = new Pokemon(newPokemon)
+        const pokemonModel = new Pokemon<IPokemon>(newPokemon)
         pokemonModel.save()
 
             .then((index: IPokemon): void => {

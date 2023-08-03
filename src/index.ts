@@ -2,7 +2,8 @@
 import express, { Application } from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import { router } from './routes/pokemon'
+import { trainerRouter } from './routes/trainer'
+import { pokemonRouter } from './routes/pokemon'
 /********************************************************************APP*/
 const app: Application = express()
 /*************************************************************DB CONNECT*/
@@ -14,6 +15,7 @@ mongoose.connect(connectionString)
     .catch((): void => console.log('Connection à MongoDB échouée !'))
 /********************************************************************USE*/
 app.use(express.json())
-app.use('/api/pokemon', router)
+app.use('/api/trainer', trainerRouter)
+app.use('/api/pokemon', pokemonRouter)
 /*****************************************************************LISTEN*/
 app.listen(3000, (): void => console.log('Ecoute sur le port 3000'))

@@ -2,10 +2,10 @@
 import express, { Router } from 'express'
 import { seeAll, seeOne, catchOne, evolveOne, deleteOne } from '../controllers/pokemon'
 /*****************************************************************ROUTER*/
-export const router: Router = express.Router()
+export const pokemonRouter: Router = express.Router()
 /*****************************************************************ROUTES*/
-router.get('/', seeAll)
-router.get('/:id', seeOne)
-router.post('/', catchOne)
-router.put('/:id', evolveOne)
-router.delete('/:id', deleteOne)
+pokemonRouter.get('/', seeAll)
+pokemonRouter.get('/:id', seeOne)
+pokemonRouter.post('/', catchOne)
+pokemonRouter.put('/:id', evolveOne)
+pokemonRouter.delete('/:id', deleteOne)

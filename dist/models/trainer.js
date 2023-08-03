@@ -6,13 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /****************************************************************IMPORTS*/
 const mongoose_1 = __importDefault(require("mongoose"));
 /*****************************************************************SCHEMA*/
-const pokemon = new mongoose_1.default.Schema({
-    number: { type: Number, unique: true, required: true },
+const trainer = new mongoose_1.default.Schema({
     name: { type: String, unique: true, required: true, uppercase: true },
-    evolve: { type: String },
-    description: { type: String, unique: true, required: true },
-    picture: { type: String, unique: true, required: true },
-    type: { type: [String], required: true }
+    password: { type: String, unique: true, required: true },
+    pokemon: { type: [Number] }
 });
 /****************************************************************EXPORTS*/
-exports.default = mongoose_1.default.model('Pokemon', pokemon);
+exports.default = mongoose_1.default.model('Trainer', trainer);

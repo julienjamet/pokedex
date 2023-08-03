@@ -1,4 +1,4 @@
-import IPokemon from "../interfaces/pokemon"
+import { IPokemon } from "../interfaces/interfaces"
 
 export const data: IPokemon[] = [
     {
