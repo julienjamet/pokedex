@@ -15,6 +15,9 @@ Trainer
     Sign up :    [POST]    /trainer/signup    { "name": "your_name", "password": "your_password" }
     Login   :    [POST]    /trainer/login     { "name": "your_name", "password": "your_password" }
 
+GUIDE TO TOKEN USAGE
+Once logged in, you will get a token valid for one hour. You will need to add an authorization header with the value "Bearer your_token" to all your requests made on the Pokemon routes.
+
 Pokemon
     See all :    [GET]     /pokemon
     See one :    [GET]     /pokemon/:id
