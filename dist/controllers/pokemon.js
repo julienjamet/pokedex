@@ -146,17 +146,23 @@ const evolveOne = (req, res) => {
             if (pokemon !== null) {
                 const pokemonName = pokemon.name;
                 if (pokemon.evolve) {
-                    pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
-                        .then(() => {
-                        pokemon_1.default.findOne({ name: pokemon.evolve }).lean()
-                            .then((evolution) => {
-                            if (evolution !== null) {
-                                const evolutionName = evolution.name;
-                                pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
+                    pokemon_1.default.findOne({ name: pokemon.evolve }).lean()
+                        .then((evolution) => {
+                        if (evolution !== null) {
+                            const evolutionName = evolution.name;
+                            if (!evolution.trainers.includes(trainerName)) {
+                                pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
                                     .then(() => {
-                                    const message = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`;
-                                    const { _id, evolve, __v, trainers } = evolution, filteredEvolution = __rest(evolution, ["_id", "evolve", "__v", "trainers"]);
-                                    res.status(200).json({ message: message, pokemon: filteredEvolution });
+                                    pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
+                                        .then(() => {
+                                        const message = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`;
+                                        const { _id, evolve, __v, trainers } = evolution, filteredEvolution = __rest(evolution, ["_id", "evolve", "__v", "trainers"]);
+                                        res.status(200).json({ message: message, pokemon: filteredEvolution });
+                                    })
+                                        .catch((error) => {
+                                        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                                        res.status(500).json({ message: message, error: error });
+                                    });
                                 })
                                     .catch((error) => {
                                     const message = `Le Pokedex est en panne ! Reviens plus tard !`;
@@ -164,18 +170,18 @@ const evolveOne = (req, res) => {
                                 });
                             }
                             else {
-                                const message = `${pokemonName.toUpperCase()} ne peut pas évoluer !`;
-                                res.status(400).json({ message: message });
+                                const message = `Tu possèdes déjà un ${evolutionName.toUpperCase()} ! ${pokemonName} n'évolue pas !`;
+                                res.status(403).json({ message: message });
                             }
-                        })
-                            .catch((error) => {
+                        }
+                        else {
                             const message = `${pokemonName.toUpperCase()} ne peut pas évoluer !`;
-                            res.status(400).json({ message: message, error: error });
-                        });
+                            res.status(400).json({ message: message });
+                        }
                     })
                         .catch((error) => {
-                        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                        res.status(500).json({ message: message, error: error });
+                        const message = `${pokemonName.toUpperCase()} ne peut pas évoluer !`;
+                        res.status(400).json({ message: message, error: error });
                     });
                 }
                 else {
