@@ -9,7 +9,7 @@ https://www.youtube.com/watch?v=NRxzvpdduvQ
 *******************************************
 GUIDE TO API USAGE
 
-root : https://julienjamet-pokemon.onrender.com/api
+Root : https://julienjamet-pokemon.onrender.com/api
 
 Trainer
     Sign up :    [POST]    /trainer/signup    { "name": "your_name", "password": "your_password" }
