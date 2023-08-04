@@ -27,23 +27,23 @@ const signUp = (req, res) => {
             return res.status(400).json({ message: `Ce mot de passe est trop long ! 30 caractères au maximum !` });
         }
         else {
-            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(req.body.name)) {
+            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {
                 return res.status(400).json({ message: `Ton nom doit être composé d'au moins deux lettres et ne doit comporter aucun caractère spécial !` });
             }
-            else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/.test(req.body.password)) {
+            else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/.test(password)) {
                 return res.status(400).json({ message: `Il te faut faut un mot de passe fort pour protéger tes données ! Il doit être composé d'au moins 8 caractères et contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial comme '@' ou '#' !` });
             }
             else {
-                bcrypt_1.default.hash(req.body.password, 10)
+                bcrypt_1.default.hash(password, 10)
                     .then((hash) => {
                     const trainer = new trainer_1.default({
-                        name: req.body.name,
+                        name: name,
                         password: hash
                     });
                     const trainerModel = new trainer_1.default(trainer);
                     trainerModel.save()
                         .then(() => {
-                        res.status(201).json({ message: `Bienvenue ${trainer.name} !` });
+                        res.status(201).json({ message: `Bienvenue ${name} ! Tu peux maintenant te connecter à ta session !` });
                     })
                         .catch((error) => {
                         const message = `Ce nom est déjà utilisé par un autre dresseur !`;
@@ -95,9 +95,9 @@ const login = (req, res) => {
                                 res.status(401).json({ message: `Le mot de passe est incorrect !` });
                             }
                             else {
-                                const message = `Bienvenue ${trainer.name} !`;
+                                const message = `Bienvenue ${name} !`;
                                 const tokenKey = process.env.TOKEN_KEY || 'token_key';
-                                const token = jsonwebtoken_1.default.sign({ name: trainer.name }, tokenKey, { expiresIn: '1h' });
+                                const token = jsonwebtoken_1.default.sign({ name: name }, tokenKey, { expiresIn: '1h' });
                                 res.status(200).json({ message: message, token: token });
                             }
                         })

@@ -19,17 +19,18 @@ const pokemon_1 = __importDefault(require("../models/pokemon"));
 /****************************************************************GET ALL*/
 const seeAll = (req, res) => {
     if (req.auth !== undefined) {
-        pokemon_1.default.find({ trainers: req.auth.name }).select({ "__v": 0, "evolve": 0, "trainers": 0 })
+        const name = req.auth.name;
+        pokemon_1.default.find({ trainers: name }).select({ "__v": 0, "evolve": 0, "trainers": 0 })
             .then((pokemonList) => {
             let message = "";
             if (pokemonList.length === 0) {
-                message = `Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
+                message = `Salut ${name} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
             }
             else if (pokemonList.length === 151) {
-                message = `Tu as attrapé tous les Pokemon ! Félicitations !`;
+                message = `Salut ${name} ! Tu as attrapé tous les Pokemon ! Félicitations !`;
             }
             else {
-                message = `Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
+                message = `Salut ${name} ! Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
             }
             res.status(200).json({ message: message, pokedex: pokemonList });
         })
@@ -47,7 +48,9 @@ exports.seeAll = seeAll;
 /****************************************************************GET ONE*/
 const seeOne = (req, res) => {
     if (req.auth !== undefined) {
-        pokemon_1.default.findOne({ _id: req.params.id, trainers: { $in: req.auth.name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0 })
+        const id = req.params.id;
+        const name = req.auth.name;
+        pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0 })
             .then((pokemon) => {
             if (pokemon !== null) {
                 const message = `Ton ${pokemon.name} est très heureux !`;
@@ -71,8 +74,8 @@ const seeOne = (req, res) => {
 exports.seeOne = seeOne;
 /**************************************************************CATCH ONE*/
 const catchOne = (req, res) => {
-    const name = req.body.name;
-    if (!name) {
+    const pokemonName = req.body.name;
+    if (!pokemonName) {
         return res.status(400).json({ message: `Tu dois renseigner le nom ('name') du Pokemon à capturer !` });
     }
     else {
@@ -81,22 +84,23 @@ const catchOne = (req, res) => {
                 return res.status(400).json({ message: `Il faut renseigner le nom ('name') du Pokemon à capturer ! Rien de plus !` });
             }
         }
-        if (name.length > 15) {
+        if (pokemonName.length > 15) {
             return res.status(400).json({ message: `Aucun Pokemon n'a un nom aussi long !` });
         }
         else {
-            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {
+            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(pokemonName)) {
                 return res.status(400).json({ message: `Le nom du Pokemon doit être composé d'au moins deux lettres et ne doit comporter aucun caractère spécial !` });
             }
             else {
-                pokemon_1.default.findOne({ name: req.body.name }).lean()
+                pokemon_1.default.findOne({ name: pokemonName }).lean()
                     .then((pokemon) => {
                     if (pokemon !== null) {
                         if (req.auth !== undefined) {
-                            if (!pokemon.trainers.includes(req.auth.name)) {
-                                pokemon_1.default.updateOne({ name: pokemon.name }, { $push: { trainers: req.auth.name } })
+                            const trainerName = req.auth.name;
+                            if (!pokemon.trainers.includes(trainerName)) {
+                                pokemon_1.default.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
                                     .then(() => {
-                                    const message = `Tu as capturé un ${pokemon.name} !`;
+                                    const message = `Bravo ${trainerName} ! Tu as capturé un ${pokemonName} !`;
                                     const { _id, evolve, __v, trainers } = pokemon, filteredPokemon = __rest(pokemon, ["_id", "evolve", "__v", "trainers"]);
                                     res.status(201).json({ message: message, pokemon: filteredPokemon });
                                 })
@@ -106,7 +110,7 @@ const catchOne = (req, res) => {
                                 });
                             }
                             else {
-                                const message = `Tu possèdes déjà un ${pokemon.name} !`;
+                                const message = `Tu possèdes déjà un ${pokemonName} !`;
                                 res.status(403).json({ message: message });
                             }
                         }
@@ -131,59 +135,51 @@ const catchOne = (req, res) => {
 exports.catchOne = catchOne;
 /*************************************************************UPDATE ONE*/
 const evolveOne = (req, res) => {
+    const id = req.params.id;
     if (req.body && Object.keys(req.body).length !== 0) {
         return res.status(400).json({ message: `Il n'y a rien à envoyer ici !` });
     }
     if (req.auth !== undefined) {
-        pokemon_1.default.findOne({ _id: req.params.id, trainers: { $in: req.auth.name } })
+        const trainerName = req.auth.name;
+        pokemon_1.default.findOne({ _id: id, trainers: { $in: trainerName } })
             .then((pokemon) => {
             if (pokemon !== null) {
-                if (req.auth !== undefined) {
-                    if (pokemon.evolve) {
-                        pokemon_1.default.updateOne({ name: pokemon.name }, { $pull: { trainers: req.auth.name } })
-                            .then(() => {
-                            pokemon_1.default.findOne({ name: pokemon.evolve })
-                                .then((evolution) => {
-                                if (evolution !== null) {
-                                    if (req.auth !== undefined) {
-                                        pokemon_1.default.updateOne({ name: evolution.name }, { $push: { trainers: req.auth.name } })
-                                            .then(() => {
-                                            const message = `Ton ${pokemon.name} évolue en ${evolution.name} !`;
-                                            res.status(200).json({ message: message });
-                                        })
-                                            .catch((error) => {
-                                            const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                                            res.status(500).json({ message: message, error: error });
-                                        });
-                                    }
-                                    else {
-                                        const message = `Tu n'es pas authentifié(e) !`;
-                                        res.status(401).json({ message: message });
-                                    }
-                                }
-                                else {
-                                    const message = `${pokemon.name} ne peut pas évoluer !`;
-                                    res.status(400).json({ message: message });
-                                }
-                            })
-                                .catch((error) => {
-                                const message = `${pokemon.name} ne peut pas évoluer !`;
-                                res.status(400).json({ message: message, error: error });
-                            });
+                const pokemonName = pokemon.name;
+                if (pokemon.evolve) {
+                    pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
+                        .then(() => {
+                        pokemon_1.default.findOne({ name: pokemon.evolve })
+                            .then((evolution) => {
+                            if (evolution !== null) {
+                                const evolutionName = evolution.name;
+                                pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
+                                    .then(() => {
+                                    const message = `Bravo ${trainerName} ! Ton ${pokemonName} évolue en ${evolutionName} !`;
+                                    res.status(200).json({ message: message });
+                                })
+                                    .catch((error) => {
+                                    const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                                    res.status(500).json({ message: message, error: error });
+                                });
+                            }
+                            else {
+                                const message = `${pokemonName} ne peut pas évoluer !`;
+                                res.status(400).json({ message: message });
+                            }
                         })
                             .catch((error) => {
-                            const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                            res.status(500).json({ message: message, error: error });
+                            const message = `${pokemonName} ne peut pas évoluer !`;
+                            res.status(400).json({ message: message, error: error });
                         });
-                    }
-                    else {
-                        const message = `${pokemon.name} ne peut pas évoluer !`;
-                        res.status(400).json({ message: message });
-                    }
+                    })
+                        .catch((error) => {
+                        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                        res.status(500).json({ message: message, error: error });
+                    });
                 }
                 else {
-                    const message = `Tu n'es pas authentifié(e) !`;
-                    res.status(401).json({ message: message });
+                    const message = `${pokemonName} ne peut pas évoluer !`;
+                    res.status(400).json({ message: message });
                 }
             }
             else {
@@ -204,25 +200,22 @@ const evolveOne = (req, res) => {
 exports.evolveOne = evolveOne;
 /*************************************************************DELETE ONE*/
 const deleteOne = (req, res) => {
+    const id = req.params.id;
     if (req.auth !== undefined) {
-        pokemon_1.default.findOne({ _id: req.params.id, trainers: { $in: req.auth.name } })
+        const trainerName = req.auth.name;
+        pokemon_1.default.findOne({ _id: id, trainers: { $in: trainerName } })
             .then((pokemon) => {
             if (pokemon !== null) {
-                if (req.auth !== undefined) {
-                    pokemon_1.default.updateOne({ name: pokemon.name }, { $pull: { trainers: req.auth.name } })
-                        .then(() => {
-                        const message = `Tu as relâché ton ${pokemon.name} !`;
-                        res.status(200).json({ message: message });
-                    })
-                        .catch((error) => {
-                        const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                        res.status(500).json({ message: message, error: error });
-                    });
-                }
-                else {
-                    const message = `Tu n'es pas authentifié(e) !`;
-                    res.status(401).json({ message: message });
-                }
+                const pokemonName = pokemon.name;
+                pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
+                    .then(() => {
+                    const message = `Tu as relâché ton ${pokemonName} !`;
+                    res.status(200).json({ message: message });
+                })
+                    .catch((error) => {
+                    const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                    res.status(500).json({ message: message, error: error });
+                });
             }
             else {
                 const message = `Ce Pokemon n'est pas présent dans ton Pokedex !`;
