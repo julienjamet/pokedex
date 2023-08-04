@@ -20,17 +20,17 @@ const pokemon_1 = __importDefault(require("../models/pokemon"));
 const seeAll = (req, res) => {
     if (req.auth !== undefined) {
         const name = req.auth.name;
-        pokemon_1.default.find({ trainers: name }).select({ "__v": 0, "evolve": 0, "trainers": 0 })
+        pokemon_1.default.find({ trainers: name }).select({ "__v": 0, "evolve": 0, "trainers": 0 }).sort({ number: 1 })
             .then((pokemonList) => {
             let message = "";
             if (pokemonList.length === 0) {
-                message = `Salut ${name} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
+                message = `Salut ${name.toUpperCase()} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
             }
             else if (pokemonList.length === 151) {
-                message = `Salut ${name} ! Tu as attrapé tous les Pokemon ! Félicitations !`;
+                message = `Salut ${name.toUpperCase()} ! Tu as attrapé tous les Pokemon ! Félicitations !`;
             }
             else {
-                message = `Salut ${name} ! Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
+                message = `Salut ${name.toUpperCase()} ! Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`;
             }
             res.status(200).json({ message: message, pokedex: pokemonList });
         })
@@ -53,7 +53,7 @@ const seeOne = (req, res) => {
         pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0 })
             .then((pokemon) => {
             if (pokemon !== null) {
-                const message = `Ton ${pokemon.name} est très heureux !`;
+                const message = `Ton ${pokemon.name.toUpperCase()} est très heureux !`;
                 res.status(200).json({ message: message, pokemon: pokemon });
             }
             else {
@@ -100,7 +100,7 @@ const catchOne = (req, res) => {
                             if (!pokemon.trainers.includes(trainerName)) {
                                 pokemon_1.default.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
                                     .then(() => {
-                                    const message = `Bravo ${trainerName} ! Tu as capturé un ${pokemonName} !`;
+                                    const message = `Bravo ${trainerName.toUpperCase()} ! Tu as capturé un ${pokemonName.toUpperCase()} !`;
                                     const { _id, evolve, __v, trainers } = pokemon, filteredPokemon = __rest(pokemon, ["_id", "evolve", "__v", "trainers"]);
                                     res.status(201).json({ message: message, pokemon: filteredPokemon });
                                 })
@@ -110,7 +110,7 @@ const catchOne = (req, res) => {
                                 });
                             }
                             else {
-                                const message = `Tu possèdes déjà un ${pokemonName} !`;
+                                const message = `Tu possèdes déjà un ${pokemonName.toUpperCase()} !`;
                                 res.status(403).json({ message: message });
                             }
                         }
@@ -148,14 +148,15 @@ const evolveOne = (req, res) => {
                 if (pokemon.evolve) {
                     pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
                         .then(() => {
-                        pokemon_1.default.findOne({ name: pokemon.evolve })
+                        pokemon_1.default.findOne({ name: pokemon.evolve }).lean()
                             .then((evolution) => {
                             if (evolution !== null) {
                                 const evolutionName = evolution.name;
                                 pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
                                     .then(() => {
-                                    const message = `Bravo ${trainerName} ! Ton ${pokemonName} évolue en ${evolutionName} !`;
-                                    res.status(200).json({ message: message });
+                                    const message = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`;
+                                    const { _id, evolve, __v, trainers } = evolution, filteredEvolution = __rest(evolution, ["_id", "evolve", "__v", "trainers"]);
+                                    res.status(200).json({ message: message, pokemon: filteredEvolution });
                                 })
                                     .catch((error) => {
                                     const message = `Le Pokedex est en panne ! Reviens plus tard !`;
@@ -163,12 +164,12 @@ const evolveOne = (req, res) => {
                                 });
                             }
                             else {
-                                const message = `${pokemonName} ne peut pas évoluer !`;
+                                const message = `${pokemonName.toUpperCase()} ne peut pas évoluer !`;
                                 res.status(400).json({ message: message });
                             }
                         })
                             .catch((error) => {
-                            const message = `${pokemonName} ne peut pas évoluer !`;
+                            const message = `${pokemonName.toUpperCase()} ne peut pas évoluer !`;
                             res.status(400).json({ message: message, error: error });
                         });
                     })
@@ -178,7 +179,7 @@ const evolveOne = (req, res) => {
                     });
                 }
                 else {
-                    const message = `${pokemonName} ne peut pas évoluer !`;
+                    const message = `${pokemonName.toUpperCase()} ne peut pas évoluer !`;
                     res.status(400).json({ message: message });
                 }
             }
@@ -209,7 +210,7 @@ const deleteOne = (req, res) => {
                 const pokemonName = pokemon.name;
                 pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
                     .then(() => {
-                    const message = `Tu as relâché ton ${pokemonName} !`;
+                    const message = `Tu as relâché ton ${pokemonName.toUpperCase()} !`;
                     res.status(200).json({ message: message });
                 })
                     .catch((error) => {

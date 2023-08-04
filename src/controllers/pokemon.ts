@@ -7,19 +7,19 @@ export const seeAll = (req: authRequest, res: Response): void => {
     if (req.auth !== undefined) {
         const name: string = req.auth.name
 
-        Pokemon.find({ trainers: name }).select({ "__v": 0, "evolve": 0, "trainers": 0 })
+        Pokemon.find({ trainers: name }).select({ "__v": 0, "evolve": 0, "trainers": 0 }).sort({ number: 1 })
 
             .then((pokemonList: IPokemon[]): void => {
                 let message: string = ""
 
                 if (pokemonList.length === 0) {
-                    message = `Salut ${name} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`
+                    message = `Salut ${name.toUpperCase()} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`
                 }
                 else if (pokemonList.length === 151) {
-                    message = `Salut ${name} ! Tu as attrapé tous les Pokemon ! Félicitations !`
+                    message = `Salut ${name.toUpperCase()} ! Tu as attrapé tous les Pokemon ! Félicitations !`
                 }
                 else {
-                    message = `Salut ${name} ! Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`
+                    message = `Salut ${name.toUpperCase()} ! Tu as déjà attrapé ${pokemonList.length} Pokemon ! Continue comme ça !`
                 }
 
                 res.status(200).json({ message: message, pokedex: pokemonList })
@@ -44,7 +44,7 @@ export const seeOne = (req: authRequest, res: Response): void => {
 
             .then((pokemon: IPokemon | null): void => {
                 if (pokemon !== null) {
-                    const message: string = `Ton ${pokemon.name} est très heureux !`
+                    const message: string = `Ton ${pokemon.name.toUpperCase()} est très heureux !`
                     res.status(200).json({ message: message, pokemon: pokemon })
                 }
                 else {
@@ -95,7 +95,7 @@ export const catchOne = (req: authRequest, res: Response): Response | void => {
                                     Pokemon.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
 
                                         .then((): void => {
-                                            const message: string = `Bravo ${trainerName} ! Tu as capturé un ${pokemonName} !`
+                                            const message: string = `Bravo ${trainerName.toUpperCase()} ! Tu as capturé un ${pokemonName.toUpperCase()} !`
                                             const { _id, evolve, __v, trainers, ...filteredPokemon } = pokemon
                                             res.status(201).json({ message: message, pokemon: filteredPokemon })
                                         })
@@ -105,7 +105,7 @@ export const catchOne = (req: authRequest, res: Response): Response | void => {
                                         })
                                 }
                                 else {
-                                    const message: string = `Tu possèdes déjà un ${pokemonName} !`
+                                    const message: string = `Tu possèdes déjà un ${pokemonName.toUpperCase()} !`
                                     res.status(403).json({ message: message })
                                 }
                             }
@@ -148,7 +148,7 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
                         Pokemon.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
 
                             .then((): void => {
-                                Pokemon.findOne({ name: pokemon.evolve })
+                                Pokemon.findOne({ name: pokemon.evolve }).lean()
 
                                     .then((evolution: IPokemon | null): void => {
                                         if (evolution !== null) {
@@ -157,8 +157,9 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
                                             Pokemon.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
 
                                                 .then((): void => {
-                                                    const message: string = `Bravo ${trainerName} ! Ton ${pokemonName} évolue en ${evolutionName} !`
-                                                    res.status(200).json({ message: message })
+                                                    const message: string = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`
+                                                    const { _id, evolve, __v, trainers, ...filteredEvolution } = evolution
+                                                    res.status(200).json({ message: message, pokemon: filteredEvolution })
                                                 })
                                                 .catch((error: Error): void => {
                                                     const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
@@ -166,12 +167,12 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
                                                 })
                                         }
                                         else {
-                                            const message: string = `${pokemonName} ne peut pas évoluer !`
+                                            const message: string = `${pokemonName.toUpperCase()} ne peut pas évoluer !`
                                             res.status(400).json({ message: message })
                                         }
                                     })
                                     .catch((error: Error): void => {
-                                        const message: string = `${pokemonName} ne peut pas évoluer !`
+                                        const message: string = `${pokemonName.toUpperCase()} ne peut pas évoluer !`
                                         res.status(400).json({ message: message, error: error })
                                     })
                             })
@@ -181,7 +182,7 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
                             })
                     }
                     else {
-                        const message: string = `${pokemonName} ne peut pas évoluer !`
+                        const message: string = `${pokemonName.toUpperCase()} ne peut pas évoluer !`
                         res.status(400).json({ message: message })
                     }
                 }
@@ -216,7 +217,7 @@ export const deleteOne = (req: authRequest, res: Response): void => {
                     Pokemon.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
 
                         .then((): void => {
-                            const message: string = `Tu as relâché ton ${pokemonName} !`
+                            const message: string = `Tu as relâché ton ${pokemonName.toUpperCase()} !`
                             res.status(200).json({ message: message })
                         })
                         .catch((error: Error): void => {

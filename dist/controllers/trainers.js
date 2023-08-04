@@ -43,7 +43,7 @@ const signUp = (req, res) => {
                     const trainerModel = new trainer_1.default(trainer);
                     trainerModel.save()
                         .then(() => {
-                        res.status(201).json({ message: `Bienvenue ${name} ! Tu peux maintenant te connecter à ta session !` });
+                        res.status(201).json({ message: `Bienvenue ${name.toUpperCase()} ! Tu peux maintenant te connecter à ta session !` });
                     })
                         .catch((error) => {
                         const message = `Ce nom est déjà utilisé par un autre dresseur !`;
@@ -95,9 +95,9 @@ const login = (req, res) => {
                                 res.status(401).json({ message: `Le mot de passe est incorrect !` });
                             }
                             else {
-                                const message = `Bienvenue ${name} !`;
+                                const message = `Bienvenue ${name.toUpperCase()} !`;
                                 const tokenKey = process.env.TOKEN_KEY || 'token_key';
-                                const token = jsonwebtoken_1.default.sign({ name: name }, tokenKey, { expiresIn: '1h' });
+                                const token = jsonwebtoken_1.default.sign({ name: name.toUpperCase() }, tokenKey, { expiresIn: '1h' });
                                 res.status(200).json({ message: message, token: token });
                             }
                         })

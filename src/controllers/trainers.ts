@@ -44,7 +44,7 @@ export const signUp = (req: Request, res: Response): Response | void => {
                         trainerModel.save()
 
                             .then((): void => {
-                                res.status(201).json({ message: `Bienvenue ${name} ! Tu peux maintenant te connecter à ta session !` })
+                                res.status(201).json({ message: `Bienvenue ${name.toUpperCase()} ! Tu peux maintenant te connecter à ta session !` })
                             })
                             .catch((error: Error): void => {
                                 const message: string = `Ce nom est déjà utilisé par un autre dresseur !`
@@ -99,9 +99,9 @@ export const login = (req: Request, res: Response): Response | void => {
                                         res.status(401).json({ message: `Le mot de passe est incorrect !` })
                                     }
                                     else {
-                                        const message: string = `Bienvenue ${name} !`
+                                        const message: string = `Bienvenue ${name.toUpperCase()} !`
                                         const tokenKey: string = process.env.TOKEN_KEY || 'token_key'
-                                        const token = jwt.sign({ name: name }, tokenKey, { expiresIn: '1h' })
+                                        const token = jwt.sign({ name: name.toUpperCase() }, tokenKey, { expiresIn: '1h' })
 
                                         res.status(200).json({ message: message, token: token })
                                     }
