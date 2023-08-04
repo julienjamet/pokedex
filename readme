@@ -1,0 +1,24 @@
+This project has been made to practice Mongoose, Express, Node and TypeScript.
+
+I followed a JavaScript tutorial from the Youtube french channel "Simon Dieny - Code Senior" (link below), that I "translated" into TypeScript.
+
+https://www.youtube.com/watch?v=NRxzvpdduvQ
+
+
+
+*******************************************
+GUIDE TO API USAGE
+
+root : https://julienjamet-pokemon.onrender.com/api
+
+sign up : [POST] /signup { "name": "your_name", "password": "your_password" }
+login : [POST] /login { "name": "your_name", "password": "your_password" }
+
+seeAll : [GET] /pokemon
+seeOne : [GET] /pokemon/:id
+catchOne : [POST] /pokemon { "name": "pokemon_name" }
+evolveOne : [PUT] /pokemon/:id
+deleteOne : [DELETE] /pokemon/:id
+*******************************************
+
+Have fun !
