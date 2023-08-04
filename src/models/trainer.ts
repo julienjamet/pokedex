@@ -1,6 +1,6 @@
 /****************************************************************IMPORTS*/
 import mongoose, { Schema } from 'mongoose'
-import { IPokemon, ITrainer } from "../interfaces/interfaces"
+import { ITrainer } from "../interfaces/interfaces"
 /*****************************************************************SCHEMA*/
 const trainer: Schema<ITrainer> = new mongoose.Schema(
     {

@@ -13,11 +13,13 @@ export interface ITrainer {
 }
 /****************************************************************POKEMON*/
 export interface IPokemon {
+    _id: string,
     number: number,
     name: string,
     evolve: string,
     description: string,
     picture: string,
     type: string[],
-    trainers: string[]
+    trainers: string[],
+    __v: number
 }
