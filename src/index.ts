@@ -3,6 +3,7 @@ import express, { Application } from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import { auth } from './controllers/auth'
+import { rank } from './controllers/rank'
 import { trainerRouter } from './routes/trainer'
 import { pokemonRouter } from './routes/pokemon'
 /********************************************************************APP*/
@@ -17,6 +18,6 @@ mongoose.connect(connectionString)
 /********************************************************************USE*/
 app.use(express.json())
 app.use('/api/trainer', trainerRouter)
-app.use('/api/pokemon', auth, pokemonRouter)
+app.use('/api/pokemon', auth, rank, pokemonRouter)
 /*****************************************************************LISTEN*/
 app.listen(3000, (): void => console.log('Ecoute sur le port 3000'))

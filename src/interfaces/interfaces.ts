@@ -9,7 +9,9 @@ export interface authRequest extends Request {
 /****************************************************************TRAINER*/
 export interface ITrainer {
     name: string,
-    password: string
+    password: string,
+    level: number,
+    rank: string
 }
 /****************************************************************POKEMON*/
 export interface IPokemon {
@@ -21,5 +23,6 @@ export interface IPokemon {
     picture: string,
     type: string[],
     trainers: string[],
-    __v: number
+    __v: number,
+    level: number
 }

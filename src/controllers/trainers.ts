@@ -1,11 +1,11 @@
 /****************************************************************IMPORTS*/
-import { Request, Response } from 'express'
+import { Request, RequestHandler, Response } from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import Trainer from '../models/trainer'
 import { ITrainer } from "../interfaces/interfaces.js"
 /****************************************************************SIGN IN*/
-export const signUp = (req: Request, res: Response): Response | void => {
+export const signUp: RequestHandler = (req: Request, res: Response): Response | void => {
     const name: string = req.body.name
     const password: string = req.body.password
 
@@ -38,7 +38,9 @@ export const signUp = (req: Request, res: Response): Response | void => {
                     .then((hash: string): void => {
                         const trainer: ITrainer = new Trainer<ITrainer>({
                             name: name,
-                            password: hash
+                            password: hash,
+                            level: 1,
+                            rank: "DÉBUTANT"
                         })
                         const trainerModel = new Trainer<ITrainer>(trainer)
                         trainerModel.save()
@@ -60,7 +62,7 @@ export const signUp = (req: Request, res: Response): Response | void => {
     }
 }
 /******************************************************************LOGIN*/
-export const login = (req: Request, res: Response): Response | void => {
+export const login: RequestHandler = (req: Request, res: Response): Response | void => {
     const name: string = req.body.name
     const password: string = req.body.password
 
