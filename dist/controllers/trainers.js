@@ -38,7 +38,9 @@ const signUp = (req, res) => {
                     .then((hash) => {
                     const trainer = new trainer_1.default({
                         name: name,
-                        password: hash
+                        password: hash,
+                        level: 1,
+                        rank: "DÉBUTANT"
                     });
                     const trainerModel = new trainer_1.default(trainer);
                     trainerModel.save()

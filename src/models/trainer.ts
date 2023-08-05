@@ -5,7 +5,9 @@ import { ITrainer } from "../interfaces/interfaces"
 const trainer: Schema<ITrainer> = new mongoose.Schema(
     {
         name: { type: String, unique: true, required: true, uppercase: true },
-        password: { type: String, required: true }
+        password: { type: String, required: true },
+        level: { type: Number, required: true },
+        rank: { type: String, required: true }
     }
 )
 /****************************************************************EXPORTS*/

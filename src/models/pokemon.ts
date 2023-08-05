@@ -10,7 +10,8 @@ const pokemon: Schema<IPokemon> = new mongoose.Schema(
         description: { type: String, required: true },
         picture: { type: String, required: true },
         type: { type: [String], required: true },
-        trainers: { type: [String], uppercase: true }
+        trainers: { type: [String], uppercase: true },
+        level: { type: Number, required: true }
     }
 )
 /****************************************************************EXPORTS*/
