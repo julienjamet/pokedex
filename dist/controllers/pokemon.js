@@ -21,44 +21,62 @@ const trainer_1 = __importDefault(require("../models/trainer"));
 const seeAll = (req, res) => {
     if (req.auth !== undefined) {
         const name = req.auth.name;
-        pokemon_1.default.find({ trainers: name }).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0 }).sort({ number: 1 })
+        let filters = {
+            trainers: name
+        };
+        if (req.query.type) {
+            const query = req.query.type;
+            filters.type = query;
+        }
+        pokemon_1.default.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0 }).sort({ number: 1 })
             .then((pokedex) => {
             trainer_1.default.findOne({ name: name })
                 .then((trainer) => {
+                var _a;
                 if (trainer !== null) {
-                    const rank = trainer.rank;
-                    let forNextRank;
-                    let messageRank;
                     let message;
-                    if (rank === "DÉBUTANT") {
-                        forNextRank = 43 - pokedex.length;
-                    }
-                    else if (rank === "COLLECTIONNEUR") {
-                        forNextRank = 115 - pokedex.length;
-                    }
-                    else if (rank === "CHASSEUR") {
-                        forNextRank = 146 - pokedex.length;
-                    }
-                    else if (rank === "CHAMPION") {
-                        forNextRank = 150 - pokedex.length;
-                    }
-                    else if (rank === "MAÎTRE DRESSEUR") {
-                        forNextRank = 1;
+                    if (req.query.type) {
+                        message = `Salut ${name.toUpperCase()} ! Tu as attrapé ${pokedex.length} Pokemon de type ${(_a = filters.type) === null || _a === void 0 ? void 0 : _a.toUpperCase()} !`;
+                        return res.status(200).json({ message: message, pokedex: pokedex });
                     }
                     else {
-                        forNextRank = 0;
+                        const rank = trainer.rank;
+                        let forNextRank;
+                        let messageRank;
+                        if (rank === "DÉBUTANT") {
+                            forNextRank = 43 - pokedex.length;
+                        }
+                        else if (rank === "COLLECTIONNEUR") {
+                            forNextRank = 115 - pokedex.length;
+                        }
+                        else if (rank === "CHASSEUR") {
+                            forNextRank = 146 - pokedex.length;
+                        }
+                        else if (rank === "CHAMPION") {
+                            forNextRank = 150 - pokedex.length;
+                        }
+                        else if (rank === "MAÎTRE DRESSEUR") {
+                            forNextRank = 1;
+                        }
+                        else {
+                            forNextRank = 0;
+                        }
+                        messageRank = `Il te manque ${forNextRank} Pokemon pour accéder au niveau supérieur !`;
+                        if (pokedex.length === 0) {
+                            message = `Salut ${name.toUpperCase()} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
+                        }
+                        else if (pokedex.length === 151) {
+                            message = `Salut ${name.toUpperCase()} ! Tu as attrapé tous les Pokemon ! Félicitations !`;
+                            return res.status(200).json({ message: message, rank: rank, pokedex: pokedex });
+                        }
+                        else if (pokedex.length >= 100) {
+                            message = `Salut ${name.toUpperCase()} ! Tu as déjà attrapé ${pokedex.length} Pokemon ! Tu y es presque !`;
+                        }
+                        else {
+                            message = `Salut ${name.toUpperCase()} ! Tu as déjà attrapé ${pokedex.length} Pokemon ! Continue comme ça !`;
+                        }
+                        res.status(200).json({ message: message, rank: rank, forNextRank: messageRank, pokedex: pokedex });
                     }
-                    messageRank = `Il te manque ${forNextRank} Pokemon pour accéder au niveau supérieur !`;
-                    if (pokedex.length === 0) {
-                        message = `Salut ${name.toUpperCase()} ! Tu n'as attrapé aucun Pokemon ! Il est temps de commencer ton aventure !`;
-                    }
-                    else if (pokedex.length === 151) {
-                        message = `Salut ${name.toUpperCase()} ! Tu as attrapé tous les Pokemon ! Félicitations !`;
-                    }
-                    else {
-                        message = `Salut ${name.toUpperCase()} ! Tu as déjà attrapé ${pokedex.length} Pokemon ! Continue comme ça !`;
-                    }
-                    res.status(200).json({ message: message, rank: rank, forNextRank: messageRank, pokedex: pokedex });
                 }
                 else {
                     const message = `Ce dresseur n'existe pas !`;
@@ -140,7 +158,7 @@ const catchOne = (req, res) => {
                                         if (pokemon.level <= trainer.level) {
                                             pokemon_1.default.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
                                                 .then(() => {
-                                                const message = `Bravo ${trainerName.toUpperCase()} ! Tu as capturé un ${pokemonName.toUpperCase()} !`;
+                                                const message = `Bravo ${trainerName.toUpperCase()} ! Tu as attrapé un ${pokemonName.toUpperCase()} !`;
                                                 const { _id, evolve, __v, trainers, level } = pokemon, filteredPokemon = __rest(pokemon, ["_id", "evolve", "__v", "trainers", "level"]);
                                                 res.status(201).json({ message: message, pokemon: filteredPokemon });
                                             })
@@ -150,7 +168,7 @@ const catchOne = (req, res) => {
                                             });
                                         }
                                         else {
-                                            const message = `Tu n'es pas encore assez expérimenté(e) pour capturer un ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`;
+                                            const message = `Tu n'es pas encore assez expérimenté(e) pour attraper un ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`;
                                             res.status(403).json({ message: message });
                                         }
                                     }
