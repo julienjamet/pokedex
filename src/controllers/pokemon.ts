@@ -10,10 +10,24 @@ export const seeAll: RequestHandler = (req: authRequest, res: Response): Respons
         let filters: { trainers: string, type?: string | undefined } = {
             trainers: name
         }
+        const types: string[] = ['Feu', 'Eau', 'Plante', 'Normal', 'Vol', 'Insecte', 'Electrik', 'Fée', 'Dragon', 'Poison', 'Combat', 'Glace', 'Psy', 'Roche', 'Sol']
 
         if (req.query.type) {
             const query: string = req.query.type as string
-            filters.type = query
+            let typeValidator: boolean = false
+
+            for (let each of types) {
+                if (query === each) {
+                    typeValidator = true
+                }
+            }
+
+            if (typeValidator) {
+                filters.type = query
+            }
+            else {
+                return res.status(400).json({ message: `Ce type n'existe pas !` })
+            }
         }
 
         Pokemon.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0 }).sort({ number: 1 })

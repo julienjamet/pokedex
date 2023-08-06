@@ -24,9 +24,21 @@ const seeAll = (req, res) => {
         let filters = {
             trainers: name
         };
+        const types = ['Feu', 'Eau', 'Plante', 'Normal', 'Vol', 'Insecte', 'Electrik', 'Fée', 'Dragon', 'Poison', 'Combat', 'Glace', 'Psy', 'Roche', 'Sol'];
         if (req.query.type) {
             const query = req.query.type;
-            filters.type = query;
+            let typeValidator = false;
+            for (let each of types) {
+                if (query === each) {
+                    typeValidator = true;
+                }
+            }
+            if (typeValidator) {
+                filters.type = query;
+            }
+            else {
+                return res.status(400).json({ message: `Ce type n'existe pas !` });
+            }
         }
         pokemon_1.default.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0 }).sort({ number: 1 })
             .then((pokedex) => {
