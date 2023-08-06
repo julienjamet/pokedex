@@ -24,17 +24,17 @@ const seeAll = (req, res) => {
         let filters = {
             trainers: name
         };
-        const types = ['Feu', 'Eau', 'Plante', 'Normal', 'Vol', 'Insecte', 'Electrik', 'Fée', 'Dragon', 'Poison', 'Combat', 'Glace', 'Psy', 'Roche', 'Sol'];
+        const types = ['FEU', 'EAU', 'PLANTE', 'NORMAL', 'VOL', 'INSECTE', 'ELECTRIK', 'FÉE', 'DRAGON', 'POISON', 'COMBAT', 'GLACE', 'PSY', 'ROCHE', 'SOL'];
         if (req.query.type) {
             const query = req.query.type;
             let typeValidator = false;
             for (let each of types) {
-                if (query === each) {
+                if (query.toUpperCase() === each) {
                     typeValidator = true;
                 }
             }
             if (typeValidator) {
-                filters.type = query;
+                filters.type = query.toUpperCase();
             }
             else {
                 return res.status(400).json({ message: `Ce type n'existe pas !` });

@@ -10,20 +10,20 @@ export const seeAll: RequestHandler = (req: authRequest, res: Response): Respons
         let filters: { trainers: string, type?: string | undefined } = {
             trainers: name
         }
-        const types: string[] = ['Feu', 'Eau', 'Plante', 'Normal', 'Vol', 'Insecte', 'Electrik', 'Fée', 'Dragon', 'Poison', 'Combat', 'Glace', 'Psy', 'Roche', 'Sol']
+        const types: string[] = ['FEU', 'EAU', 'PLANTE', 'NORMAL', 'VOL', 'INSECTE', 'ELECTRIK', 'FÉE', 'DRAGON', 'POISON', 'COMBAT', 'GLACE', 'PSY', 'ROCHE', 'SOL']
 
         if (req.query.type) {
             const query: string = req.query.type as string
             let typeValidator: boolean = false
 
             for (let each of types) {
-                if (query === each) {
+                if (query.toUpperCase() === each) {
                     typeValidator = true
                 }
             }
 
             if (typeValidator) {
-                filters.type = query
+                filters.type = query.toUpperCase()
             }
             else {
                 return res.status(400).json({ message: `Ce type n'existe pas !` })
