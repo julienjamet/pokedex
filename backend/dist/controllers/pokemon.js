@@ -40,7 +40,7 @@ const seeAll = (req, res) => {
                 return res.status(400).json({ message: `Ce type n'existe pas !` });
             }
         }
-        pokemon_1.default.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0 }).sort({ number: 1 })
+        pokemon_1.default.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 }).sort({ number: 1 })
             .then((pokedex) => {
             trainer_1.default.findOne({ name: name })
                 .then((trainer) => {
@@ -116,7 +116,7 @@ const seeOne = (req, res) => {
     if (req.auth !== undefined) {
         const id = req.params.id;
         const name = req.auth.name;
-        pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0 })
+        pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
             .then((pokemon) => {
             if (pokemon !== null) {
                 const message = `Ton ${pokemon.name.toUpperCase()} est très heureux !`;
@@ -161,47 +161,53 @@ const catchOne = (req, res) => {
                 pokemon_1.default.findOne({ name: pokemonName }).lean()
                     .then((pokemon) => {
                     if (pokemon !== null) {
-                        if (req.auth !== undefined) {
-                            const trainerName = req.auth.name;
-                            if (!pokemon.trainers.includes(trainerName)) {
-                                trainer_1.default.findOne({ name: trainerName })
-                                    .then((trainer) => {
-                                    if (trainer !== null) {
-                                        if (pokemon.level <= trainer.level) {
-                                            pokemon_1.default.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
-                                                .then(() => {
-                                                const message = `Bravo ${trainerName.toUpperCase()} ! Tu as attrapé un ${pokemonName.toUpperCase()} !`;
-                                                const { _id, evolve, __v, trainers, level } = pokemon, filteredPokemon = __rest(pokemon, ["_id", "evolve", "__v", "trainers", "level"]);
-                                                res.status(201).json({ message: message, pokemon: filteredPokemon });
-                                            })
-                                                .catch((error) => {
-                                                const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                                                res.status(500).json({ message: message, error: error });
-                                            });
+                        if (pokemon.isCatchable) {
+                            if (req.auth !== undefined) {
+                                const trainerName = req.auth.name;
+                                if (!pokemon.trainers.includes(trainerName)) {
+                                    trainer_1.default.findOne({ name: trainerName })
+                                        .then((trainer) => {
+                                        if (trainer !== null) {
+                                            if (pokemon.level <= trainer.level) {
+                                                pokemon_1.default.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
+                                                    .then(() => {
+                                                    const message = `Bravo ${trainerName.toUpperCase()} ! Tu as attrapé un ${pokemonName.toUpperCase()} !`;
+                                                    const { _id, evolve, __v, trainers, level, isCatchable } = pokemon, filteredPokemon = __rest(pokemon, ["_id", "evolve", "__v", "trainers", "level", "isCatchable"]);
+                                                    res.status(201).json({ message: message, pokemon: filteredPokemon });
+                                                })
+                                                    .catch((error) => {
+                                                    const message = `Le Pokedex est en panne ! Reviens plus tard !`;
+                                                    res.status(500).json({ message: message, error: error });
+                                                });
+                                            }
+                                            else {
+                                                const message = `Tu n'es pas encore assez expérimenté(e) pour attraper un ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`;
+                                                res.status(403).json({ message: message });
+                                            }
                                         }
                                         else {
-                                            const message = `Tu n'es pas encore assez expérimenté(e) pour attraper un ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`;
-                                            res.status(403).json({ message: message });
+                                            const message = `Ce dresseur n'existe pas !`;
+                                            res.status(404).json({ error: message });
                                         }
-                                    }
-                                    else {
+                                    })
+                                        .catch((error) => {
                                         const message = `Ce dresseur n'existe pas !`;
-                                        res.status(404).json({ error: message });
-                                    }
-                                })
-                                    .catch((error) => {
-                                    const message = `Ce dresseur n'existe pas !`;
-                                    res.status(404).json({ message: message, error: error });
-                                });
+                                        res.status(404).json({ message: message, error: error });
+                                    });
+                                }
+                                else {
+                                    const message = `Tu possèdes déjà un ${pokemonName.toUpperCase()} !`;
+                                    res.status(403).json({ message: message });
+                                }
                             }
                             else {
-                                const message = `Tu possèdes déjà un ${pokemonName.toUpperCase()} !`;
-                                res.status(403).json({ message: message });
+                                const message = `Tu n'es pas authentifié(e) !`;
+                                res.status(401).json({ message: message });
                             }
                         }
                         else {
-                            const message = `Tu n'es pas authentifié(e) !`;
-                            res.status(401).json({ message: message });
+                            const message = `${pokemonName.toUpperCase()} n'existe pas à l'état sauvage ! Tu ne peux l'obtenir que par évolution !`;
+                            res.status(403).json({ message: message });
                         }
                     }
                     else {
@@ -245,7 +251,7 @@ const evolveOne = (req, res) => {
                                                 pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
                                                     .then(() => {
                                                     const message = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`;
-                                                    const { _id, evolve, __v, trainers, level } = evolution, filteredEvolution = __rest(evolution, ["_id", "evolve", "__v", "trainers", "level"]);
+                                                    const { _id, evolve, __v, trainers, level, isCatchable } = evolution, filteredEvolution = __rest(evolution, ["_id", "evolve", "__v", "trainers", "level", "isCatchable"]);
                                                     res.status(200).json({ message: message, pokemon: filteredEvolution });
                                                 })
                                                     .catch((error) => {
