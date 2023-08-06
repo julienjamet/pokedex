@@ -1,29 +1,37 @@
 This project has been made to practice Mongoose, Express, Node and TypeScript.
 
-I followed a JavaScript tutorial from the Youtube french channel "Simon Dieny - Code Senior" (link below), that I "translated" into TypeScript.
+I followed a JavaScript tutorial from the Youtube french channel `Simon Dieny - Code Senior` (link below), that I "translated" into TypeScript.
 
-https://www.youtube.com/watch?v=NRxzvpdduvQ
+`https://www.youtube.com/watch?v=NRxzvpdduvQ`
 
 
 
 *******************************************
-GUIDE TO API USAGE
+`GUIDE TO API USAGE`
 
-Root : https://julienjamet-pokemon.onrender.com/api
+Root : `https://julienjamet-pokemon.onrender.com/api`
 
 Trainer
-    Sign up :    [POST]    /trainer/signup    { "name": "your_name", "password": "your_password" }
-    Login   :    [POST]    /trainer/login     { "name": "your_name", "password": "your_password" }
+    Sign up :    [POST]    /trainer/signup    { "name": `your_name`, "password": `your_password` }
+    Login   :    [POST]    /trainer/login     { "name": `your_name`, "password": `your_password` }
 
-GUIDE TO TOKEN USAGE
-Once logged in, you will get a token valid for one hour. You will need to add an authorization header with the value "Bearer your_token" to all your requests made on the Pokemon routes.
+`GUIDE TO TOKEN USAGE`
+
+Once logged in, you will get a token valid for one hour. You will need to add an authorization header with the value "Bearer `your_token`" to all your requests made on the Pokemon routes.
 
 Pokemon
     See all :    [GET]     /pokemon
     See one :    [GET]     /pokemon/:id
-    Catch   :    [POST]    /pokemon           { "name": "pokemon_name" }
+    Catch   :    [POST]    /pokemon           { "name": `pokemon_name` }
     Evolve  :    [PUT]     /pokemon/:id
     Delete  :    [DELETE]  /pokemon/:id
+
+`GUIDE TO SEARCH QUERY USAGE`
+
+On the `See all` route, you can configure a search query based on the type by adding "?type=`your_type`" in the URL.
+For example, if you want to see all the Fire-type Pokemon you have catched, the complete URL will be :
+
+`https://julienjamet-pokemon.onrender.com/api/pokemon?type=Feu`
 *******************************************
 
 
