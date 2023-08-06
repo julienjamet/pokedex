@@ -24,5 +24,6 @@ export interface IPokemon {
     type: string[],
     trainers: string[],
     __v: number,
-    level: number
+    level: number,
+    isCatchable: boolean
 }

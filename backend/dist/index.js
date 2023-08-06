@@ -15,6 +15,7 @@ const pokemon_1 = require("./routes/pokemon");
 const app = (0, express_1.default)();
 /*************************************************************DB CONNECT*/
 dotenv_1.default.config();
+const port = process.env.PORT || 3000;
 const connectionString = process.env.DATABASE_CREDENTIALS || 'Insert your MongoDB string here';
 mongoose_1.default.connect(connectionString)
     .then(() => console.log('Connection à MongoDB établie !'))
@@ -24,4 +25,4 @@ app.use(express_1.default.json());
 app.use('/api/trainer', trainer_1.trainerRouter);
 app.use('/api/pokemon', auth_1.auth, rank_1.rank, pokemon_1.pokemonRouter);
 /*****************************************************************LISTEN*/
-app.listen(3000, () => console.log('Ecoute sur le port 3000'));
+app.listen(port, () => console.log(`Ecoute sur le port ${port}`));

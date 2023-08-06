@@ -10,6 +10,7 @@ import { pokemonRouter } from './routes/pokemon'
 const app: Application = express()
 /*************************************************************DB CONNECT*/
 dotenv.config()
+const port: string | number = process.env.PORT || 3000
 const connectionString: string = process.env.DATABASE_CREDENTIALS || 'Insert your MongoDB string here'
 mongoose.connect(connectionString)
 
@@ -20,4 +21,4 @@ app.use(express.json())
 app.use('/api/trainer', trainerRouter)
 app.use('/api/pokemon', auth, rank, pokemonRouter)
 /*****************************************************************LISTEN*/
-app.listen(3000, (): void => console.log('Ecoute sur le port 3000'))
+app.listen(port, (): void => console.log(`Ecoute sur le port ${port}`))

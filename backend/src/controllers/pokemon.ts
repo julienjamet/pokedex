@@ -30,7 +30,7 @@ export const seeAll: RequestHandler = (req: authRequest, res: Response): Respons
             }
         }
 
-        Pokemon.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0 }).sort({ number: 1 })
+        Pokemon.find(filters).select({ "__v": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 }).sort({ number: 1 })
 
             .then((pokedex: IPokemon[]): void => {
                 Trainer.findOne({ name: name })
@@ -112,7 +112,7 @@ export const seeOne: RequestHandler = (req: authRequest, res: Response): void =>
         const id: string = req.params.id
         const name: string = req.auth.name
 
-        Pokemon.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0 })
+        Pokemon.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
 
             .then((pokemon: IPokemon | null): void => {
                 if (pokemon !== null) {
@@ -160,50 +160,56 @@ export const catchOne: RequestHandler = (req: authRequest, res: Response): Respo
 
                     .then((pokemon: IPokemon | null): void => {
                         if (pokemon !== null) {
-                            if (req.auth !== undefined) {
-                                const trainerName: string = req.auth.name
+                            if (pokemon.isCatchable) {
+                                if (req.auth !== undefined) {
+                                    const trainerName: string = req.auth.name
 
-                                if (!pokemon.trainers.includes(trainerName)) {
-                                    Trainer.findOne({ name: trainerName })
+                                    if (!pokemon.trainers.includes(trainerName)) {
+                                        Trainer.findOne({ name: trainerName })
 
-                                        .then((trainer: ITrainer | null): void => {
-                                            if (trainer !== null) {
-                                                if (pokemon.level <= trainer.level) {
-                                                    Pokemon.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
+                                            .then((trainer: ITrainer | null): void => {
+                                                if (trainer !== null) {
+                                                    if (pokemon.level <= trainer.level) {
+                                                        Pokemon.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
 
-                                                        .then((): void => {
-                                                            const message: string = `Bravo ${trainerName.toUpperCase()} ! Tu as attrapé un ${pokemonName.toUpperCase()} !`
-                                                            const { _id, evolve, __v, trainers, level, ...filteredPokemon } = pokemon
-                                                            res.status(201).json({ message: message, pokemon: filteredPokemon })
-                                                        })
-                                                        .catch((error: Error): void => {
-                                                            const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
-                                                            res.status(500).json({ message: message, error: error })
-                                                        })
+                                                            .then((): void => {
+                                                                const message: string = `Bravo ${trainerName.toUpperCase()} ! Tu as attrapé un ${pokemonName.toUpperCase()} !`
+                                                                const { _id, evolve, __v, trainers, level, isCatchable, ...filteredPokemon } = pokemon
+                                                                res.status(201).json({ message: message, pokemon: filteredPokemon })
+                                                            })
+                                                            .catch((error: Error): void => {
+                                                                const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
+                                                                res.status(500).json({ message: message, error: error })
+                                                            })
+                                                    }
+                                                    else {
+                                                        const message: string = `Tu n'es pas encore assez expérimenté(e) pour attraper un ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`
+                                                        res.status(403).json({ message: message })
+                                                    }
                                                 }
                                                 else {
-                                                    const message: string = `Tu n'es pas encore assez expérimenté(e) pour attraper un ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`
-                                                    res.status(403).json({ message: message })
+                                                    const message: string = `Ce dresseur n'existe pas !`
+                                                    res.status(404).json({ error: message })
                                                 }
-                                            }
-                                            else {
+                                            })
+                                            .catch((error: Error) => {
                                                 const message: string = `Ce dresseur n'existe pas !`
-                                                res.status(404).json({ error: message })
-                                            }
-                                        })
-                                        .catch((error: Error) => {
-                                            const message: string = `Ce dresseur n'existe pas !`
-                                            res.status(404).json({ message: message, error: error })
-                                        })
+                                                res.status(404).json({ message: message, error: error })
+                                            })
+                                    }
+                                    else {
+                                        const message: string = `Tu possèdes déjà un ${pokemonName.toUpperCase()} !`
+                                        res.status(403).json({ message: message })
+                                    }
                                 }
                                 else {
-                                    const message: string = `Tu possèdes déjà un ${pokemonName.toUpperCase()} !`
-                                    res.status(403).json({ message: message })
+                                    const message: string = `Tu n'es pas authentifié(e) !`
+                                    res.status(401).json({ message: message })
                                 }
                             }
                             else {
-                                const message: string = `Tu n'es pas authentifié(e) !`
-                                res.status(401).json({ message: message })
+                                const message: string = `${pokemonName.toUpperCase()} n'existe pas à l'état sauvage ! Tu ne peux l'obtenir que par évolution !`
+                                res.status(403).json({ message: message })
                             }
                         }
                         else {
@@ -256,7 +262,7 @@ export const evolveOne: RequestHandler = (req: authRequest, res: Response): Resp
 
                                                                     .then((): void => {
                                                                         const message: string = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`
-                                                                        const { _id, evolve, __v, trainers, level, ...filteredEvolution } = evolution
+                                                                        const { _id, evolve, __v, trainers, level, isCatchable, ...filteredEvolution } = evolution
                                                                         res.status(200).json({ message: message, pokemon: filteredEvolution })
                                                                     })
                                                                     .catch((error: Error): void => {

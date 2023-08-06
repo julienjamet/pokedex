@@ -14,7 +14,8 @@ const pokemon = new mongoose_1.default.Schema({
     picture: { type: String, required: true },
     type: { type: [String], required: true },
     trainers: { type: [String], uppercase: true },
-    level: { type: Number, required: true }
+    level: { type: Number, required: true },
+    isCatchable: { type: Boolean, required: true }
 });
 /****************************************************************EXPORTS*/
 exports.default = mongoose_1.default.model('Pokemon', pokemon);
