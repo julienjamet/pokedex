@@ -27,7 +27,7 @@ const signUp = (req, res) => {
             return res.status(400).json({ message: `Ce mot de passe est trop long ! 30 caractères au maximum !` });
         }
         else {
-            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {
+            if (!/^([^\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {
                 return res.status(400).json({ message: `Ton nom doit être composé d'au moins deux lettres et ne doit comporter aucun caractère spécial !` });
             }
             else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/.test(password)) {
@@ -81,11 +81,11 @@ const login = (req, res) => {
             return res.status(400).json({ message: `Le mot de passe est incorrect !` });
         }
         else {
-            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {
+            if (!/^([^\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {
                 return res.status(400).json({ message: `Ce dresseur n'existe pas !` });
             }
             else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/.test(password)) {
-                return res.status(400).json({ message: `Le mot de passe est incorrect !` });
+                return res.status(400).json({ message: `Le mot de passe est forcément incorrect car il ne correspond pas aux critères de sécurité du Pokedex !` });
             }
             else {
                 trainer_1.default.findOne({ name: name })
