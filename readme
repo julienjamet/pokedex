@@ -31,7 +31,7 @@ Pokemon
 On the `See all` route, you can configure a search query based on the type by adding "?type=`your_type`" in the URL.
 For example, if you want to see all the Fire-type Pokemon you have catched, the complete URL will be :
 
-`https://julienjamet-pokemon.onrender.com/api/pokemon?type=Feu`
+`https://julienjamet-pokemon.onrender.com/api/pokemon?type=feu`
 *******************************************
 
 

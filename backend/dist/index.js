@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /****************************************************************IMPORTS*/
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const helmet_1 = __importDefault(require("helmet"));
+const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const auth_1 = require("./controllers/auth");
 const rank_1 = require("./controllers/rank");
@@ -22,6 +24,8 @@ mongoose_1.default.connect(connectionString)
     .catch(() => console.log('Connection à MongoDB échouée !'));
 /********************************************************************USE*/
 app.use(express_1.default.json());
+app.use((0, helmet_1.default)());
+app.use((0, cors_1.default)());
 app.use('/api/trainer', trainer_1.trainerRouter);
 app.use('/api/pokemon', auth_1.auth, rank_1.rank, pokemon_1.pokemonRouter);
 /*****************************************************************LISTEN*/

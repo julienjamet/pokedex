@@ -45,7 +45,7 @@ const seeAll = (req, res) => {
             trainer_1.default.findOne({ name: name })
                 .then((trainer) => {
                 var _a;
-                if (trainer !== null) {
+                if (trainer) {
                     let message;
                     if (req.query.type) {
                         message = `Salut ${name.toUpperCase()} ! Tu as attrapé ${pokedex.length} Pokemon de type ${(_a = filters.type) === null || _a === void 0 ? void 0 : _a.toUpperCase()} !`;
@@ -118,7 +118,7 @@ const seeOne = (req, res) => {
         const name = req.auth.name;
         pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
             .then((pokemon) => {
-            if (pokemon !== null) {
+            if (pokemon) {
                 const message = `Ton ${pokemon.name.toUpperCase()} est très heureux !`;
                 res.status(200).json({ message: message, pokemon: pokemon });
             }
@@ -160,14 +160,14 @@ const catchOne = (req, res) => {
             else {
                 pokemon_1.default.findOne({ name: pokemonName }).lean()
                     .then((pokemon) => {
-                    if (pokemon !== null) {
+                    if (pokemon) {
                         if (pokemon.isCatchable) {
                             if (req.auth !== undefined) {
                                 const trainerName = req.auth.name;
                                 if (!pokemon.trainers.includes(trainerName)) {
                                     trainer_1.default.findOne({ name: trainerName })
                                         .then((trainer) => {
-                                        if (trainer !== null) {
+                                        if (trainer) {
                                             if (pokemon.level <= trainer.level) {
                                                 pokemon_1.default.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
                                                     .then(() => {
@@ -234,17 +234,17 @@ const evolveOne = (req, res) => {
         const trainerName = req.auth.name;
         pokemon_1.default.findOne({ _id: id, trainers: { $in: trainerName } })
             .then((pokemon) => {
-            if (pokemon !== null) {
+            if (pokemon) {
                 const pokemonName = pokemon.name;
                 if (pokemon.evolve) {
                     pokemon_1.default.findOne({ name: pokemon.evolve }).lean()
                         .then((evolution) => {
-                        if (evolution !== null) {
+                        if (evolution) {
                             const evolutionName = evolution.name;
                             if (!evolution.trainers.includes(trainerName)) {
                                 trainer_1.default.findOne({ name: trainerName })
                                     .then((trainer) => {
-                                    if (trainer !== null) {
+                                    if (trainer) {
                                         if (evolution.level <= trainer.level) {
                                             pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
                                                 .then(() => {
@@ -322,7 +322,7 @@ const deleteOne = (req, res) => {
         const trainerName = req.auth.name;
         pokemon_1.default.findOne({ _id: id, trainers: { $in: trainerName } })
             .then((pokemon) => {
-            if (pokemon !== null) {
+            if (pokemon) {
                 const pokemonName = pokemon.name;
                 pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
                     .then(() => {

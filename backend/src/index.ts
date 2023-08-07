@@ -1,6 +1,8 @@
 /****************************************************************IMPORTS*/
 import express, { Application } from 'express'
 import dotenv from 'dotenv'
+import helmet from 'helmet'
+import cors from 'cors'
 import mongoose from 'mongoose'
 import { auth } from './controllers/auth'
 import { rank } from './controllers/rank'
@@ -18,6 +20,8 @@ mongoose.connect(connectionString)
     .catch((): void => console.log('Connection à MongoDB échouée !'))
 /********************************************************************USE*/
 app.use(express.json())
+app.use(helmet())
+app.use(cors())
 app.use('/api/trainer', trainerRouter)
 app.use('/api/pokemon', auth, rank, pokemonRouter)
 /*****************************************************************LISTEN*/

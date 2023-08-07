@@ -90,17 +90,17 @@ const login = (req, res) => {
             else {
                 trainer_1.default.findOne({ name: name })
                     .then((trainer) => {
-                    if (trainer !== null) {
+                    if (trainer) {
                         bcrypt_1.default.compare(password, trainer.password)
                             .then((valid) => {
-                            if (!valid) {
-                                res.status(401).json({ message: `Le mot de passe est incorrect !` });
-                            }
-                            else {
+                            if (valid) {
                                 const message = `Bienvenue ${name.toUpperCase()} !`;
                                 const tokenKey = process.env.TOKEN_KEY || 'token_key';
                                 const token = jsonwebtoken_1.default.sign({ name: name.toUpperCase() }, tokenKey, { expiresIn: '1h' });
                                 res.status(200).json({ message: message, token: token });
+                            }
+                            else {
+                                res.status(401).json({ message: `Le mot de passe est incorrect !` });
                             }
                         })
                             .catch((error) => {

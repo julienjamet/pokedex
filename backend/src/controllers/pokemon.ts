@@ -36,7 +36,7 @@ export const seeAll: RequestHandler = (req: authRequest, res: Response): Respons
                 Trainer.findOne({ name: name })
 
                     .then((trainer: ITrainer | null) => {
-                        if (trainer !== null) {
+                        if (trainer) {
                             let message: string
 
                             if (req.query.type) {
@@ -115,7 +115,7 @@ export const seeOne: RequestHandler = (req: authRequest, res: Response): void =>
         Pokemon.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
 
             .then((pokemon: IPokemon | null): void => {
-                if (pokemon !== null) {
+                if (pokemon) {
                     const message: string = `Ton ${pokemon.name.toUpperCase()} est très heureux !`
                     res.status(200).json({ message: message, pokemon: pokemon })
                 }
@@ -159,7 +159,7 @@ export const catchOne: RequestHandler = (req: authRequest, res: Response): Respo
                 Pokemon.findOne({ name: pokemonName }).lean()
 
                     .then((pokemon: IPokemon | null): void => {
-                        if (pokemon !== null) {
+                        if (pokemon) {
                             if (pokemon.isCatchable) {
                                 if (req.auth !== undefined) {
                                     const trainerName: string = req.auth.name
@@ -168,7 +168,7 @@ export const catchOne: RequestHandler = (req: authRequest, res: Response): Respo
                                         Trainer.findOne({ name: trainerName })
 
                                             .then((trainer: ITrainer | null): void => {
-                                                if (trainer !== null) {
+                                                if (trainer) {
                                                     if (pokemon.level <= trainer.level) {
                                                         Pokemon.updateOne({ name: pokemonName }, { $push: { trainers: trainerName } })
 
@@ -239,21 +239,21 @@ export const evolveOne: RequestHandler = (req: authRequest, res: Response): Resp
         Pokemon.findOne({ _id: id, trainers: { $in: trainerName } })
 
             .then((pokemon: IPokemon | null): void => {
-                if (pokemon !== null) {
+                if (pokemon) {
                     const pokemonName: string = pokemon.name
 
                     if (pokemon.evolve) {
                         Pokemon.findOne({ name: pokemon.evolve }).lean()
 
                             .then((evolution: IPokemon | null): void => {
-                                if (evolution !== null) {
+                                if (evolution) {
                                     const evolutionName: string = evolution.name
 
                                     if (!evolution.trainers.includes(trainerName)) {
                                         Trainer.findOne({ name: trainerName })
 
                                             .then((trainer: ITrainer | null) => {
-                                                if (trainer !== null) {
+                                                if (trainer) {
                                                     if (evolution.level <= trainer.level) {
                                                         Pokemon.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
 
@@ -336,7 +336,7 @@ export const deleteOne: RequestHandler = (req: authRequest, res: Response): void
         Pokemon.findOne({ _id: id, trainers: { $in: trainerName } })
 
             .then((pokemon: IPokemon | null): void => {
-                if (pokemon !== null) {
+                if (pokemon) {
                     const pokemonName: string = pokemon.name
 
                     Pokemon.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
