@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 /*******************************************************************AUTH*/
 const auth = (req, res, next) => {
     const authorization = req.headers.authorization;
-    if (authorization === undefined) {
+    if (!authorization) {
         return res.status(401).json({ message: `Tu n'es pas authentifié(e) !` });
     }
     else {

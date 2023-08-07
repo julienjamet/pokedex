@@ -15,7 +15,12 @@ export const Login: FC = () => {
 
         axios.post(`${process.env.REACT_APP_API_URL}/trainer/login`, { name: name, password: password })
 
-            .then((): void => { window.location.reload() })
+            .then((response): void => {
+                console.log(response)
+                /*setTimeout((): void => {
+                    window.location.reload()
+                }, 500)*/
+            })
             .catch((error: AxiosError): void => {
                 if (error.response) {
                     const responseData: unknown = error.response.data

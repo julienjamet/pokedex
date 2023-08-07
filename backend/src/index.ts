@@ -3,6 +3,7 @@ import express, { Application } from 'express'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose'
 import { auth } from './controllers/auth'
 import { rank } from './controllers/rank'
@@ -22,6 +23,7 @@ mongoose.connect(connectionString)
 app.use(express.json())
 app.use(helmet())
 app.use(cors())
+app.use(cookieParser())
 app.use('/api/trainer', trainerRouter)
 app.use('/api/pokemon', auth, rank, pokemonRouter)
 /*****************************************************************LISTEN*/

@@ -102,7 +102,14 @@ export const login: RequestHandler = (req: Request, res: Response): Response | v
                                         const tokenKey: string = process.env.TOKEN_KEY || 'token_key'
                                         const token = jwt.sign({ name: name.toUpperCase() }, tokenKey, { expiresIn: '1h' })
 
-                                        res.status(200).json({ message: message, token: token })
+                                        res.cookie('token', token, {
+                                            httpOnly: true,
+                                            secure: true,
+                                            sameSite: 'strict',
+                                            maxAge: 60 * 60 * 1000
+                                        })
+
+                                        res.status(200).json({ message: message })
                                     }
                                     else {
                                         res.status(401).json({ message: `Le mot de passe est incorrect !` })

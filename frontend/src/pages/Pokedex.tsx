@@ -1,9 +1,8 @@
 /****************************************************************IMPORTS*/
 import { FC } from "react"
-import { FormModal } from "../components/FormModal"
 /****************************************************************POKEDEX*/
 export const Pokedex: FC = () => {
     return (
-        <FormModal />
+        <div>Tu es connecté !</div>
     )
 }

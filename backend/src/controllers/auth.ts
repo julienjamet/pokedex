@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 export const auth: RequestHandler = (req: authRequest, res: Response, next: NextFunction): Response | void => {
     const authorization: string | undefined = req.headers.authorization
 
-    if (authorization === undefined) {
+    if (!authorization) {
         return res.status(401).json({ message: `Tu n'es pas authentifié(e) !` })
     }
     else {
