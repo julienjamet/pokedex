@@ -2,9 +2,9 @@
 import { FC, useState, useEffect } from "react"
 import axios from 'axios'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { FormModal } from "./components/FormModal"
 import { Pokedex } from "./pages/Pokedex"
 import { Pokemon } from "./pages/Pokemon"
+import { FormModal } from "./components/FormModal"
 /********************************************************************APP*/
 export const App: FC = () => {
 
@@ -12,13 +12,13 @@ export const App: FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   /********************************************************Middlewares*/
   useEffect((): void => {
-    const token: string = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1')
-    console.log('token', token)
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      setIsLoggedIn(true)
+    if (isLoggedIn) {
+      axios.get(`${process.env.REACT_APP_API_URL}/auth`, { withCredentials: true })
+
+        .then((): void => { setIsLoggedIn(true) })
+        .catch((): void => { setIsLoggedIn(false) })
     }
-  }, [])
+  }, [isLoggedIn])
   /*********************************************************Return TSX*/
   return (
     <>
@@ -32,7 +32,7 @@ export const App: FC = () => {
             </Routes>
           </BrowserRouter>
         ) : (
-          <FormModal />
+          <FormModal isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         )
       }
     </>

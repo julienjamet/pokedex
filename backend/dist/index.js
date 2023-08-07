@@ -6,11 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /****************************************************************IMPORTS*/
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
-const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const mongoose_1 = __importDefault(require("mongoose"));
 const auth_1 = require("./controllers/auth");
+const sendAuthToFront_1 = require("./controllers/sendAuthToFront");
 const rank_1 = require("./controllers/rank");
 const trainer_1 = require("./routes/trainer");
 const pokemon_1 = require("./routes/pokemon");
@@ -25,10 +26,11 @@ mongoose_1.default.connect(connectionString)
     .catch(() => console.log('Connection à MongoDB échouée !'));
 /********************************************************************USE*/
 app.use(express_1.default.json());
-app.use((0, helmet_1.default)());
-app.use((0, cors_1.default)());
 app.use((0, cookie_parser_1.default)());
+app.use((0, helmet_1.default)());
+app.use((0, cors_1.default)({ origin: 'http://localhost:3000', methods: 'GET,POST,PUT,DELETE', credentials: true }));
 app.use('/api/trainer', trainer_1.trainerRouter);
+app.get('/api/auth', auth_1.auth, sendAuthToFront_1.sendAuthToFront);
 app.use('/api/pokemon', auth_1.auth, rank_1.rank, pokemon_1.pokemonRouter);
 /*****************************************************************LISTEN*/
 app.listen(port, () => console.log(`Ecoute sur le port ${port}`));

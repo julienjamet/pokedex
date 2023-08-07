@@ -1,8 +1,9 @@
 /****************************************************************IMPORTS*/
-import { ChangeEvent, FC, FormEvent, useState } from "react"
+import { FC, useState, FormEvent, ChangeEvent } from "react"
 import axios, { AxiosError } from "axios"
+import { ILogin } from "../interfaces"
 /******************************************************************LOGIN*/
-export const Login: FC = () => {
+export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
     /**************************************************************Hooks*/
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -13,14 +14,10 @@ export const Login: FC = () => {
         const nameError: HTMLElement | null = document.querySelector('.name.error')
         const passwordError: HTMLElement | null = document.querySelector('.password.error')
 
-        axios.post(`${process.env.REACT_APP_API_URL}/trainer/login`, { name: name, password: password })
+        axios.post(`${process.env.REACT_APP_API_URL}/trainer/login`, { name: name, password: password }, { withCredentials: true })
 
-            .then((response): void => {
-                console.log(response)
-                /*setTimeout((): void => {
-                    window.location.reload()
-                }, 500)*/
-            })
+            .then((): void => { setIsLoggedIn(true) })
+
             .catch((error: AxiosError): void => {
                 if (error.response) {
                     const responseData: unknown = error.response.data

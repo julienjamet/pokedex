@@ -1,9 +1,10 @@
 /****************************************************************IMPORTS*/
-import { FC, MouseEvent, useState } from "react"
+import { FC, useState, MouseEvent } from "react"
+import { ILogin } from "../interfaces"
 import { Register } from "./Register"
 import { Login } from "./Login"
 /*************************************************************FORM MODAL*/
-export const FormModal: FC = () => {
+export const FormModal: FC<ILogin> = ({ isLoggedIn, setIsLoggedIn }) => {
     /**************************************************************Hooks*/
     const [signUpModal, setSignUpModal] = useState(false)
     const [loginModal, setLoginModal] = useState(true)
@@ -29,7 +30,7 @@ export const FormModal: FC = () => {
                 <button id="login" className={loginModal ? "btn--active" : ""} onClick={handleModal}>Se connecter</button>
 
                 {signUpModal && <Register />}
-                {loginModal && <Login />}
+                {loginModal && <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
             </div>
         </div >
     )

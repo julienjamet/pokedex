@@ -106,6 +106,8 @@ export const login: RequestHandler = (req: Request, res: Response): Response | v
                                             httpOnly: true,
                                             secure: true,
                                             sameSite: 'strict',
+                                            path: '/',
+                                            domain: 'localhost',
                                             maxAge: 60 * 60 * 1000
                                         })
 
