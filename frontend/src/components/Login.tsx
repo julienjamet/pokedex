@@ -31,7 +31,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                                 passwordError.textContent = ""
                             }
                             else {
-                                return console.error(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else if (RegexErrorMessage.includes("mot de passe")) {
@@ -40,11 +40,11 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                                 nameError.textContent = ""
                             }
                             else {
-                                return console.error(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else {
-                            return console.error(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else if (responseData && typeof responseData === 'object' && 'error' in responseData) {
@@ -55,15 +55,15 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                             passwordError.textContent = ""
                         }
                         else {
-                            return console.error(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else {
-                        return console.error(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                     }
                 }
                 else {
-                    return console.error(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
     }

@@ -2,9 +2,7 @@
 import { Request } from "express"
 /************************************************************AUTHREQUEST*/
 export interface authRequest extends Request {
-    auth?: {
-        name: string
-    }
+    auth?: { name: string } | undefined
 }
 /****************************************************************TRAINER*/
 export interface ITrainer {

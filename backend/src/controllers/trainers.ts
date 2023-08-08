@@ -108,7 +108,7 @@ export const login: RequestHandler = (req: Request, res: Response): Response | v
                                             sameSite: 'strict',
                                             path: '/',
                                             domain: 'localhost',
-                                            maxAge: 60 * 60 * 1000
+                                            maxAge: 3600 * 1000
                                         })
 
                                         res.status(200).json({ message: message })
