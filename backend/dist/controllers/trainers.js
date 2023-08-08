@@ -102,7 +102,7 @@ const login = (req, res) => {
                                     secure: true,
                                     sameSite: 'strict',
                                     path: '/',
-                                    domain: 'localhost',
+                                    domain: '.julienjamet-groupomania.com',
                                     maxAge: 3600 * 1000
                                 });
                                 res.status(200).json({ message: message });
