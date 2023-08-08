@@ -107,7 +107,7 @@ export const login: RequestHandler = (req: Request, res: Response): Response | v
                                             secure: true,
                                             sameSite: 'strict',
                                             path: '/',
-                                            domain: '.julienjamet-groupomania.com',
+                                            domain: '.julienjamet.com',
                                             maxAge: 3600 * 1000
                                         })
 
