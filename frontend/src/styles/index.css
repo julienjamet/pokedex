@@ -1,4 +1,18 @@
 @charset "UTF-8";
+/**************************************************************VARIABLES*/
+/**************************************************************KEYFRAMES*/
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/*****************************************************************MIXINS*/
+/*****************************************************************STYLES*/
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #303541;
@@ -33,8 +47,9 @@ body .formPage form {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 200px;
+  height: 350px;
   width: 50%;
+  font-weight: bold;
 }
 body .formPage form input {
   width: 50%;
@@ -52,10 +67,12 @@ body .formPage form .submit {
   width: 30%;
   font-weight: bold;
   margin-top: 30px;
-  transition: letter-spacing 800ms ease;
+  transition: all 800ms ease;
 }
 body .formPage form .submit:hover {
   cursor: pointer;
+  color: salmon;
+  background-color: white;
   letter-spacing: 3px;
 }
 body .pokedex {
@@ -91,7 +108,52 @@ body .pokedex ul a {
   color: #303541;
   text-decoration: none;
 }
-body .pokedex ul a li {
+body .pokedex ul a.animated--1 {
+  animation: appear 600ms 200ms both ease-in-out;
+}
+body .pokedex ul a.animated--2 {
+  animation: appear 600ms 400ms both ease-in-out;
+}
+body .pokedex ul a.animated--3 {
+  animation: appear 600ms 600ms both ease-in-out;
+}
+body .pokedex ul a.animated--4 {
+  animation: appear 600ms 800ms both ease-in-out;
+}
+body .pokedex ul a.animated--5 {
+  animation: appear 600ms 1000ms both ease-in-out;
+}
+body .pokedex ul a.animated--6 {
+  animation: appear 600ms 1200ms both ease-in-out;
+}
+body .pokedex ul a.animated--7 {
+  animation: appear 600ms 1400ms both ease-in-out;
+}
+body .pokedex ul a.animated--8 {
+  animation: appear 600ms 1600ms both ease-in-out;
+}
+body .pokedex ul a.animated--9 {
+  animation: appear 600ms 1800ms both ease-in-out;
+}
+body .pokedex ul a.animated--10 {
+  animation: appear 600ms 2000ms both ease-in-out;
+}
+body .pokedex ul a.animated--11 {
+  animation: appear 600ms 2200ms both ease-in-out;
+}
+body .pokedex ul a.animated--12 {
+  animation: appear 600ms 2400ms both ease-in-out;
+}
+body .pokedex ul a.animated--13 {
+  animation: appear 600ms 2600ms both ease-in-out;
+}
+body .pokedex ul a.animated--14 {
+  animation: appear 600ms 2800ms both ease-in-out;
+}
+body .pokedex ul a.animated--15 {
+  animation: appear 600ms 3000ms both ease-in-out;
+}
+body .pokedex ul li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -106,80 +168,102 @@ body .pokedex ul a li {
   border-radius: 15px;
   margin: 30px;
 }
-body .pokedex ul a li #plante {
+body .pokedex ul li #plante {
   background-color: rgb(97, 179, 97);
 }
-body .pokedex ul a li #feu {
+body .pokedex ul li #feu {
   background-color: rgb(223, 45, 45);
 }
-body .pokedex ul a li #eau {
+body .pokedex ul li #eau {
   color: rgb(241, 235, 235);
   background-color: rgb(62, 62, 230);
 }
-body .pokedex ul a li #electrik {
+body .pokedex ul li #electrik {
   background-color: rgba(252, 208, 65, 0.979);
 }
-body .pokedex ul a li #psy {
+body .pokedex ul li #psy {
   background-color: rgb(247, 110, 133);
 }
-body .pokedex ul a li #combat {
+body .pokedex ul li #combat {
   color: rgb(241, 235, 235);
   background-color: brown;
 }
-body .pokedex ul a li #vol {
+body .pokedex ul li #vol {
   background-color: rgb(190, 178, 178);
 }
-body .pokedex ul a li #sol {
+body .pokedex ul li #sol {
   background-color: rgb(204, 168, 128);
 }
-body .pokedex ul a li #roche {
+body .pokedex ul li #roche {
   background-color: rgb(187, 84, 24);
 }
-body .pokedex ul a li #glace {
+body .pokedex ul li #glace {
   background-color: rgb(122, 228, 241);
 }
-body .pokedex ul a li #normal {
+body .pokedex ul li #normal {
   background-color: white;
 }
-body .pokedex ul a li #poison {
+body .pokedex ul li #poison {
   color: rgb(241, 235, 235);
   background-color: rgb(84, 28, 148);
 }
-body .pokedex ul a li #dragon {
+body .pokedex ul li #dragon {
   background-color: rgb(134, 92, 168);
 }
-body .pokedex ul a li #insecte {
+body .pokedex ul li #insecte {
   background-color: rgb(146, 187, 35);
 }
-body .pokedex ul a li #fée {
+body .pokedex ul li #fée {
   background-color: rgb(152, 73, 241);
 }
-body .pokedex ul a li .number {
+body .pokedex ul li .number {
   align-self: end;
   color: black;
   padding: 4px 8px;
   border: 1px solid #303541;
   border-radius: 15px;
 }
-body .pokedex ul a li .description {
+body .pokedex ul li .description {
   height: 120px;
   text-align: justify;
   overflow: auto;
   font-weight: normal;
 }
-body .pokedex ul a li .types {
+body .pokedex ul li .types {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
-body .pokedex ul a li .types span {
+body .pokedex ul li .types span {
   color: black;
   padding: 5px 10px 3px 10px;
   border-radius: 15px;
   border: 1px solid #303541;
 }
-body .pokedex ul a li:hover {
+body .pokedex ul li:hover {
   background-color: white;
   box-shadow: 2px 2px 8px rgb(70, 69, 69);
+}
+body .pokedex ul.pokemon {
+  justify-content: center;
+}
+body .pokedex ul.pokemon li {
+  height: 600px;
+  width: 525px;
+  padding: 30px;
+}
+body .pokedex ul.pokemon li:hover {
+  background-color: rgb(241, 235, 235);
+  box-shadow: none;
+}
+body .pokedex ul.pokemon li .name {
+  font-size: 22px;
+}
+body .pokedex ul.pokemon li img {
+  height: 300px;
+  width: 300px;
+}
+body .pokedex ul.pokemon li .description {
+  font-weight: bold;
 }/*# sourceMappingURL=index.css.map */

@@ -3,12 +3,17 @@ export interface ILogin {
     isLoggedIn: boolean,
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
-/****************************************************************TRAINER*/
+/****************************************************************POKEDEX*/
 export interface IPokedex {
     message: string,
     rank?: string | undefined,
     forNextRank?: string | undefined,
     pokedex: IPokemon[]
+}
+/******************************************************IPOKEMON RESPONSE*/
+export interface IPokemonResponse {
+    message: string,
+    pokemon: IPokemon
 }
 /****************************************************************POKEMON*/
 export interface IPokemon {

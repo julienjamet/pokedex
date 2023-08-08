@@ -142,12 +142,12 @@ exports.seeOne = seeOne;
 const catchOne = (req, res) => {
     const pokemonName = req.body.name;
     if (!pokemonName) {
-        return res.status(400).json({ message: `Tu dois renseigner le nom ('name') du Pokemon à capturer !` });
+        return res.status(400).json({ message: `Tu dois renseigner le nom du Pokemon à capturer !` });
     }
     else {
         for (let key in req.body) {
             if (key !== 'name') {
-                return res.status(400).json({ message: `Il faut renseigner le nom ('name') du Pokemon à capturer ! Rien de plus !` });
+                return res.status(400).json({ message: `Il faut renseigner le nom du Pokemon à capturer ! Rien de plus !` });
             }
         }
         if (pokemonName.length > 15) {

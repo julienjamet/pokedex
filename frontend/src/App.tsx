@@ -4,6 +4,7 @@ import axios, { AxiosError } from 'axios'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { NavBar } from "./components/NavBar"
 import { Pokedex } from "./pages/Pokedex"
+import { Pokemon } from "./pages/Pokemon"
 import { Catch } from "./pages/Catch"
 import { FormModal } from "./components/FormModal"
 /********************************************************************APP*/
@@ -26,6 +27,7 @@ export const App: FC = () => {
             <NavBar />
             <Routes>
               <Route path="/pokedex" element={<Pokedex />} />
+              <Route path="/pokedex/:id" element={<Pokemon />} />
               <Route path="/catch" element={<Catch />} />
               <Route path="/*" element={<Pokedex />} />
             </Routes>

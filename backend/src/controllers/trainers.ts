@@ -10,12 +10,12 @@ export const signUp: RequestHandler = (req: Request, res: Response): Response | 
     const password: string = req.body.password
 
     if (!name || !password) {
-        return res.status(400).json({ message: `Il te faut un nom ('name') et un mot de passe ('password') !` })
+        return res.status(400).json({ message: `Il te faut un nom et un mot de passe !` })
     }
     else {
         for (let key in req.body) {
             if (key !== 'name' && key !== 'password') {
-                return res.status(400).json({ message: `Il te faut un nom ('name') et un mot de passe ('password') ! Rien de plus !` })
+                return res.status(400).json({ message: `Il te faut un nom et un mot de passe ! Rien de plus !` })
             }
         }
 
@@ -67,12 +67,12 @@ export const login: RequestHandler = (req: Request, res: Response): Response | v
     const password: string = req.body.password
 
     if (!name || !password) {
-        return res.status(400).json({ message: `Tu dois te connecter avec un nom ('name') et un mot de passe ('password') !` })
+        return res.status(400).json({ message: `Tu dois te connecter avec un nom et un mot de passe !` })
     }
     else {
         for (let key in req.body) {
             if (key !== 'name' && key !== 'password') {
-                return res.status(400).json({ message: `Tu dois te connecter avec un nom ('name') et un mot de passe ('password') ! Rien de plus !` })
+                return res.status(400).json({ message: `Tu dois te connecter avec un nom et un mot de passe ! Rien de plus !` })
             }
         }
 

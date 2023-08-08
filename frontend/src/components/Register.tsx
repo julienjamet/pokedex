@@ -15,12 +15,27 @@ export const Register: FC = () => {
         const passwordError: HTMLElement | null = document.querySelector('.password.error')
         const validatePasswordError: HTMLElement | null = document.querySelector('.validatePassword.error')
 
-        const submitForm: HTMLElement | null = document.querySelector('.signUpForm')
-        const submitButton: HTMLElement | null = document.querySelector('.submit')
+        const body: HTMLElement | null = document.querySelector('body')
+        //const submitButton: HTMLElement | null = document.querySelector('.submit')
 
         if (password !== validatePassword) {
             if (validatePasswordError) {
-                return validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
+                validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
+                validatePasswordError.style.color = "red"
+                validatePasswordError.style.backgroundColor = "white"
+
+                if (nameError && passwordError) {
+                    nameError.textContent = ""
+                    nameError.style.backgroundColor = "salmon"
+
+                    passwordError.textContent = ""
+                    passwordError.style.backgroundColor = "salmon"
+
+                    return validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
+                }
+                else {
+                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                }
             }
             else {
                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -29,6 +44,7 @@ export const Register: FC = () => {
         else {
             if (validatePasswordError) {
                 validatePasswordError.textContent = ``
+                validatePasswordError.style.backgroundColor = "salmon"
             }
             else {
                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -38,12 +54,15 @@ export const Register: FC = () => {
         axios.post(`${process.env.REACT_APP_API_URL}/trainer/signup`, { name: name, password: password })
 
             .then((): void => {
-                if (submitForm && submitButton) {
-                    submitForm.style.backgroundColor = "#c9f0d4"
+                if (body && nameError && passwordError) {
+                    validatePasswordError.textContent = ""
+                    nameError.textContent = ""
+                    passwordError.textContent = ""
 
-                    submitButton.style.color = "#76ba6a"
-                    submitButton.style.backgroundColor = "white"
-                    submitButton.style.borderColor = "#76ba6a"
+                    body.style.backgroundColor = "#c9f0d4"
+                    validatePasswordError.style.backgroundColor = "#c9f0d4"
+                    nameError.style.backgroundColor = "#c9f0d4"
+                    passwordError.style.backgroundColor = "#c9f0d4"
                 }
                 else {
                     return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -61,7 +80,11 @@ export const Register: FC = () => {
                         if (regexErrorMessage.includes("nom")) {
                             if (nameError && passwordError) {
                                 nameError.textContent = regexErrorMessage
+                                nameError.style.color = "red"
+                                nameError.style.backgroundColor = "white"
+
                                 passwordError.textContent = ""
+                                passwordError.style.backgroundColor = "salmon"
                             }
                             else {
                                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -70,7 +93,11 @@ export const Register: FC = () => {
                         else if (regexErrorMessage.includes("mot de passe")) {
                             if (passwordError && nameError) {
                                 passwordError.textContent = regexErrorMessage
+                                passwordError.style.color = "red"
+                                passwordError.style.backgroundColor = "white"
+
                                 nameError.textContent = ""
+                                nameError.style.backgroundColor = "salmon"
                             }
                             else {
                                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)

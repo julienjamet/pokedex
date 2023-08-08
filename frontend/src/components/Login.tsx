@@ -28,7 +28,11 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                         if (regexErrorMessage.includes("dresseur")) {
                             if (nameError && passwordError) {
                                 nameError.textContent = regexErrorMessage
+                                nameError.style.color = "red"
+                                nameError.style.backgroundColor = "white"
+
                                 passwordError.textContent = ""
+                                passwordError.style.backgroundColor = "salmon"
                             }
                             else {
                                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -37,7 +41,11 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                         else if (regexErrorMessage.includes("mot de passe")) {
                             if (passwordError && nameError) {
                                 passwordError.textContent = regexErrorMessage
+                                passwordError.style.color = "red"
+                                passwordError.style.backgroundColor = "white"
+
                                 nameError.textContent = ""
+                                nameError.style.backgroundColor = "salmon"
                             }
                             else {
                                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -52,7 +60,11 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
 
                         if (nameError && passwordError) {
                             nameError.textContent = responseDataError
+                            nameError.style.color = "red"
+                            nameError.style.backgroundColor = "white"
+
                             passwordError.textContent = ""
+                            passwordError.style.backgroundColor = "salmon"
                         }
                         else {
                             return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)

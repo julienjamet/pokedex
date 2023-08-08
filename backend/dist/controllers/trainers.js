@@ -12,12 +12,12 @@ const signUp = (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     if (!name || !password) {
-        return res.status(400).json({ message: `Il te faut un nom ('name') et un mot de passe ('password') !` });
+        return res.status(400).json({ message: `Il te faut un nom et un mot de passe !` });
     }
     else {
         for (let key in req.body) {
             if (key !== 'name' && key !== 'password') {
-                return res.status(400).json({ message: `Il te faut un nom ('name') et un mot de passe ('password') ! Rien de plus !` });
+                return res.status(400).json({ message: `Il te faut un nom et un mot de passe ! Rien de plus !` });
             }
         }
         if (name.length > 12) {
@@ -66,12 +66,12 @@ const login = (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     if (!name || !password) {
-        return res.status(400).json({ message: `Tu dois te connecter avec un nom ('name') et un mot de passe ('password') !` });
+        return res.status(400).json({ message: `Tu dois te connecter avec un nom et un mot de passe !` });
     }
     else {
         for (let key in req.body) {
             if (key !== 'name' && key !== 'password') {
-                return res.status(400).json({ message: `Tu dois te connecter avec un nom ('name') et un mot de passe ('password') ! Rien de plus !` });
+                return res.status(400).json({ message: `Tu dois te connecter avec un nom et un mot de passe ! Rien de plus !` });
             }
         }
         if (name.length > 12) {

@@ -1,20 +1,21 @@
 /****************************************************************IMPORTS*/
 import { FC, useState, useEffect } from "react"
-import { IPokedex, IPokemon } from "../interfaces"
+import { useParams } from "react-router-dom"
+import { IPokemonResponse } from "../interfaces"
 import axios, { AxiosResponse, AxiosError } from 'axios'
-import { NavLink } from "react-router-dom"
 /****************************************************************POKEDEX*/
-export const Pokedex: FC = () => {
+export const Pokemon: FC = () => {
     /**************************************************************Hooks*/
-    const [pokedex, setPokedex] = useState<IPokedex>()
+    const { id } = useParams()
+    const [pokemon, setPokemon] = useState<IPokemonResponse>()
     /********************************************************Middlewares*/
     useEffect((): void => {
-        axios.get(`${process.env.REACT_APP_API_URL}/pokemon`, { withCredentials: true })
+        axios.get(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, { withCredentials: true })
 
-            .then((response: AxiosResponse): void => { setPokedex(response.data) })
+            .then((response: AxiosResponse): void => { setPokemon(response.data) })
 
             .catch((error: AxiosError): void => { console.log(error) })
-    }, [pokedex])
+    }, [id])
     /********************************************************Type design*/
     const getTypeDesign = (type: string): string => {
         switch (type) {
@@ -70,31 +71,22 @@ export const Pokedex: FC = () => {
     /*********************************************************Return TSX*/
     return (
         <>
-            {pokedex ? (
+            {pokemon ? (
                 <div className="pokedex">
-                    <h1>{pokedex.message}</h1>
+                    <h1>{pokemon.message}</h1>
 
-                    <div className="rank">
-                        {pokedex.rank && <h2>RANG : {pokedex.rank}</h2>}
-                        {pokedex.forNextRank && <h2>{pokedex.forNextRank}</h2>}
-                    </div>
-
-                    <ul>
-                        {pokedex.pokedex.map((pokemon: IPokemon, index: number): JSX.Element => (
-                            <NavLink key={pokemon._id} to={`/pokedex/${pokemon._id}`} className={`animated--${index + 1}`}>
-                                <li className="pokemon">
-                                    <span className="number" id={getTypeDesign(pokemon.type[0])}>{pokemon.number}</span>
-                                    <span className="name">{pokemon.name}</span>
-                                    <img className="image" src={pokemon.picture} alt={`${pokemon.name} cover`} />
-                                    <span className="description">{pokemon.description}</span>
-                                    <div className="types">
-                                        {pokemon.type.map((type: string, index: number): JSX.Element => (
-                                            <span key={index} id={getTypeDesign(type)}>{type}</span>
-                                        ))}
-                                    </div>
-                                </li>
-                            </NavLink>
-                        ))}
+                    <ul className="pokemon">
+                        <li className="pokemon">
+                            <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
+                            <span className="name">{pokemon.pokemon.name}</span>
+                            <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />
+                            <span className="description">{pokemon.pokemon.description}</span>
+                            <div className="types">
+                                {pokemon.pokemon.type.map((type: string, index: number): JSX.Element => (
+                                    <span key={index} id={getTypeDesign(type)}>{type}</span>
+                                ))}
+                            </div>
+                        </li>
                     </ul>
                 </div >
             ) : (

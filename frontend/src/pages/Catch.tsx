@@ -17,7 +17,7 @@ export const Catch: FC = () => {
                 if (nameError) {
                     nameError.textContent = response.data.message
                     nameError.style.color = "green"
-                    nameError.style.backgroundColor = "rgb(241, 235, 235)"
+                    nameError.style.backgroundColor = "white"
                 }
                 else {
                     return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -33,7 +33,7 @@ export const Catch: FC = () => {
                         if (nameError) {
                             nameError.textContent = regexErrorMessage
                             nameError.style.color = "red"
-                            nameError.style.backgroundColor = "rgb(241, 235, 235)"
+                            nameError.style.backgroundColor = "white"
                         }
                         else {
                             return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
