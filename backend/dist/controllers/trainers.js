@@ -97,7 +97,15 @@ const login = (req, res) => {
                                 const message = `Bienvenue ${name.toUpperCase()} !`;
                                 const tokenKey = process.env.TOKEN_KEY || 'token_key';
                                 const token = jsonwebtoken_1.default.sign({ name: name.toUpperCase() }, tokenKey, { expiresIn: '1h' });
-                                res.status(200).json({ message: message, token: token });
+                                res.cookie('token', token, {
+                                    httpOnly: true,
+                                    secure: true,
+                                    sameSite: 'strict',
+                                    path: '/',
+                                    domain: 'localhost',
+                                    maxAge: 3600 * 1000
+                                });
+                                res.status(200).json({ message: message });
                             }
                             else {
                                 res.status(401).json({ message: `Le mot de passe est incorrect !` });
