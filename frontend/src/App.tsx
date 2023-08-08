@@ -1,6 +1,6 @@
 /****************************************************************IMPORTS*/
 import { FC, useState, useEffect } from "react"
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Pokedex } from "./pages/Pokedex"
 import { Pokemon } from "./pages/Pokemon"
@@ -12,13 +12,11 @@ export const App: FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   /********************************************************Middlewares*/
   useEffect((): void => {
-    if (isLoggedIn) {
-      axios.get(`${process.env.REACT_APP_API_URL}/auth`, { withCredentials: true })
+    axios.get(`${process.env.REACT_APP_API_URL}/frontauth`, { withCredentials: true })
 
-        .then((): void => { setIsLoggedIn(true) })
-        .catch((): void => { setIsLoggedIn(false) })
-    }
-  }, [isLoggedIn])
+      .then((): void => { setIsLoggedIn(true) })
+      .catch((error: AxiosError): void => { console.log(error) })
+  }, [])
   /*********************************************************Return TSX*/
   return (
     <>

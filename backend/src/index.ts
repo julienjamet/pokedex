@@ -5,11 +5,11 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import cors from 'cors'
-import { auth } from './controllers/auth'
-import { sendAuthToFront } from './controllers/sendAuthToFront'
-import { rank } from './controllers/rank'
 import { trainerRouter } from './routes/trainer'
+import { auth } from './controllers/auth'
+import { rank } from './controllers/rank'
 import { pokemonRouter } from './routes/pokemon'
+import { frontAuth } from './controllers/frontAuth'
 /********************************************************************APP*/
 const app: Application = express()
 /*************************************************************DB CONNECT*/
@@ -24,9 +24,10 @@ mongoose.connect(connectionString)
 app.use(express.json())
 app.use(cookieParser())
 app.use(helmet())
-app.use(cors({ origin: 'http://localhost:3000', methods: 'GET,POST,PUT,DELETE', credentials: true }))
+app.use(cors({ origin: process.env.FRONT_URL, methods: 'GET, POST, PUT, DELETE', credentials: true }))
 app.use('/api/trainer', trainerRouter)
-app.get('/api/auth', auth, sendAuthToFront)
 app.use('/api/pokemon', auth, rank, pokemonRouter)
+/*************************************************************FRONT AUTH*/
+app.get('/api/frontauth', frontAuth)
 /*****************************************************************LISTEN*/
 app.listen(port, (): void => console.log(`Ecoute sur le port ${port}`))

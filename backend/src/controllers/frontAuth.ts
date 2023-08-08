@@ -3,7 +3,7 @@ import { RequestHandler, Response, NextFunction } from 'express'
 import { authRequest } from '../interfaces/interfaces'
 import jwt from 'jsonwebtoken'
 /*******************************************************************AUTH*/
-export const auth: RequestHandler = (req: authRequest, res: Response, next: NextFunction): Response | void => {
+export const frontAuth: RequestHandler = (req: authRequest, res: Response, next: NextFunction): Response | void => {
     const token: string = req.cookies.token
     const tokenKey: string = process.env.TOKEN_KEY || 'token_key'
 
@@ -12,7 +12,7 @@ export const auth: RequestHandler = (req: authRequest, res: Response, next: Next
         const name: string = decodedToken.name
         req.auth = { name: name }
 
-        next()
+        res.status(200).json({ auth: req.auth })
     }
     catch (error) {
         return res.status(401).json({ message: `Tu n'es pas authentifié(e) !` })

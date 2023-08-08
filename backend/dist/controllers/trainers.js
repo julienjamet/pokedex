@@ -103,7 +103,7 @@ const login = (req, res) => {
                                     sameSite: 'strict',
                                     path: '/',
                                     domain: 'localhost',
-                                    maxAge: 60 * 60 * 1000
+                                    maxAge: 3600 * 1000
                                 });
                                 res.status(200).json({ message: message });
                             }
