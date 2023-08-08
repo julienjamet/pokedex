@@ -5,34 +5,91 @@ $tertiary: rgb(241, 235, 235);
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: $secondary;
+    background-color: $primary;
     margin: 0;
+
+    nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 40px;
+        background-color: $tertiary;
+        border-bottom: 1px solid $secondary;
+        a {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: $secondary;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+
+    .formPage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 95vh;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 200px;
+            width: 50%;
+
+                input {
+                    width: 50%;
+                    background-color: $tertiary;
+                    padding: 5px 10px;
+                    border: 1px solid $secondary;
+                    border-radius: 15px;
+                }
+
+                .error {
+                    font-weight: bold;
+                    padding: 5px 10px;
+                    border-radius: 15px;
+                }
+
+                .submit {
+                    width: 30%;
+                    font-weight: bold;
+                    margin-top: 30px;
+                    transition: letter-spacing 800ms ease;
+                    
+                    &:hover {
+                        cursor: pointer;
+                        letter-spacing: 3px;
+                    }
+                }
+        }
+    }
 
     .pokedex {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background-color: $primary;
         padding: 15px;
     
-        h1 {
+        h1, .rank {
             align-self: start;
             font-size: 20px;
             background-color: $tertiary;
             padding: 5px 15px;
             border-radius: 15px;
-        }
+            border: 1px solid $secondary;
 
-        .rank {
-            align-self: end;
-            text-align: right;
-            background-color: $tertiary;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin-top: -45px;
-        }
-    
-        h2 {
-            font-size: 14px;
+            h2 {
+                font-size: 20px;
+                margin: 0;
+
+                &:nth-child(2) {
+                    margin-top: 10px;
+                }
+            }
         }
 
         ul {
@@ -41,102 +98,109 @@ body {
             align-items: center;
             flex-wrap: wrap;
             padding: 0;
+            margin-top: 40px;
 
-            li {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                height: 400px;
-                width: 350px;
-                font-weight: bold;
-                list-style-type: none;
-                background-color: $tertiary;
-                padding: 10px;
-                border: 1px solid black;
-                border-radius: 15px;
-                margin: 30px;
+            a {
+                color: $secondary;
+                text-decoration: none;
 
-                #plante {
-                    background-color: rgb(97, 179, 97);
-                }
-                #feu {
-                    background-color: rgb(223, 45, 45);
-                }
-                #eau {
-                    color: $tertiary;
-                    background-color: rgb(62, 62, 230);
-                }
-                #electrik {
-                    background-color: rgba(252, 208, 65, 0.979);
-                }
-                #psy {
-                    background-color: rgb(247, 110, 133);
-                }
-                #combat {
-                    color: $tertiary;
-                    background-color: brown;
-                }
-                #vol {
-                    background-color: rgb(190, 178, 178);
-                }
-                #sol {
-                    background-color: rgb(204, 168, 128);
-                }
-                #roche {
-                    background-color: rgb(187, 84, 24);
-                }
-                #glace {
-                    background-color: rgb(122, 228, 241);
-                }
-                #normal {
-                    background-color: white;
-                    border: 1px solid $secondary;
-                }
-                #poison {
-                    color: $tertiary;
-                    background-color: rgb(84, 28, 148);
-                }
-                #dragon {
-                    background-color: rgb(134, 92, 168);
-                }
-                #insecte {
-                    background-color: rgb(146, 187, 35);
-                }
-                #fée {
-                    background-color: rgb(152, 73, 241);
-                }
-
-                .number {
-                    align-self: end;
-                    color: black;
-                    padding: 4px 8px;
-                    border-radius: 15px;
-                }
-
-                .description {
-                    height: 120px;
-                    text-align: justify;
-                    overflow: auto;
-                    font-weight: normal;
-                }
-
-                .types {
+                li {
                     display: flex;
-                    justify-content: space-evenly;
+                    flex-direction: column;
+                    justify-content: space-between;
                     align-items: center;
-                    width: 100%;
-
-                    span {
+                    height: 400px;
+                    width: 350px;
+                    font-weight: bold;
+                    list-style-type: none;
+                    background-color: $tertiary;
+                    padding: 10px;
+                    border: 1px solid black;
+                    border-radius: 15px;
+                    margin: 30px;
+    
+                    #plante {
+                        background-color: rgb(97, 179, 97);
+                    }
+                    #feu {
+                        background-color: rgb(223, 45, 45);
+                    }
+                    #eau {
+                        color: $tertiary;
+                        background-color: rgb(62, 62, 230);
+                    }
+                    #electrik {
+                        background-color: rgba(252, 208, 65, 0.979);
+                    }
+                    #psy {
+                        background-color: rgb(247, 110, 133);
+                    }
+                    #combat {
+                        color: $tertiary;
+                        background-color: brown;
+                    }
+                    #vol {
+                        background-color: rgb(190, 178, 178);
+                    }
+                    #sol {
+                        background-color: rgb(204, 168, 128);
+                    }
+                    #roche {
+                        background-color: rgb(187, 84, 24);
+                    }
+                    #glace {
+                        background-color: rgb(122, 228, 241);
+                    }
+                    #normal {
+                        background-color: white;
+                    }
+                    #poison {
+                        color: $tertiary;
+                        background-color: rgb(84, 28, 148);
+                    }
+                    #dragon {
+                        background-color: rgb(134, 92, 168);
+                    }
+                    #insecte {
+                        background-color: rgb(146, 187, 35);
+                    }
+                    #fée {
+                        background-color: rgb(152, 73, 241);
+                    }
+    
+                    .number {
+                        align-self: end;
                         color: black;
-                        padding: 5px 10px 3px 10px;
+                        padding: 4px 8px;
+                        border: 1px solid $secondary;
                         border-radius: 15px;
                     }
-                }
-
-                &:hover {
-                    background-color: white;
-                    box-shadow: 2px 2px 8px rgb(70, 69, 69);
+    
+                    .description {
+                        height: 120px;
+                        text-align: justify;
+                        overflow: auto;
+                        font-weight: normal;
+                    }
+    
+                    .types {
+                        display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        width: 100%;
+    
+                        span {
+                            color: black;
+                            padding: 5px 10px 3px 10px;
+                            border-radius: 15px;
+                            border: 1px solid $secondary;
+                        }
+                    }
+    
+                    &:hover {
+                        background-color: white;
+                        box-shadow: 2px 2px 8px rgb(70, 69, 69);
+                    }
                 }
             }
         }

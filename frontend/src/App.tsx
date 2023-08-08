@@ -2,12 +2,12 @@
 import { FC, useState, useEffect } from "react"
 import axios, { AxiosError } from 'axios'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { NavBar } from "./components/NavBar"
 import { Pokedex } from "./pages/Pokedex"
-import { Pokemon } from "./pages/Pokemon"
+import { Catch } from "./pages/Catch"
 import { FormModal } from "./components/FormModal"
 /********************************************************************APP*/
 export const App: FC = () => {
-
   /**************************************************************Hooks*/
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   /********************************************************Middlewares*/
@@ -23,9 +23,10 @@ export const App: FC = () => {
       {
         isLoggedIn ? (
           <BrowserRouter>
+            <NavBar />
             <Routes>
               <Route path="/pokedex" element={<Pokedex />} />
-              <Route path="/pokemon" element={<Pokemon />} />
+              <Route path="/catch" element={<Catch />} />
               <Route path="/*" element={<Pokedex />} />
             </Routes>
           </BrowserRouter>

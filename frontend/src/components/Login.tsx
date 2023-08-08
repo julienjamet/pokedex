@@ -23,20 +23,20 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                     const responseData: unknown = error.response.data
 
                     if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const RegexErrorMessage: string = responseData.message as string
+                        const regexErrorMessage: string = responseData.message as string
 
-                        if (RegexErrorMessage.includes("dresseur")) {
+                        if (regexErrorMessage.includes("dresseur")) {
                             if (nameError && passwordError) {
-                                nameError.textContent = RegexErrorMessage
+                                nameError.textContent = regexErrorMessage
                                 passwordError.textContent = ""
                             }
                             else {
                                 return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
-                        else if (RegexErrorMessage.includes("mot de passe")) {
+                        else if (regexErrorMessage.includes("mot de passe")) {
                             if (passwordError && nameError) {
-                                passwordError.textContent = RegexErrorMessage
+                                passwordError.textContent = regexErrorMessage
                                 nameError.textContent = ""
                             }
                             else {
@@ -69,24 +69,26 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
     }
     /*********************************************************Return TSX*/
     return (
-        <form action="" className="loginForm" onSubmit={handleForm}>
-            <label htmlFor="name">Name</label>
-            <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e: ChangeEvent<HTMLInputElement>): void => setName(e.target.value)} />
-            <div className="name error"></div>
+        <div className="formPage">
+            <form action="" className="form" onSubmit={handleForm}>
+                <label htmlFor="name">Nom</label>
+                <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setName(e.target.value)} />
+                <div className="name error"></div>
 
-            <label htmlFor="password">Mot de passe</label>
-            <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e: ChangeEvent<HTMLInputElement>): void => setPassword(e.target.value)} />
-            <div className="password error"></div>
+                <label htmlFor="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setPassword(e.target.value)} />
+                <div className="password error"></div>
 
-            <input type="submit" className="submit" value="Connexion" />
-        </form>
+                <input type="submit" className="submit" value="Connexion" />
+            </form>
+        </div>
     )
 }

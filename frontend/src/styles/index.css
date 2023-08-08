@@ -2,32 +2,82 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #303541;
+  background-color: salmon;
   margin: 0;
+}
+body nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 40px;
+  background-color: rgb(241, 235, 235);
+  border-bottom: 1px solid #303541;
+}
+body nav a {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #303541;
+}
+body nav a:hover {
+  color: salmon;
+}
+body .formPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+}
+body .formPage form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  width: 50%;
+}
+body .formPage form input {
+  width: 50%;
+  background-color: rgb(241, 235, 235);
+  padding: 5px 10px;
+  border: 1px solid #303541;
+  border-radius: 15px;
+}
+body .formPage form .error {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+body .formPage form .submit {
+  width: 30%;
+  font-weight: bold;
+  margin-top: 30px;
+  transition: letter-spacing 800ms ease;
+}
+body .formPage form .submit:hover {
+  cursor: pointer;
+  letter-spacing: 3px;
 }
 body .pokedex {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: salmon;
   padding: 15px;
 }
-body .pokedex h1 {
+body .pokedex h1, body .pokedex .rank {
   align-self: start;
   font-size: 20px;
   background-color: rgb(241, 235, 235);
   padding: 5px 15px;
   border-radius: 15px;
+  border: 1px solid #303541;
 }
-body .pokedex .rank {
-  align-self: end;
-  text-align: right;
-  background-color: rgb(241, 235, 235);
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin-top: -45px;
+body .pokedex h1 h2, body .pokedex .rank h2 {
+  font-size: 20px;
+  margin: 0;
 }
-body .pokedex h2 {
-  font-size: 14px;
+body .pokedex h1 h2:nth-child(2), body .pokedex .rank h2:nth-child(2) {
+  margin-top: 10px;
 }
 body .pokedex ul {
   display: flex;
@@ -35,8 +85,13 @@ body .pokedex ul {
   align-items: center;
   flex-wrap: wrap;
   padding: 0;
+  margin-top: 40px;
 }
-body .pokedex ul li {
+body .pokedex ul a {
+  color: #303541;
+  text-decoration: none;
+}
+body .pokedex ul a li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -51,79 +106,80 @@ body .pokedex ul li {
   border-radius: 15px;
   margin: 30px;
 }
-body .pokedex ul li #plante {
+body .pokedex ul a li #plante {
   background-color: rgb(97, 179, 97);
 }
-body .pokedex ul li #feu {
+body .pokedex ul a li #feu {
   background-color: rgb(223, 45, 45);
 }
-body .pokedex ul li #eau {
+body .pokedex ul a li #eau {
   color: rgb(241, 235, 235);
   background-color: rgb(62, 62, 230);
 }
-body .pokedex ul li #electrik {
+body .pokedex ul a li #electrik {
   background-color: rgba(252, 208, 65, 0.979);
 }
-body .pokedex ul li #psy {
+body .pokedex ul a li #psy {
   background-color: rgb(247, 110, 133);
 }
-body .pokedex ul li #combat {
+body .pokedex ul a li #combat {
   color: rgb(241, 235, 235);
   background-color: brown;
 }
-body .pokedex ul li #vol {
+body .pokedex ul a li #vol {
   background-color: rgb(190, 178, 178);
 }
-body .pokedex ul li #sol {
+body .pokedex ul a li #sol {
   background-color: rgb(204, 168, 128);
 }
-body .pokedex ul li #roche {
+body .pokedex ul a li #roche {
   background-color: rgb(187, 84, 24);
 }
-body .pokedex ul li #glace {
+body .pokedex ul a li #glace {
   background-color: rgb(122, 228, 241);
 }
-body .pokedex ul li #normal {
+body .pokedex ul a li #normal {
   background-color: white;
-  border: 1px solid #303541;
 }
-body .pokedex ul li #poison {
+body .pokedex ul a li #poison {
   color: rgb(241, 235, 235);
   background-color: rgb(84, 28, 148);
 }
-body .pokedex ul li #dragon {
+body .pokedex ul a li #dragon {
   background-color: rgb(134, 92, 168);
 }
-body .pokedex ul li #insecte {
+body .pokedex ul a li #insecte {
   background-color: rgb(146, 187, 35);
 }
-body .pokedex ul li #fée {
+body .pokedex ul a li #fée {
   background-color: rgb(152, 73, 241);
 }
-body .pokedex ul li .number {
+body .pokedex ul a li .number {
   align-self: end;
   color: black;
   padding: 4px 8px;
+  border: 1px solid #303541;
   border-radius: 15px;
 }
-body .pokedex ul li .description {
+body .pokedex ul a li .description {
   height: 120px;
   text-align: justify;
   overflow: auto;
   font-weight: normal;
 }
-body .pokedex ul li .types {
+body .pokedex ul a li .types {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
-body .pokedex ul li .types span {
+body .pokedex ul a li .types span {
   color: black;
   padding: 5px 10px 3px 10px;
   border-radius: 15px;
+  border: 1px solid #303541;
 }
-body .pokedex ul li:hover {
+body .pokedex ul a li:hover {
   background-color: white;
   box-shadow: 2px 2px 8px rgb(70, 69, 69);
 }/*# sourceMappingURL=index.css.map */
