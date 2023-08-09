@@ -139,7 +139,6 @@ $tertiary: rgb(241, 235, 235);
             }
         }  
         &:hover {
-            background-color: white;
             box-shadow: 2px 2px 8px rgb(70, 69, 69);
         }
         &.hidden {
@@ -151,6 +150,51 @@ $tertiary: rgb(241, 235, 235);
         &.appear {
             animation: evolveAppear 1000ms both ease-in-out;
         }
+    }
+    .plante:hover {
+        background: radial-gradient(ellipse at center, rgb(97, 179, 97), $tertiary);
+    }
+    .feu:hover {
+        background: radial-gradient(ellipse at center, rgb(223, 45, 45), $tertiary);
+    }
+    .eau:hover {
+        background: radial-gradient(ellipse at center, rgb(62, 62, 230), $tertiary);
+    }
+    .electrik:hover {
+        background: radial-gradient(ellipse at center, rgb(252, 208, 65, 0.979), $tertiary);
+    }
+    .psy:hover {
+        background: radial-gradient(ellipse at center, rgb(247, 110, 133), $tertiary);
+    }
+    .combat:hover {
+        background: radial-gradient(ellipse at center, brown, $tertiary);
+    }
+    .vol:hover {
+        background: radial-gradient(ellipse at center, rgb(190, 178, 178), $tertiary);
+    }
+    .sol:hover {
+        background: radial-gradient(ellipse at center, rgb(204, 168, 128), $tertiary);
+    }
+    .roche:hover {
+        background: radial-gradient(ellipse at center, rgb(187, 84, 24), $tertiary);
+    }
+    .glace:hover {
+        background: radial-gradient(ellipse at center, rgb(122, 228, 241), $tertiary);
+    }
+    .normal:hover {
+        background: radial-gradient(ellipse at center, white, rgb(190, 178, 178));
+    }
+    .poison:hover {
+        background: radial-gradient(ellipse at center, rgb(84, 28, 148), $tertiary);
+    }
+    .dragon:hover {
+        background: radial-gradient(ellipse at center, rgb(134, 92, 168), $tertiary);
+    }
+    .insecte:hover {
+        background: radial-gradient(ellipse at center, rgb(146, 187, 35), $tertiary);
+    }
+    .fée:hover {
+        background: radial-gradient(ellipse at center, rgb(152, 73, 241), $tertiary);
     }
 }
 /*****************************************************************STYLES*/

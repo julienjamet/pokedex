@@ -693,7 +693,6 @@ body .pokedex ul li .types span {
   border: 1px solid #303541;
 }
 body .pokedex ul li:hover {
-  background-color: white;
   box-shadow: 2px 2px 8px rgb(70, 69, 69);
 }
 body .pokedex ul li.hidden {
@@ -704,6 +703,51 @@ body .pokedex ul li.vanish {
 }
 body .pokedex ul li.appear {
   animation: evolveAppear 1000ms both ease-in-out;
+}
+body .pokedex ul .plante:hover {
+  background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(241, 235, 235));
+}
+body .pokedex ul .feu:hover {
+  background: radial-gradient(ellipse at center, rgb(223, 45, 45), rgb(241, 235, 235));
+}
+body .pokedex ul .eau:hover {
+  background: radial-gradient(ellipse at center, rgb(62, 62, 230), rgb(241, 235, 235));
+}
+body .pokedex ul .electrik:hover {
+  background: radial-gradient(ellipse at center, rgba(252, 208, 65, 0.979), rgb(241, 235, 235));
+}
+body .pokedex ul .psy:hover {
+  background: radial-gradient(ellipse at center, rgb(247, 110, 133), rgb(241, 235, 235));
+}
+body .pokedex ul .combat:hover {
+  background: radial-gradient(ellipse at center, brown, rgb(241, 235, 235));
+}
+body .pokedex ul .vol:hover {
+  background: radial-gradient(ellipse at center, rgb(190, 178, 178), rgb(241, 235, 235));
+}
+body .pokedex ul .sol:hover {
+  background: radial-gradient(ellipse at center, rgb(204, 168, 128), rgb(241, 235, 235));
+}
+body .pokedex ul .roche:hover {
+  background: radial-gradient(ellipse at center, rgb(187, 84, 24), rgb(241, 235, 235));
+}
+body .pokedex ul .glace:hover {
+  background: radial-gradient(ellipse at center, rgb(122, 228, 241), rgb(241, 235, 235));
+}
+body .pokedex ul .normal:hover {
+  background: radial-gradient(ellipse at center, white, rgb(190, 178, 178));
+}
+body .pokedex ul .poison:hover {
+  background: radial-gradient(ellipse at center, rgb(84, 28, 148), rgb(241, 235, 235));
+}
+body .pokedex ul .dragon:hover {
+  background: radial-gradient(ellipse at center, rgb(134, 92, 168), rgb(241, 235, 235));
+}
+body .pokedex ul .insecte:hover {
+  background: radial-gradient(ellipse at center, rgb(146, 187, 35), rgb(241, 235, 235));
+}
+body .pokedex ul .fée:hover {
+  background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(241, 235, 235));
 }
 body .pokedex ul.pokemon {
   justify-content: center;
