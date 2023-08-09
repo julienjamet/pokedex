@@ -11,12 +11,10 @@ export const Register: FC = () => {
     const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
         e.preventDefault()
 
+        const body: HTMLElement | null = document.querySelector('body')
         const nameError: HTMLElement | null = document.querySelector('.name.error')
         const passwordError: HTMLElement | null = document.querySelector('.password.error')
         const validatePasswordError: HTMLElement | null = document.querySelector('.validatePassword.error')
-
-        const body: HTMLElement | null = document.querySelector('body')
-        //const submitButton: HTMLElement | null = document.querySelector('.submit')
 
         if (password !== validatePassword) {
             if (validatePasswordError) {
@@ -72,10 +70,10 @@ export const Register: FC = () => {
             })
             .catch((error: AxiosError): void => {
                 if (error.response) {
-                    const responseData: unknown = error.response.data
+                    const responseData: { message: string } | { errors: { name: string } } = error.response.data as { message: string } | { errors: { name: string } }
 
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message as string
+                    if (responseData && 'message' in responseData) {
+                        const regexErrorMessage: string = responseData.message
 
                         if (regexErrorMessage.includes("nom")) {
                             if (nameError && passwordError) {
@@ -107,18 +105,11 @@ export const Register: FC = () => {
                             return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
-                    else if (responseData && typeof responseData === 'object' && 'errors' in responseData) {
-                        const responseDataErrors: { name: string } = responseData.errors as { name: string }
+                    else if (responseData && 'errors' in responseData) {
+                        const nameNotAvailableErrorMessage: string = responseData.errors.name
 
-                        if (typeof responseDataErrors === 'object' && 'name' in responseDataErrors) {
-                            const nameNotAvailableErrorMessage: string = responseDataErrors.name as string
-
-                            if (nameError) {
-                                nameError.textContent = nameNotAvailableErrorMessage
-                            }
-                            else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                            }
+                        if (nameError) {
+                            nameError.textContent = nameNotAvailableErrorMessage
                         }
                         else {
                             return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)

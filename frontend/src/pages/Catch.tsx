@@ -6,6 +6,7 @@ export const Catch: FC = () => {
     /**************************************************************Hooks*/
     const [name, setName] = useState<string>('')
     /********************************************************Middlewares*/
+    /***************************************************Handle form*/
     const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
         e.preventDefault()
 
@@ -25,10 +26,10 @@ export const Catch: FC = () => {
             })
             .catch((error: AxiosError): void => {
                 if (error.response) {
-                    const responseData: unknown = error.response.data
+                    const responseData: { message: string } = error.response.data as { message: string }
 
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message as string
+                    if (responseData) {
+                        const regexErrorMessage: string = responseData.message
 
                         if (nameError) {
                             nameError.textContent = regexErrorMessage

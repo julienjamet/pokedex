@@ -8,6 +8,7 @@ export const Pokedex: FC = () => {
     /**************************************************************Hooks*/
     const [pokedex, setPokedex] = useState<IPokedex>()
     /********************************************************Middlewares*/
+    /******************************************************Get data*/
     useEffect((): void => {
         axios.get(`${process.env.REACT_APP_API_URL}/pokemon`, { withCredentials: true })
 
@@ -15,7 +16,7 @@ export const Pokedex: FC = () => {
 
             .catch((error: AxiosError): void => { console.log(error) })
     }, [pokedex])
-    /********************************************************Type design*/
+    /***************************************************Type design*/
     const getTypeDesign = (type: string): string => {
         switch (type) {
             case "PLANTE":
