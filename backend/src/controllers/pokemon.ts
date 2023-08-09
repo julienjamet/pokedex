@@ -152,7 +152,7 @@ export const catchOne = (req: authRequest, res: Response): Response | void => {
             return res.status(400).json({ message: `Aucun Pokemon n'a un nom aussi long !` })
         }
         else {
-            if (!/^([^0-9\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(pokemonName)) {
+            if (!/^([^0-9-<>≤≥«»© ↓¬,?¿;×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(pokemonName)) {
                 return res.status(400).json({ message: `Le nom du Pokemon doit être composé d'au moins deux lettres et ne doit comporter aucun caractère spécial !` })
             }
             else {
