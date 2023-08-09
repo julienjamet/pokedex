@@ -12,6 +12,7 @@ export const App: FC = () => {
   /**************************************************************Hooks*/
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   /********************************************************Middlewares*/
+  /********************************************************Get auth*/
   useEffect((): void => {
     axios.get(`${process.env.REACT_APP_API_URL}/frontauth`, { withCredentials: true })
 

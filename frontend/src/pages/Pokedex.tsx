@@ -8,6 +8,7 @@ export const Pokedex: FC = () => {
     /**************************************************************Hooks*/
     const [pokedex, setPokedex] = useState<IPokedex>()
     /********************************************************Middlewares*/
+    /******************************************************Get data*/
     useEffect((): void => {
         axios.get(`${process.env.REACT_APP_API_URL}/pokemon`, { withCredentials: true })
 
@@ -15,7 +16,7 @@ export const Pokedex: FC = () => {
 
             .catch((error: AxiosError): void => { console.log(error) })
     }, [pokedex])
-    /********************************************************Type design*/
+    /***************************************************Type design*/
     const getTypeDesign = (type: string): string => {
         switch (type) {
             case "PLANTE":
@@ -82,7 +83,7 @@ export const Pokedex: FC = () => {
                     <ul>
                         {pokedex.pokedex.map((pokemon: IPokemon, index: number): JSX.Element => (
                             <NavLink key={pokemon._id} to={`/pokedex/${pokemon._id}`} className={`animated--${index + 1}`}>
-                                <li className="pokemon">
+                                <li className={`${getTypeDesign(pokemon.type[0])}`}>
                                     <span className="number" id={getTypeDesign(pokemon.type[0])}>{pokemon.number}</span>
                                     <span className="name">{pokemon.name}</span>
                                     <img className="image" src={pokemon.picture} alt={`${pokemon.name} cover`} />

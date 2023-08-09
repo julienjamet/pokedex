@@ -20,6 +20,7 @@ export interface IPokemon {
     _id?: string | undefined,
     number: number,
     name: string,
+    evolve?: string | undefined,
     description: string,
     picture: string,
     type: string[]

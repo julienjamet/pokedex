@@ -8,7 +8,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     /********************************************************Middlewares*/
-    const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
+    const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
 
         const nameError: HTMLElement | null = document.querySelector('.name.error')
@@ -20,10 +20,10 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
 
             .catch((error: AxiosError): void => {
                 if (error.response) {
-                    const responseData: unknown = error.response.data
+                    const responseData: { message: string } | { error: string } = error.response.data as { message: string } | { error: string }
 
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message as string
+                    if (responseData && 'message' in responseData) {
+                        const regexErrorMessage: string = responseData.message
 
                         if (regexErrorMessage.includes("dresseur")) {
                             if (nameError && passwordError) {
@@ -35,7 +35,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                                 passwordError.style.backgroundColor = "salmon"
                             }
                             else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else if (regexErrorMessage.includes("mot de passe")) {
@@ -48,15 +48,15 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                                 nameError.style.backgroundColor = "salmon"
                             }
                             else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
-                    else if (responseData && typeof responseData === 'object' && 'error' in responseData) {
-                        const responseDataError: string = responseData.error as string
+                    else if (responseData && 'error' in responseData) {
+                        const responseDataError: string = responseData.error
 
                         if (nameError && passwordError) {
                             nameError.textContent = responseDataError
@@ -67,15 +67,15 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                             passwordError.style.backgroundColor = "salmon"
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else {
-                        return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                     }
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
     }

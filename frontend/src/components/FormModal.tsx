@@ -9,6 +9,7 @@ export const FormModal: FC<ILogin> = ({ isLoggedIn, setIsLoggedIn }) => {
     const [signUpModal, setSignUpModal] = useState(false)
     const [loginModal, setLoginModal] = useState(true)
     /********************************************************Middlewares*/
+    /**************************************************Handle modal*/
     const handleModal = (e: MouseEvent<HTMLButtonElement>): void => {
         const target = e.target as HTMLButtonElement
 

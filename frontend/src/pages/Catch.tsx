@@ -6,7 +6,8 @@ export const Catch: FC = () => {
     /**************************************************************Hooks*/
     const [name, setName] = useState<string>('')
     /********************************************************Middlewares*/
-    const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
+    /***************************************************Handle form*/
+    const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
 
         const nameError: HTMLElement | null = document.querySelector('.name.error')
@@ -20,15 +21,15 @@ export const Catch: FC = () => {
                     nameError.style.backgroundColor = "white"
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
             .catch((error: AxiosError): void => {
                 if (error.response) {
-                    const responseData: unknown = error.response.data
+                    const responseData: { message: string } = error.response.data as { message: string }
 
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message as string
+                    if (responseData) {
+                        const regexErrorMessage: string = responseData.message
 
                         if (nameError) {
                             nameError.textContent = regexErrorMessage
@@ -36,15 +37,15 @@ export const Catch: FC = () => {
                             nameError.style.backgroundColor = "white"
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else {
-                        return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                     }
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
     }

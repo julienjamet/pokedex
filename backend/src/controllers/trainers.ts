@@ -1,11 +1,11 @@
 /****************************************************************IMPORTS*/
-import { Request, RequestHandler, Response } from 'express'
+import { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
-import Trainer from '../models/trainer'
 import { ITrainer } from "../interfaces/interfaces.js"
+import Trainer from '../models/trainer'
+import jwt from 'jsonwebtoken'
 /****************************************************************SIGN IN*/
-export const signUp: RequestHandler = (req: Request, res: Response): Response | void => {
+export const signUp = (req: Request, res: Response): Response | void => {
     const name: string = req.body.name
     const password: string = req.body.password
 
@@ -62,7 +62,7 @@ export const signUp: RequestHandler = (req: Request, res: Response): Response | 
     }
 }
 /******************************************************************LOGIN*/
-export const login: RequestHandler = (req: Request, res: Response): Response | void => {
+export const login = (req: Request, res: Response): Response | void => {
     const name: string = req.body.name
     const password: string = req.body.password
 
@@ -107,7 +107,7 @@ export const login: RequestHandler = (req: Request, res: Response): Response | v
                                             secure: true,
                                             sameSite: 'strict',
                                             path: '/',
-                                            domain: '.julienjamet.com',
+                                            domain: process.env.COOKIE_DOMAIN,
                                             maxAge: 3600 * 1000
                                         })
 
