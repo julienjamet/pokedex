@@ -2,6 +2,22 @@
 $primary: salmon;
 $secondary: #303541;
 $tertiary: rgb(241, 235, 235);
+$plante--primary: rgb(97, 179, 97);
+$plante--secondary: rgb(143, 111, 63);
+$feu--primary: rgb(225, 0, 0);
+$feu--secondary: rgb(255, 205, 24);
+$eau--primary: rgb(34, 34, 223);
+$eau--secondary: rgb(170, 189, 225);
+$electrik--primary: rgb(255, 241, 39);
+$electrik--secondary: black;
+$psy--primary: rgb(255, 71, 102);
+$psy--secondary: rgb(166, 127, 171);
+$roche--primary: rgb(123, 64, 29);
+$roche--secondary: rgb(180, 179, 172);
+$fée--primary: rgb(152, 73, 241);
+$fée--secondary: rgb(237, 228, 135);
+$dragon--primary: rgb(221, 190, 97);
+$dragon--secondary: rgb(100, 111, 195);
 /**************************************************************KEYFRAMES*/
 @keyframes appear {
     0% {
@@ -64,20 +80,20 @@ $tertiary: rgb(241, 235, 235);
         border-radius: 15px;
         margin: 30px;
         #plante {
-            background-color: rgb(97, 179, 97);
+            background-color: $plante--primary;
         }
         #feu {
-            background-color: rgb(223, 45, 45);
+            background-color: $feu--primary;
         }
         #eau {
             color: $tertiary;
-            background-color: rgb(62, 62, 230);
+            background-color: $eau--primary;
         }
         #electrik {
-            background-color: rgba(252, 208, 65, 0.979);
+            background-color: $electrik--primary;
         }
         #psy {
-            background-color: rgb(247, 110, 133);
+            background-color: $psy--primary;
         }
         #combat {
             color: $tertiary;
@@ -90,7 +106,7 @@ $tertiary: rgb(241, 235, 235);
             background-color: rgb(204, 168, 128);
         }
         #roche {
-            background-color: rgb(187, 84, 24);
+            background-color: $roche--primary;
         }
         #glace {
             background-color: rgb(122, 228, 241);
@@ -103,13 +119,13 @@ $tertiary: rgb(241, 235, 235);
             background-color: rgb(84, 28, 148);
         }
         #dragon {
-            background-color: rgb(134, 92, 168);
+            background-color: $dragon--primary;
         }
         #insecte {
             background-color: rgb(146, 187, 35);
         }
         #fée {
-            background-color: rgb(152, 73, 241);
+            background-color: $fée--primary;
         }
         .number {
             align-self: end;
@@ -150,19 +166,21 @@ $tertiary: rgb(241, 235, 235);
         }
     }
     .plante:hover {
-        background: radial-gradient(ellipse at center, rgb(97, 179, 97), $tertiary);
+        background: radial-gradient(ellipse at center, $plante--primary, $plante--secondary);
     }
     .feu:hover {
-        background: radial-gradient(ellipse at center, rgb(223, 45, 45), $tertiary);
+        background: radial-gradient(ellipse at center, $feu--primary, $feu--secondary);
     }
     .eau:hover {
-        background: radial-gradient(ellipse at center, rgb(62, 62, 230), $tertiary);
+        color: $tertiary;
+        background: radial-gradient(ellipse at center, $eau--primary, $eau--secondary);
     }
     .electrik:hover {
-        background: radial-gradient(ellipse at center, rgb(252, 208, 65, 0.979), $tertiary);
+        color: white;
+        background: radial-gradient(ellipse at center, $electrik--primary, $electrik--secondary);
     }
     .psy:hover {
-        background: radial-gradient(ellipse at center, rgb(247, 110, 133), $tertiary);
+        background: radial-gradient(ellipse at center, $psy--primary, $psy--secondary);
     }
     .combat:hover {
         background: radial-gradient(ellipse at center, brown, $tertiary);
@@ -174,25 +192,26 @@ $tertiary: rgb(241, 235, 235);
         background: radial-gradient(ellipse at center, rgb(204, 168, 128), $tertiary);
     }
     .roche:hover {
-        background: radial-gradient(ellipse at center, rgb(187, 84, 24), $tertiary);
+        background: radial-gradient(ellipse at center, $roche--primary, $roche--secondary);
     }
     .glace:hover {
-        background: radial-gradient(ellipse at center, rgb(122, 228, 241), $tertiary);
+        background: radial-gradient(ellipse at center, $tertiary, rgb(122, 228, 241));
     }
     .normal:hover {
         background: radial-gradient(ellipse at center, white, rgb(190, 178, 178));
     }
     .poison:hover {
-        background: radial-gradient(ellipse at center, rgb(84, 28, 148), $tertiary);
+        color: white;
+        background: radial-gradient(ellipse at center, rgb(203, 237, 109), rgb(84, 28, 148));
     }
     .dragon:hover {
-        background: radial-gradient(ellipse at center, rgb(134, 92, 168), $tertiary);
+        background: radial-gradient(ellipse at center, $dragon--primary, $dragon--secondary);
     }
     .insecte:hover {
-        background: radial-gradient(ellipse at center, rgb(146, 187, 35), $tertiary);
+        background: radial-gradient(ellipse at center, rgb(112, 118, 96), rgb(203, 237, 109));
     }
     .fée:hover {
-        background: radial-gradient(ellipse at center, rgb(152, 73, 241), $tertiary);
+        background: radial-gradient(ellipse at center, $fée--primary, $fée--secondary);
     }
 }
 /*****************************************************************STYLES*/

@@ -622,17 +622,17 @@ body .pokedex ul li #plante {
   background-color: rgb(97, 179, 97);
 }
 body .pokedex ul li #feu {
-  background-color: rgb(223, 45, 45);
+  background-color: rgb(225, 0, 0);
 }
 body .pokedex ul li #eau {
   color: rgb(241, 235, 235);
-  background-color: rgb(62, 62, 230);
+  background-color: rgb(34, 34, 223);
 }
 body .pokedex ul li #electrik {
-  background-color: rgba(252, 208, 65, 0.979);
+  background-color: rgb(255, 241, 39);
 }
 body .pokedex ul li #psy {
-  background-color: rgb(247, 110, 133);
+  background-color: rgb(255, 71, 102);
 }
 body .pokedex ul li #combat {
   color: rgb(241, 235, 235);
@@ -645,7 +645,7 @@ body .pokedex ul li #sol {
   background-color: rgb(204, 168, 128);
 }
 body .pokedex ul li #roche {
-  background-color: rgb(187, 84, 24);
+  background-color: rgb(123, 64, 29);
 }
 body .pokedex ul li #glace {
   background-color: rgb(122, 228, 241);
@@ -658,7 +658,7 @@ body .pokedex ul li #poison {
   background-color: rgb(84, 28, 148);
 }
 body .pokedex ul li #dragon {
-  background-color: rgb(134, 92, 168);
+  background-color: rgb(221, 190, 97);
 }
 body .pokedex ul li #insecte {
   background-color: rgb(146, 187, 35);
@@ -704,19 +704,21 @@ body .pokedex ul li.appear {
   animation: evolveAppear 800ms both ease-in;
 }
 body .pokedex ul .plante:hover {
-  background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(143, 111, 63));
 }
 body .pokedex ul .feu:hover {
-  background: radial-gradient(ellipse at center, rgb(223, 45, 45), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(225, 0, 0), rgb(255, 205, 24));
 }
 body .pokedex ul .eau:hover {
-  background: radial-gradient(ellipse at center, rgb(62, 62, 230), rgb(241, 235, 235));
+  color: rgb(241, 235, 235);
+  background: radial-gradient(ellipse at center, rgb(34, 34, 223), rgb(170, 189, 225));
 }
 body .pokedex ul .electrik:hover {
-  background: radial-gradient(ellipse at center, rgba(252, 208, 65, 0.979), rgb(241, 235, 235));
+  color: white;
+  background: radial-gradient(ellipse at center, rgb(255, 241, 39), black);
 }
 body .pokedex ul .psy:hover {
-  background: radial-gradient(ellipse at center, rgb(247, 110, 133), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(255, 71, 102), rgb(166, 127, 171));
 }
 body .pokedex ul .combat:hover {
   background: radial-gradient(ellipse at center, brown, rgb(241, 235, 235));
@@ -728,25 +730,26 @@ body .pokedex ul .sol:hover {
   background: radial-gradient(ellipse at center, rgb(204, 168, 128), rgb(241, 235, 235));
 }
 body .pokedex ul .roche:hover {
-  background: radial-gradient(ellipse at center, rgb(187, 84, 24), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(123, 64, 29), rgb(180, 179, 172));
 }
 body .pokedex ul .glace:hover {
-  background: radial-gradient(ellipse at center, rgb(122, 228, 241), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(241, 235, 235), rgb(122, 228, 241));
 }
 body .pokedex ul .normal:hover {
   background: radial-gradient(ellipse at center, white, rgb(190, 178, 178));
 }
 body .pokedex ul .poison:hover {
-  background: radial-gradient(ellipse at center, rgb(84, 28, 148), rgb(241, 235, 235));
+  color: white;
+  background: radial-gradient(ellipse at center, rgb(203, 237, 109), rgb(84, 28, 148));
 }
 body .pokedex ul .dragon:hover {
-  background: radial-gradient(ellipse at center, rgb(134, 92, 168), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(221, 190, 97), rgb(100, 111, 195));
 }
 body .pokedex ul .insecte:hover {
-  background: radial-gradient(ellipse at center, rgb(146, 187, 35), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(112, 118, 96), rgb(203, 237, 109));
 }
 body .pokedex ul .fée:hover {
-  background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(241, 235, 235));
+  background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(237, 228, 135));
 }
 body .pokedex ul.pokemon {
   justify-content: center;
