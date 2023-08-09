@@ -13,6 +13,25 @@ $tertiary: rgb(241, 235, 235);
         transform: translateX(0);
     }
 }
+@keyframes vanish {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        display: none;
+    }
+}
+@keyframes evolveAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 /*****************************************************************MIXINS*/
 @mixin ul {
     display: flex;
@@ -25,7 +44,7 @@ $tertiary: rgb(241, 235, 235);
         color: $secondary;
         text-decoration: none;
         &.animated {
-            @for $i from 1 through 15 {
+            @for $i from 1 through 151 {
                 &--#{$i} {
                     animation: appear 600ms ($i * 200ms) both ease-in-out;
                 }
@@ -123,6 +142,15 @@ $tertiary: rgb(241, 235, 235);
             background-color: white;
             box-shadow: 2px 2px 8px rgb(70, 69, 69);
         }
+        &.hidden {
+            display: none;
+        }
+        &.vanish {
+            animation: vanish 1000ms both ease-in-out;
+        }
+        &.appear {
+            animation: evolveAppear 1000ms both ease-in-out;
+        }
     }
 }
 /*****************************************************************STYLES*/
@@ -207,6 +235,30 @@ body {
                 }
             }
         }
+        .managePokemon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 800px;
+            width: 100%;
+            margin-top: -80px;
+            button {
+                width: 30%;
+                font-weight: bold;
+                padding: 5px 10px;
+                background-color: $tertiary;
+                border: 1px solid $secondary;
+                border-radius: 15px;
+                margin-top: 30px;
+                transition: all 800ms ease;
+                &:hover {
+                    cursor: pointer;
+                    color: $primary;
+                    background-color: white;
+                    letter-spacing: 3px;
+                }
+            }
+        }
         ul {
             @include ul
         }
@@ -231,6 +283,12 @@ body {
                     font-weight: bold;
                 }
             }
+        }
+        .error {
+            align-self: center;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 15px;
         }
     }
 }

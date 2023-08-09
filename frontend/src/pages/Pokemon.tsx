@@ -7,16 +7,20 @@ import axios, { AxiosResponse, AxiosError } from 'axios'
 export const Pokemon: FC = () => {
     /**************************************************************Hooks*/
     const { id } = useParams()
+    const [idToChange, setIdToChange] = useState<string | undefined>(id)
     const [pokemon, setPokemon] = useState<IPokemonResponse>()
+    const [evolve, setEvolve] = useState<boolean>(false)
+    const [appear, setAppear] = useState<boolean>(false)
     /********************************************************Middlewares*/
+    /******************************************************Get data*/
     useEffect((): void => {
-        axios.get(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, { withCredentials: true })
+        axios.get(`${process.env.REACT_APP_API_URL}/pokemon/${idToChange}`, { withCredentials: true })
 
             .then((response: AxiosResponse): void => { setPokemon(response.data) })
 
             .catch((error: AxiosError): void => { console.log(error) })
-    }, [id])
-    /********************************************************Type design*/
+    }, [idToChange])
+    /***************************************************Type design*/
     const getTypeDesign = (type: string): string => {
         switch (type) {
             case "PLANTE":
@@ -68,6 +72,54 @@ export const Pokemon: FC = () => {
                 return ""
         }
     }
+    /*************************************************Handle evolve*/
+    const handleEvolve = (): void => {
+        const evolveError: HTMLElement | null = document.querySelector('.evolve.error')
+
+        axios.put(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, {}, { withCredentials: true })
+
+            .then((response: AxiosResponse): void => {
+                if (evolveError) {
+                    evolveError.textContent = response.data.message
+                    evolveError.style.color = "green"
+                    evolveError.style.backgroundColor = "white"
+
+                    setEvolve(true)
+
+                    setTimeout((): void => {
+                        setAppear(true)
+                        setIdToChange(response.data.pokemon._id)
+                    }, 1000)
+                }
+                else {
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                }
+            })
+            .catch((error: AxiosError): void => {
+                if (error.response) {
+                    const responseData: { message: string } = error.response.data as { message: string }
+
+                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
+                        const regexErrorMessage: string = responseData.message as string
+
+                        if (evolveError) {
+                            evolveError.textContent = regexErrorMessage
+                            evolveError.style.color = "red"
+                            evolveError.style.backgroundColor = "white"
+                        }
+                        else {
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        }
+                    }
+                    else {
+                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    }
+                }
+                else {
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                }
+            })
+    }
     /*********************************************************Return TSX*/
     return (
         <>
@@ -75,19 +127,39 @@ export const Pokemon: FC = () => {
                 <div className="pokedex">
                     <h1>{pokemon.message}</h1>
 
-                    <ul className="pokemon">
-                        <li className="pokemon">
-                            <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
-                            <span className="name">{pokemon.pokemon.name}</span>
-                            <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />
-                            <span className="description">{pokemon.pokemon.description}</span>
-                            <div className="types">
-                                {pokemon.pokemon.type.map((type: string, index: number): JSX.Element => (
-                                    <span key={index} id={getTypeDesign(type)}>{type}</span>
-                                ))}
-                            </div>
-                        </li>
-                    </ul>
+                    <div className="managePokemon">
+                        <button className="submit" onClick={handleEvolve}>Faire évoluer</button>
+
+                        <ul className="pokemon">
+                            <li className={`list-item ${!evolve ? '' : 'vanish'}`}>
+                                <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
+                                <span className="name">{pokemon.pokemon.name}</span>
+                                <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />
+                                <span className="description">{pokemon.pokemon.description}</span>
+                                <div className="types">
+                                    {pokemon.pokemon.type.map((type: string, index: number): JSX.Element => (
+                                        <span key={index} id={getTypeDesign(type)}>{type}</span>
+                                    ))}
+                                </div>
+                            </li>
+
+                            <li className={`list-item ${appear ? 'appear' : 'hidden'}`}>
+                                <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
+                                <span className="name">{pokemon.pokemon.name}</span>
+                                <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />
+                                <span className="description">{pokemon.pokemon.description}</span>
+                                <div className="types">
+                                    {pokemon.pokemon.type.map((type: string, index: number): JSX.Element => (
+                                        <span key={index} id={getTypeDesign(type)}>{type}</span>
+                                    ))}
+                                </div>
+                            </li>
+                        </ul>
+
+                        <button>Relâcher</button>
+                    </div>
+
+                    <div className="evolve error"></div>
                 </div >
             ) : (
                 <div></div>

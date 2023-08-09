@@ -7,7 +7,7 @@ export const Catch: FC = () => {
     const [name, setName] = useState<string>('')
     /********************************************************Middlewares*/
     /***************************************************Handle form*/
-    const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
+    const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
 
         const nameError: HTMLElement | null = document.querySelector('.name.error')
@@ -21,7 +21,7 @@ export const Catch: FC = () => {
                     nameError.style.backgroundColor = "white"
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
             .catch((error: AxiosError): void => {
@@ -37,15 +37,15 @@ export const Catch: FC = () => {
                             nameError.style.backgroundColor = "white"
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else {
-                        return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                     }
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
     }

@@ -8,7 +8,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     /********************************************************Middlewares*/
-    const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
+    const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
 
         const nameError: HTMLElement | null = document.querySelector('.name.error')
@@ -35,7 +35,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                                 passwordError.style.backgroundColor = "salmon"
                             }
                             else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else if (regexErrorMessage.includes("mot de passe")) {
@@ -48,11 +48,11 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                                 nameError.style.backgroundColor = "salmon"
                             }
                             else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else if (responseData && 'error' in responseData) {
@@ -67,15 +67,15 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                             passwordError.style.backgroundColor = "salmon"
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else {
-                        return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                     }
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
     }

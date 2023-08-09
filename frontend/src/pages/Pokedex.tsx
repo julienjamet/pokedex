@@ -83,7 +83,7 @@ export const Pokedex: FC = () => {
                     <ul>
                         {pokedex.pokedex.map((pokemon: IPokemon, index: number): JSX.Element => (
                             <NavLink key={pokemon._id} to={`/pokedex/${pokemon._id}`} className={`animated--${index + 1}`}>
-                                <li className="pokemon">
+                                <li>
                                     <span className="number" id={getTypeDesign(pokemon.type[0])}>{pokemon.number}</span>
                                     <span className="name">{pokemon.name}</span>
                                     <img className="image" src={pokemon.picture} alt={`${pokemon.name} cover`} />

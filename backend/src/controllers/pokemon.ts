@@ -262,7 +262,7 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
 
                                                                     .then((): void => {
                                                                         const message: string = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`
-                                                                        const { _id, evolve, __v, trainers, level, isCatchable, ...filteredEvolution } = evolution
+                                                                        const { evolve, __v, trainers, level, isCatchable, ...filteredEvolution } = evolution
                                                                         res.status(200).json({ message: message, pokemon: filteredEvolution })
                                                                     })
                                                                     .catch((error: Error): void => {

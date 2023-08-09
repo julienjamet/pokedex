@@ -8,7 +8,7 @@ export const Register: FC = () => {
     const [password, setPassword] = useState<string>('')
     const [validatePassword, setValidatePassword] = useState<string>('')
     /********************************************************Middlewares*/
-    const handleForm = (e: FormEvent<HTMLFormElement>): string | void => {
+    const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
 
         const body: HTMLElement | null = document.querySelector('body')
@@ -29,14 +29,14 @@ export const Register: FC = () => {
                     passwordError.textContent = ""
                     passwordError.style.backgroundColor = "salmon"
 
-                    return validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
+                    validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             }
             else {
-                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
             }
         }
         else {
@@ -45,25 +45,25 @@ export const Register: FC = () => {
                 validatePasswordError.style.backgroundColor = "salmon"
             }
             else {
-                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
             }
         }
 
         axios.post(`${process.env.REACT_APP_API_URL}/trainer/signup`, { name: name, password: password })
 
             .then((): void => {
-                if (body && nameError && passwordError) {
-                    validatePasswordError.textContent = ""
+                if (body && nameError && passwordError && validatePasswordError) {
                     nameError.textContent = ""
                     passwordError.textContent = ""
+                    validatePasswordError.textContent = ""
 
                     body.style.backgroundColor = "#c9f0d4"
-                    validatePasswordError.style.backgroundColor = "#c9f0d4"
                     nameError.style.backgroundColor = "#c9f0d4"
                     passwordError.style.backgroundColor = "#c9f0d4"
+                    validatePasswordError.style.backgroundColor = "#c9f0d4"
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
 
                 setTimeout((): void => { window.location.reload() }, 500)
@@ -85,7 +85,7 @@ export const Register: FC = () => {
                                 passwordError.style.backgroundColor = "salmon"
                             }
                             else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else if (regexErrorMessage.includes("mot de passe")) {
@@ -98,11 +98,11 @@ export const Register: FC = () => {
                                 nameError.style.backgroundColor = "salmon"
                             }
                             else {
-                                return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                             }
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else if (responseData && 'errors' in responseData) {
@@ -112,15 +112,15 @@ export const Register: FC = () => {
                             nameError.textContent = nameNotAvailableErrorMessage
                         }
                         else {
-                            return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
                     else {
-                        return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                     }
                 }
                 else {
-                    return console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             })
     }
