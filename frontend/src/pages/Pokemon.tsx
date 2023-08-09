@@ -9,7 +9,7 @@ export const Pokemon: FC = () => {
     const { id } = useParams()
     const [idToChange, setIdToChange] = useState<string | undefined>(id)
     const [pokemon, setPokemon] = useState<IPokemonResponse>()
-    const [evolve, setEvolve] = useState<boolean>(false)
+    const [vanish, setVanish] = useState<boolean>(false)
     const [appear, setAppear] = useState<boolean>(false)
     /********************************************************Middlewares*/
     /******************************************************Get data*/
@@ -84,12 +84,14 @@ export const Pokemon: FC = () => {
                     evolveError.style.color = "green"
                     evolveError.style.backgroundColor = "white"
 
-                    setEvolve(true)
+                    setVanish(true)
 
                     setTimeout((): void => {
-                        setAppear(true)
                         setIdToChange(response.data.pokemon._id)
-                    }, 1000)
+                        setTimeout((): void => {
+                            setAppear(true)
+                        }, 200)
+                    }, 800)
                 }
                 else {
                     console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
@@ -131,7 +133,7 @@ export const Pokemon: FC = () => {
                         <button className="submit" onClick={handleEvolve}>Faire évoluer</button>
 
                         <ul className="pokemon">
-                            <li className={`list-item ${!evolve ? '' : 'vanish'}`}>
+                            <li className={`list-item ${!vanish ? '' : 'vanish'}`}>
                                 <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
                                 <span className="name">{pokemon.pokemon.name}</span>
                                 <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />

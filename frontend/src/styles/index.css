@@ -11,14 +11,12 @@
     transform: translateX(0);
   }
 }
-@keyframes vanish {
+@keyframes evolveVanish {
   0% {
     opacity: 1;
   }
-  99% {
-    opacity: 0;
-  }
   100% {
+    opacity: 0;
     display: none;
   }
 }
@@ -125,6 +123,7 @@ body .pokedex .managePokemon {
 }
 body .pokedex .managePokemon button {
   width: 30%;
+  max-width: 400px;
   font-weight: bold;
   padding: 5px 10px;
   background-color: rgb(241, 235, 235);
@@ -607,7 +606,7 @@ body .pokedex ul a.animated--151 {
 body .pokedex ul li {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   height: 400px;
   width: 350px;
@@ -699,10 +698,10 @@ body .pokedex ul li.hidden {
   display: none;
 }
 body .pokedex ul li.vanish {
-  animation: vanish 1000ms both ease-in-out;
+  animation: evolveVanish 800ms both ease-out;
 }
 body .pokedex ul li.appear {
-  animation: evolveAppear 1000ms both ease-in-out;
+  animation: evolveAppear 800ms both ease-in;
 }
 body .pokedex ul .plante:hover {
   background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(241, 235, 235));

@@ -13,14 +13,12 @@ $tertiary: rgb(241, 235, 235);
         transform: translateX(0);
     }
 }
-@keyframes vanish {
+@keyframes evolveVanish {
     0% {
         opacity: 1;
     }
-    99% {
-        opacity: 0;
-    }
     100% {
+        opacity: 0;
         display: none;
     }
 }
@@ -54,7 +52,7 @@ $tertiary: rgb(241, 235, 235);
     li {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         height: 400px;
         width: 350px;
@@ -145,10 +143,10 @@ $tertiary: rgb(241, 235, 235);
             display: none;
         }
         &.vanish {
-            animation: vanish 1000ms both ease-in-out;
+            animation: evolveVanish 800ms both ease-out;
         }
         &.appear {
-            animation: evolveAppear 1000ms both ease-in-out;
+            animation: evolveAppear 800ms both ease-in;
         }
     }
     .plante:hover {
@@ -288,6 +286,7 @@ body {
             margin-top: -80px;
             button {
                 width: 30%;
+                max-width: 400px;
                 font-weight: bold;
                 padding: 5px 10px;
                 background-color: $tertiary;
