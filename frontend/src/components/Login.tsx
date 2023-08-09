@@ -22,7 +22,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                 if (error.response) {
                     const responseData: { message: string } | { error: string } = error.response.data as { message: string } | { error: string }
 
-                    if (responseData && 'message' in responseData) {
+                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
                         const regexErrorMessage: string = responseData.message
 
                         if (regexErrorMessage.includes("dresseur")) {
@@ -55,7 +55,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                             console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
-                    else if (responseData && 'error' in responseData) {
+                    else if (responseData && typeof responseData === 'object' && 'error' in responseData) {
                         const responseDataError: string = responseData.error
 
                         if (nameError && passwordError) {

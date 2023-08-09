@@ -28,7 +28,7 @@ export const Catch: FC = () => {
                 if (error.response) {
                     const responseData: { message: string } = error.response.data as { message: string }
 
-                    if (responseData) {
+                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
                         const regexErrorMessage: string = responseData.message
 
                         if (nameError) {

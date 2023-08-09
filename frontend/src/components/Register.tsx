@@ -72,7 +72,7 @@ export const Register: FC = () => {
                 if (error.response) {
                     const responseData: { message: string } | { errors: { name: string } } = error.response.data as { message: string } | { errors: { name: string } }
 
-                    if (responseData && 'message' in responseData) {
+                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
                         const regexErrorMessage: string = responseData.message
 
                         if (regexErrorMessage.includes("nom")) {
@@ -105,7 +105,7 @@ export const Register: FC = () => {
                             console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                         }
                     }
-                    else if (responseData && 'errors' in responseData) {
+                    else if (responseData && typeof responseData === 'object' && 'errors' in responseData) {
                         const nameNotAvailableErrorMessage: string = responseData.errors.name
 
                         if (nameError) {
