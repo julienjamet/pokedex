@@ -1,10 +1,10 @@
 /****************************************************************IMPORTS*/
-import { RequestHandler, Response, NextFunction } from 'express'
 import { authRequest } from '../interfaces/interfaces'
+import { Response, NextFunction } from 'express'
 import Pokemon from '../models/pokemon'
 import Trainer from '../models/trainer'
 /*******************************************************************AUTH*/
-export const rank: RequestHandler = (req: authRequest, res: Response, next: NextFunction): Response | void => {
+export const rank = (req: authRequest, res: Response, next: NextFunction): Response | void => {
     if (req.auth !== undefined) {
         const name: string = req.auth.name
 

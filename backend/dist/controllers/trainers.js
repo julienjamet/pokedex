@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.signUp = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const trainer_1 = __importDefault(require("../models/trainer"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 /****************************************************************SIGN IN*/
 const signUp = (req, res) => {
     const name = req.body.name;
@@ -102,7 +102,7 @@ const login = (req, res) => {
                                     secure: true,
                                     sameSite: 'strict',
                                     path: '/',
-                                    domain: '.julienjamet.com',
+                                    domain: process.env.COOKIE_DOMAIN,
                                     maxAge: 3600 * 1000
                                 });
                                 res.status(200).json({ message: message });

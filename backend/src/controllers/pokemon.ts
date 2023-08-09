@@ -1,10 +1,10 @@
 /****************************************************************IMPORTS*/
-import { RequestHandler, Response } from 'express'
+import { authRequest, IPokemon, ITrainer } from "../interfaces/interfaces.js"
+import { Response } from 'express'
 import Pokemon from '../models/pokemon'
 import Trainer from '../models/trainer'
-import { IPokemon, ITrainer, authRequest } from "../interfaces/interfaces.js"
 /****************************************************************GET ALL*/
-export const seeAll: RequestHandler = (req: authRequest, res: Response): Response | void => {
+export const seeAll = (req: authRequest, res: Response): Response | void => {
     if (req.auth !== undefined) {
         const name: string = req.auth.name
         let filters: { trainers: string, type?: string | undefined } = {
@@ -107,12 +107,12 @@ export const seeAll: RequestHandler = (req: authRequest, res: Response): Respons
     }
 }
 /****************************************************************GET ONE*/
-export const seeOne: RequestHandler = (req: authRequest, res: Response): void => {
+export const seeOne = (req: authRequest, res: Response): void => {
     if (req.auth !== undefined) {
         const id: string = req.params.id
         const name: string = req.auth.name
 
-        Pokemon.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
+        Pokemon.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
 
             .then((pokemon: IPokemon | null): void => {
                 if (pokemon) {
@@ -135,7 +135,7 @@ export const seeOne: RequestHandler = (req: authRequest, res: Response): void =>
     }
 }
 /**************************************************************CATCH ONE*/
-export const catchOne: RequestHandler = (req: authRequest, res: Response): Response | void => {
+export const catchOne = (req: authRequest, res: Response): Response | void => {
     const pokemonName: string = req.body.name
 
     if (!pokemonName) {
@@ -226,7 +226,7 @@ export const catchOne: RequestHandler = (req: authRequest, res: Response): Respo
     }
 }
 /*************************************************************UPDATE ONE*/
-export const evolveOne: RequestHandler = (req: authRequest, res: Response): Response | void => {
+export const evolveOne = (req: authRequest, res: Response): Response | void => {
     const id: string = req.params.id
 
     if (req.body && Object.keys(req.body).length !== 0) {
@@ -327,7 +327,7 @@ export const evolveOne: RequestHandler = (req: authRequest, res: Response): Resp
     }
 }
 /*************************************************************DELETE ONE*/
-export const deleteOne: RequestHandler = (req: authRequest, res: Response): void => {
+export const deleteOne = (req: authRequest, res: Response): void => {
     const id: string = req.params.id
 
     if (req.auth !== undefined) {

@@ -116,7 +116,7 @@ const seeOne = (req, res) => {
     if (req.auth !== undefined) {
         const id = req.params.id;
         const name = req.auth.name;
-        pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "evolve": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
+        pokemon_1.default.findOne({ _id: id, trainers: { $in: name } }).select({ "__v": 0, "_id": 0, "trainers": 0, "level": 0, "isCatchable": 0 })
             .then((pokemon) => {
             if (pokemon) {
                 const message = `Ton ${pokemon.name.toUpperCase()} est très heureux !`;

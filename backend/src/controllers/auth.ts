@@ -1,9 +1,9 @@
 /****************************************************************IMPORTS*/
-import { RequestHandler, Response, NextFunction } from 'express'
 import { authRequest } from '../interfaces/interfaces'
+import { Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 /*******************************************************************AUTH*/
-export const auth: RequestHandler = (req: authRequest, res: Response, next: NextFunction): Response | void => {
+export const auth = (req: authRequest, res: Response, next: NextFunction): Response | void => {
     const token: string = req.cookies.token
     const tokenKey: string = process.env.TOKEN_KEY || 'token_key'
 
