@@ -749,7 +749,7 @@ body .pokedex ul .insecte:hover {
   background: radial-gradient(ellipse at center, rgb(112, 118, 96), rgb(203, 237, 109));
 }
 body .pokedex ul .fée:hover {
-  background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(237, 228, 135));
+  background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(255, 240, 73));
 }
 body .pokedex ul.pokemon {
   justify-content: center;
