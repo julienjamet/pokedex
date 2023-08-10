@@ -32,8 +32,8 @@
 /*****************************************************************STYLES*/
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: #303541;
-  background-color: salmon;
+  color: rgb(48, 53, 65);
+  background-color: rgb(250, 128, 114);
   margin: 0;
 }
 body nav {
@@ -42,16 +42,16 @@ body nav {
   align-items: center;
   height: 40px;
   background-color: rgb(241, 235, 235);
-  border-bottom: 1px solid #303541;
+  border-bottom: 1px solid rgb(48, 53, 65);
 }
 body nav a {
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
-  color: #303541;
+  color: rgb(48, 53, 65);
 }
 body nav a:hover {
-  color: salmon;
+  color: rgb(250, 128, 114);
 }
 body .formPage {
   display: flex;
@@ -72,7 +72,7 @@ body .formPage form input {
   width: 50%;
   background-color: rgb(241, 235, 235);
   padding: 5px 10px;
-  border: 1px solid #303541;
+  border: 1px solid rgb(48, 53, 65);
   border-radius: 15px;
 }
 body .formPage form .error {
@@ -88,7 +88,7 @@ body .formPage form .submit {
 }
 body .formPage form .submit:hover {
   cursor: pointer;
-  color: salmon;
+  color: rgb(250, 128, 114);
   background-color: white;
   letter-spacing: 3px;
 }
@@ -104,7 +104,7 @@ body .pokedex h1, body .pokedex .rank {
   background-color: rgb(241, 235, 235);
   padding: 5px 15px;
   border-radius: 15px;
-  border: 1px solid #303541;
+  border: 1px solid rgb(48, 53, 65);
 }
 body .pokedex h1 h2, body .pokedex .rank h2 {
   font-size: 20px;
@@ -127,16 +127,22 @@ body .pokedex .managePokemon button {
   font-weight: bold;
   padding: 5px 10px;
   background-color: rgb(241, 235, 235);
-  border: 1px solid #303541;
+  border: 1px solid rgb(48, 53, 65);
   border-radius: 15px;
   margin-top: 30px;
   transition: all 800ms ease;
 }
 body .pokedex .managePokemon button:hover {
   cursor: pointer;
-  color: salmon;
+  color: rgb(250, 128, 114);
   background-color: white;
   letter-spacing: 3px;
+}
+body .pokedex .managePokemon button:nth-child(1) {
+  margin-left: 5%;
+}
+body .pokedex .managePokemon button:nth-child(3) {
+  margin-right: 5%;
 }
 body .pokedex ul {
   display: flex;
@@ -146,462 +152,481 @@ body .pokedex ul {
   padding: 0;
   margin-top: 40px;
 }
+body .pokedex ul.pokemon li {
+  height: 600px;
+  width: 525px;
+  padding: 30px;
+}
+body .pokedex ul.pokemon li .number, body .pokedex ul.pokemon li .name, body .pokedex ul.pokemon li .types {
+  font-size: 30px;
+  border-radius: 30px;
+}
+body .pokedex ul.pokemon li img {
+  height: 300px;
+  width: 300px;
+}
+body .pokedex ul.pokemon li .description {
+  font-weight: bold;
+}
+body .pokedex ul.pokemon li:hover {
+  cursor: default;
+}
 body .pokedex ul a {
-  color: #303541;
+  color: rgb(48, 53, 65);
   text-decoration: none;
 }
 body .pokedex ul a.animated--1 {
-  animation: appear 600ms 200ms both ease-in-out;
+  animation: appear 600ms 100ms both ease-in-out;
 }
 body .pokedex ul a.animated--2 {
-  animation: appear 600ms 400ms both ease-in-out;
+  animation: appear 600ms 200ms both ease-in-out;
 }
 body .pokedex ul a.animated--3 {
-  animation: appear 600ms 600ms both ease-in-out;
+  animation: appear 600ms 300ms both ease-in-out;
 }
 body .pokedex ul a.animated--4 {
-  animation: appear 600ms 800ms both ease-in-out;
+  animation: appear 600ms 400ms both ease-in-out;
 }
 body .pokedex ul a.animated--5 {
-  animation: appear 600ms 1000ms both ease-in-out;
+  animation: appear 600ms 500ms both ease-in-out;
 }
 body .pokedex ul a.animated--6 {
-  animation: appear 600ms 1200ms both ease-in-out;
+  animation: appear 600ms 600ms both ease-in-out;
 }
 body .pokedex ul a.animated--7 {
-  animation: appear 600ms 1400ms both ease-in-out;
+  animation: appear 600ms 700ms both ease-in-out;
 }
 body .pokedex ul a.animated--8 {
-  animation: appear 600ms 1600ms both ease-in-out;
+  animation: appear 600ms 800ms both ease-in-out;
 }
 body .pokedex ul a.animated--9 {
-  animation: appear 600ms 1800ms both ease-in-out;
+  animation: appear 600ms 900ms both ease-in-out;
 }
 body .pokedex ul a.animated--10 {
-  animation: appear 600ms 2000ms both ease-in-out;
+  animation: appear 600ms 1000ms both ease-in-out;
 }
 body .pokedex ul a.animated--11 {
-  animation: appear 600ms 2200ms both ease-in-out;
+  animation: appear 600ms 1100ms both ease-in-out;
 }
 body .pokedex ul a.animated--12 {
-  animation: appear 600ms 2400ms both ease-in-out;
+  animation: appear 600ms 1200ms both ease-in-out;
 }
 body .pokedex ul a.animated--13 {
-  animation: appear 600ms 2600ms both ease-in-out;
+  animation: appear 600ms 1300ms both ease-in-out;
 }
 body .pokedex ul a.animated--14 {
-  animation: appear 600ms 2800ms both ease-in-out;
+  animation: appear 600ms 1400ms both ease-in-out;
 }
 body .pokedex ul a.animated--15 {
-  animation: appear 600ms 3000ms both ease-in-out;
+  animation: appear 600ms 1500ms both ease-in-out;
 }
 body .pokedex ul a.animated--16 {
-  animation: appear 600ms 3200ms both ease-in-out;
+  animation: appear 600ms 1600ms both ease-in-out;
 }
 body .pokedex ul a.animated--17 {
-  animation: appear 600ms 3400ms both ease-in-out;
+  animation: appear 600ms 1700ms both ease-in-out;
 }
 body .pokedex ul a.animated--18 {
-  animation: appear 600ms 3600ms both ease-in-out;
+  animation: appear 600ms 1800ms both ease-in-out;
 }
 body .pokedex ul a.animated--19 {
-  animation: appear 600ms 3800ms both ease-in-out;
+  animation: appear 600ms 1900ms both ease-in-out;
 }
 body .pokedex ul a.animated--20 {
-  animation: appear 600ms 4000ms both ease-in-out;
+  animation: appear 600ms 2000ms both ease-in-out;
 }
 body .pokedex ul a.animated--21 {
-  animation: appear 600ms 4200ms both ease-in-out;
+  animation: appear 600ms 2100ms both ease-in-out;
 }
 body .pokedex ul a.animated--22 {
-  animation: appear 600ms 4400ms both ease-in-out;
+  animation: appear 600ms 2200ms both ease-in-out;
 }
 body .pokedex ul a.animated--23 {
-  animation: appear 600ms 4600ms both ease-in-out;
+  animation: appear 600ms 2300ms both ease-in-out;
 }
 body .pokedex ul a.animated--24 {
-  animation: appear 600ms 4800ms both ease-in-out;
+  animation: appear 600ms 2400ms both ease-in-out;
 }
 body .pokedex ul a.animated--25 {
-  animation: appear 600ms 5000ms both ease-in-out;
+  animation: appear 600ms 2500ms both ease-in-out;
 }
 body .pokedex ul a.animated--26 {
-  animation: appear 600ms 5200ms both ease-in-out;
+  animation: appear 600ms 2600ms both ease-in-out;
 }
 body .pokedex ul a.animated--27 {
-  animation: appear 600ms 5400ms both ease-in-out;
+  animation: appear 600ms 2700ms both ease-in-out;
 }
 body .pokedex ul a.animated--28 {
-  animation: appear 600ms 5600ms both ease-in-out;
+  animation: appear 600ms 2800ms both ease-in-out;
 }
 body .pokedex ul a.animated--29 {
-  animation: appear 600ms 5800ms both ease-in-out;
+  animation: appear 600ms 2900ms both ease-in-out;
 }
 body .pokedex ul a.animated--30 {
-  animation: appear 600ms 6000ms both ease-in-out;
+  animation: appear 600ms 3000ms both ease-in-out;
 }
 body .pokedex ul a.animated--31 {
-  animation: appear 600ms 6200ms both ease-in-out;
+  animation: appear 600ms 3100ms both ease-in-out;
 }
 body .pokedex ul a.animated--32 {
-  animation: appear 600ms 6400ms both ease-in-out;
+  animation: appear 600ms 3200ms both ease-in-out;
 }
 body .pokedex ul a.animated--33 {
-  animation: appear 600ms 6600ms both ease-in-out;
+  animation: appear 600ms 3300ms both ease-in-out;
 }
 body .pokedex ul a.animated--34 {
-  animation: appear 600ms 6800ms both ease-in-out;
+  animation: appear 600ms 3400ms both ease-in-out;
 }
 body .pokedex ul a.animated--35 {
-  animation: appear 600ms 7000ms both ease-in-out;
+  animation: appear 600ms 3500ms both ease-in-out;
 }
 body .pokedex ul a.animated--36 {
-  animation: appear 600ms 7200ms both ease-in-out;
+  animation: appear 600ms 3600ms both ease-in-out;
 }
 body .pokedex ul a.animated--37 {
-  animation: appear 600ms 7400ms both ease-in-out;
+  animation: appear 600ms 3700ms both ease-in-out;
 }
 body .pokedex ul a.animated--38 {
-  animation: appear 600ms 7600ms both ease-in-out;
+  animation: appear 600ms 3800ms both ease-in-out;
 }
 body .pokedex ul a.animated--39 {
-  animation: appear 600ms 7800ms both ease-in-out;
+  animation: appear 600ms 3900ms both ease-in-out;
 }
 body .pokedex ul a.animated--40 {
-  animation: appear 600ms 8000ms both ease-in-out;
+  animation: appear 600ms 4000ms both ease-in-out;
 }
 body .pokedex ul a.animated--41 {
-  animation: appear 600ms 8200ms both ease-in-out;
+  animation: appear 600ms 4100ms both ease-in-out;
 }
 body .pokedex ul a.animated--42 {
-  animation: appear 600ms 8400ms both ease-in-out;
+  animation: appear 600ms 4200ms both ease-in-out;
 }
 body .pokedex ul a.animated--43 {
-  animation: appear 600ms 8600ms both ease-in-out;
+  animation: appear 600ms 4300ms both ease-in-out;
 }
 body .pokedex ul a.animated--44 {
-  animation: appear 600ms 8800ms both ease-in-out;
+  animation: appear 600ms 4400ms both ease-in-out;
 }
 body .pokedex ul a.animated--45 {
-  animation: appear 600ms 9000ms both ease-in-out;
+  animation: appear 600ms 4500ms both ease-in-out;
 }
 body .pokedex ul a.animated--46 {
-  animation: appear 600ms 9200ms both ease-in-out;
+  animation: appear 600ms 4600ms both ease-in-out;
 }
 body .pokedex ul a.animated--47 {
-  animation: appear 600ms 9400ms both ease-in-out;
+  animation: appear 600ms 4700ms both ease-in-out;
 }
 body .pokedex ul a.animated--48 {
-  animation: appear 600ms 9600ms both ease-in-out;
+  animation: appear 600ms 4800ms both ease-in-out;
 }
 body .pokedex ul a.animated--49 {
-  animation: appear 600ms 9800ms both ease-in-out;
+  animation: appear 600ms 4900ms both ease-in-out;
 }
 body .pokedex ul a.animated--50 {
-  animation: appear 600ms 10000ms both ease-in-out;
+  animation: appear 600ms 5000ms both ease-in-out;
 }
 body .pokedex ul a.animated--51 {
-  animation: appear 600ms 10200ms both ease-in-out;
+  animation: appear 600ms 5100ms both ease-in-out;
 }
 body .pokedex ul a.animated--52 {
-  animation: appear 600ms 10400ms both ease-in-out;
+  animation: appear 600ms 5200ms both ease-in-out;
 }
 body .pokedex ul a.animated--53 {
-  animation: appear 600ms 10600ms both ease-in-out;
+  animation: appear 600ms 5300ms both ease-in-out;
 }
 body .pokedex ul a.animated--54 {
-  animation: appear 600ms 10800ms both ease-in-out;
+  animation: appear 600ms 5400ms both ease-in-out;
 }
 body .pokedex ul a.animated--55 {
-  animation: appear 600ms 11000ms both ease-in-out;
+  animation: appear 600ms 5500ms both ease-in-out;
 }
 body .pokedex ul a.animated--56 {
-  animation: appear 600ms 11200ms both ease-in-out;
+  animation: appear 600ms 5600ms both ease-in-out;
 }
 body .pokedex ul a.animated--57 {
-  animation: appear 600ms 11400ms both ease-in-out;
+  animation: appear 600ms 5700ms both ease-in-out;
 }
 body .pokedex ul a.animated--58 {
-  animation: appear 600ms 11600ms both ease-in-out;
+  animation: appear 600ms 5800ms both ease-in-out;
 }
 body .pokedex ul a.animated--59 {
-  animation: appear 600ms 11800ms both ease-in-out;
+  animation: appear 600ms 5900ms both ease-in-out;
 }
 body .pokedex ul a.animated--60 {
-  animation: appear 600ms 12000ms both ease-in-out;
+  animation: appear 600ms 6000ms both ease-in-out;
 }
 body .pokedex ul a.animated--61 {
-  animation: appear 600ms 12200ms both ease-in-out;
+  animation: appear 600ms 6100ms both ease-in-out;
 }
 body .pokedex ul a.animated--62 {
-  animation: appear 600ms 12400ms both ease-in-out;
+  animation: appear 600ms 6200ms both ease-in-out;
 }
 body .pokedex ul a.animated--63 {
-  animation: appear 600ms 12600ms both ease-in-out;
+  animation: appear 600ms 6300ms both ease-in-out;
 }
 body .pokedex ul a.animated--64 {
-  animation: appear 600ms 12800ms both ease-in-out;
+  animation: appear 600ms 6400ms both ease-in-out;
 }
 body .pokedex ul a.animated--65 {
-  animation: appear 600ms 13000ms both ease-in-out;
+  animation: appear 600ms 6500ms both ease-in-out;
 }
 body .pokedex ul a.animated--66 {
-  animation: appear 600ms 13200ms both ease-in-out;
+  animation: appear 600ms 6600ms both ease-in-out;
 }
 body .pokedex ul a.animated--67 {
-  animation: appear 600ms 13400ms both ease-in-out;
+  animation: appear 600ms 6700ms both ease-in-out;
 }
 body .pokedex ul a.animated--68 {
-  animation: appear 600ms 13600ms both ease-in-out;
+  animation: appear 600ms 6800ms both ease-in-out;
 }
 body .pokedex ul a.animated--69 {
-  animation: appear 600ms 13800ms both ease-in-out;
+  animation: appear 600ms 6900ms both ease-in-out;
 }
 body .pokedex ul a.animated--70 {
-  animation: appear 600ms 14000ms both ease-in-out;
+  animation: appear 600ms 7000ms both ease-in-out;
 }
 body .pokedex ul a.animated--71 {
-  animation: appear 600ms 14200ms both ease-in-out;
+  animation: appear 600ms 7100ms both ease-in-out;
 }
 body .pokedex ul a.animated--72 {
-  animation: appear 600ms 14400ms both ease-in-out;
+  animation: appear 600ms 7200ms both ease-in-out;
 }
 body .pokedex ul a.animated--73 {
-  animation: appear 600ms 14600ms both ease-in-out;
+  animation: appear 600ms 7300ms both ease-in-out;
 }
 body .pokedex ul a.animated--74 {
-  animation: appear 600ms 14800ms both ease-in-out;
+  animation: appear 600ms 7400ms both ease-in-out;
 }
 body .pokedex ul a.animated--75 {
-  animation: appear 600ms 15000ms both ease-in-out;
+  animation: appear 600ms 7500ms both ease-in-out;
 }
 body .pokedex ul a.animated--76 {
-  animation: appear 600ms 15200ms both ease-in-out;
+  animation: appear 600ms 7600ms both ease-in-out;
 }
 body .pokedex ul a.animated--77 {
-  animation: appear 600ms 15400ms both ease-in-out;
+  animation: appear 600ms 7700ms both ease-in-out;
 }
 body .pokedex ul a.animated--78 {
-  animation: appear 600ms 15600ms both ease-in-out;
+  animation: appear 600ms 7800ms both ease-in-out;
 }
 body .pokedex ul a.animated--79 {
-  animation: appear 600ms 15800ms both ease-in-out;
+  animation: appear 600ms 7900ms both ease-in-out;
 }
 body .pokedex ul a.animated--80 {
-  animation: appear 600ms 16000ms both ease-in-out;
+  animation: appear 600ms 8000ms both ease-in-out;
 }
 body .pokedex ul a.animated--81 {
-  animation: appear 600ms 16200ms both ease-in-out;
+  animation: appear 600ms 8100ms both ease-in-out;
 }
 body .pokedex ul a.animated--82 {
-  animation: appear 600ms 16400ms both ease-in-out;
+  animation: appear 600ms 8200ms both ease-in-out;
 }
 body .pokedex ul a.animated--83 {
-  animation: appear 600ms 16600ms both ease-in-out;
+  animation: appear 600ms 8300ms both ease-in-out;
 }
 body .pokedex ul a.animated--84 {
-  animation: appear 600ms 16800ms both ease-in-out;
+  animation: appear 600ms 8400ms both ease-in-out;
 }
 body .pokedex ul a.animated--85 {
-  animation: appear 600ms 17000ms both ease-in-out;
+  animation: appear 600ms 8500ms both ease-in-out;
 }
 body .pokedex ul a.animated--86 {
-  animation: appear 600ms 17200ms both ease-in-out;
+  animation: appear 600ms 8600ms both ease-in-out;
 }
 body .pokedex ul a.animated--87 {
-  animation: appear 600ms 17400ms both ease-in-out;
+  animation: appear 600ms 8700ms both ease-in-out;
 }
 body .pokedex ul a.animated--88 {
-  animation: appear 600ms 17600ms both ease-in-out;
+  animation: appear 600ms 8800ms both ease-in-out;
 }
 body .pokedex ul a.animated--89 {
-  animation: appear 600ms 17800ms both ease-in-out;
+  animation: appear 600ms 8900ms both ease-in-out;
 }
 body .pokedex ul a.animated--90 {
-  animation: appear 600ms 18000ms both ease-in-out;
+  animation: appear 600ms 9000ms both ease-in-out;
 }
 body .pokedex ul a.animated--91 {
-  animation: appear 600ms 18200ms both ease-in-out;
+  animation: appear 600ms 9100ms both ease-in-out;
 }
 body .pokedex ul a.animated--92 {
-  animation: appear 600ms 18400ms both ease-in-out;
+  animation: appear 600ms 9200ms both ease-in-out;
 }
 body .pokedex ul a.animated--93 {
-  animation: appear 600ms 18600ms both ease-in-out;
+  animation: appear 600ms 9300ms both ease-in-out;
 }
 body .pokedex ul a.animated--94 {
-  animation: appear 600ms 18800ms both ease-in-out;
+  animation: appear 600ms 9400ms both ease-in-out;
 }
 body .pokedex ul a.animated--95 {
-  animation: appear 600ms 19000ms both ease-in-out;
+  animation: appear 600ms 9500ms both ease-in-out;
 }
 body .pokedex ul a.animated--96 {
-  animation: appear 600ms 19200ms both ease-in-out;
+  animation: appear 600ms 9600ms both ease-in-out;
 }
 body .pokedex ul a.animated--97 {
-  animation: appear 600ms 19400ms both ease-in-out;
+  animation: appear 600ms 9700ms both ease-in-out;
 }
 body .pokedex ul a.animated--98 {
-  animation: appear 600ms 19600ms both ease-in-out;
+  animation: appear 600ms 9800ms both ease-in-out;
 }
 body .pokedex ul a.animated--99 {
-  animation: appear 600ms 19800ms both ease-in-out;
+  animation: appear 600ms 9900ms both ease-in-out;
 }
 body .pokedex ul a.animated--100 {
-  animation: appear 600ms 20000ms both ease-in-out;
+  animation: appear 600ms 10000ms both ease-in-out;
 }
 body .pokedex ul a.animated--101 {
-  animation: appear 600ms 20200ms both ease-in-out;
+  animation: appear 600ms 10100ms both ease-in-out;
 }
 body .pokedex ul a.animated--102 {
-  animation: appear 600ms 20400ms both ease-in-out;
+  animation: appear 600ms 10200ms both ease-in-out;
 }
 body .pokedex ul a.animated--103 {
-  animation: appear 600ms 20600ms both ease-in-out;
+  animation: appear 600ms 10300ms both ease-in-out;
 }
 body .pokedex ul a.animated--104 {
-  animation: appear 600ms 20800ms both ease-in-out;
+  animation: appear 600ms 10400ms both ease-in-out;
 }
 body .pokedex ul a.animated--105 {
-  animation: appear 600ms 21000ms both ease-in-out;
+  animation: appear 600ms 10500ms both ease-in-out;
 }
 body .pokedex ul a.animated--106 {
-  animation: appear 600ms 21200ms both ease-in-out;
+  animation: appear 600ms 10600ms both ease-in-out;
 }
 body .pokedex ul a.animated--107 {
-  animation: appear 600ms 21400ms both ease-in-out;
+  animation: appear 600ms 10700ms both ease-in-out;
 }
 body .pokedex ul a.animated--108 {
-  animation: appear 600ms 21600ms both ease-in-out;
+  animation: appear 600ms 10800ms both ease-in-out;
 }
 body .pokedex ul a.animated--109 {
-  animation: appear 600ms 21800ms both ease-in-out;
+  animation: appear 600ms 10900ms both ease-in-out;
 }
 body .pokedex ul a.animated--110 {
-  animation: appear 600ms 22000ms both ease-in-out;
+  animation: appear 600ms 11000ms both ease-in-out;
 }
 body .pokedex ul a.animated--111 {
-  animation: appear 600ms 22200ms both ease-in-out;
+  animation: appear 600ms 11100ms both ease-in-out;
 }
 body .pokedex ul a.animated--112 {
-  animation: appear 600ms 22400ms both ease-in-out;
+  animation: appear 600ms 11200ms both ease-in-out;
 }
 body .pokedex ul a.animated--113 {
-  animation: appear 600ms 22600ms both ease-in-out;
+  animation: appear 600ms 11300ms both ease-in-out;
 }
 body .pokedex ul a.animated--114 {
-  animation: appear 600ms 22800ms both ease-in-out;
+  animation: appear 600ms 11400ms both ease-in-out;
 }
 body .pokedex ul a.animated--115 {
-  animation: appear 600ms 23000ms both ease-in-out;
+  animation: appear 600ms 11500ms both ease-in-out;
 }
 body .pokedex ul a.animated--116 {
-  animation: appear 600ms 23200ms both ease-in-out;
+  animation: appear 600ms 11600ms both ease-in-out;
 }
 body .pokedex ul a.animated--117 {
-  animation: appear 600ms 23400ms both ease-in-out;
+  animation: appear 600ms 11700ms both ease-in-out;
 }
 body .pokedex ul a.animated--118 {
-  animation: appear 600ms 23600ms both ease-in-out;
+  animation: appear 600ms 11800ms both ease-in-out;
 }
 body .pokedex ul a.animated--119 {
-  animation: appear 600ms 23800ms both ease-in-out;
+  animation: appear 600ms 11900ms both ease-in-out;
 }
 body .pokedex ul a.animated--120 {
-  animation: appear 600ms 24000ms both ease-in-out;
+  animation: appear 600ms 12000ms both ease-in-out;
 }
 body .pokedex ul a.animated--121 {
-  animation: appear 600ms 24200ms both ease-in-out;
+  animation: appear 600ms 12100ms both ease-in-out;
 }
 body .pokedex ul a.animated--122 {
-  animation: appear 600ms 24400ms both ease-in-out;
+  animation: appear 600ms 12200ms both ease-in-out;
 }
 body .pokedex ul a.animated--123 {
-  animation: appear 600ms 24600ms both ease-in-out;
+  animation: appear 600ms 12300ms both ease-in-out;
 }
 body .pokedex ul a.animated--124 {
-  animation: appear 600ms 24800ms both ease-in-out;
+  animation: appear 600ms 12400ms both ease-in-out;
 }
 body .pokedex ul a.animated--125 {
-  animation: appear 600ms 25000ms both ease-in-out;
+  animation: appear 600ms 12500ms both ease-in-out;
 }
 body .pokedex ul a.animated--126 {
-  animation: appear 600ms 25200ms both ease-in-out;
+  animation: appear 600ms 12600ms both ease-in-out;
 }
 body .pokedex ul a.animated--127 {
-  animation: appear 600ms 25400ms both ease-in-out;
+  animation: appear 600ms 12700ms both ease-in-out;
 }
 body .pokedex ul a.animated--128 {
-  animation: appear 600ms 25600ms both ease-in-out;
+  animation: appear 600ms 12800ms both ease-in-out;
 }
 body .pokedex ul a.animated--129 {
-  animation: appear 600ms 25800ms both ease-in-out;
+  animation: appear 600ms 12900ms both ease-in-out;
 }
 body .pokedex ul a.animated--130 {
-  animation: appear 600ms 26000ms both ease-in-out;
+  animation: appear 600ms 13000ms both ease-in-out;
 }
 body .pokedex ul a.animated--131 {
-  animation: appear 600ms 26200ms both ease-in-out;
+  animation: appear 600ms 13100ms both ease-in-out;
 }
 body .pokedex ul a.animated--132 {
-  animation: appear 600ms 26400ms both ease-in-out;
+  animation: appear 600ms 13200ms both ease-in-out;
 }
 body .pokedex ul a.animated--133 {
-  animation: appear 600ms 26600ms both ease-in-out;
+  animation: appear 600ms 13300ms both ease-in-out;
 }
 body .pokedex ul a.animated--134 {
-  animation: appear 600ms 26800ms both ease-in-out;
+  animation: appear 600ms 13400ms both ease-in-out;
 }
 body .pokedex ul a.animated--135 {
-  animation: appear 600ms 27000ms both ease-in-out;
+  animation: appear 600ms 13500ms both ease-in-out;
 }
 body .pokedex ul a.animated--136 {
-  animation: appear 600ms 27200ms both ease-in-out;
+  animation: appear 600ms 13600ms both ease-in-out;
 }
 body .pokedex ul a.animated--137 {
-  animation: appear 600ms 27400ms both ease-in-out;
+  animation: appear 600ms 13700ms both ease-in-out;
 }
 body .pokedex ul a.animated--138 {
-  animation: appear 600ms 27600ms both ease-in-out;
+  animation: appear 600ms 13800ms both ease-in-out;
 }
 body .pokedex ul a.animated--139 {
-  animation: appear 600ms 27800ms both ease-in-out;
+  animation: appear 600ms 13900ms both ease-in-out;
 }
 body .pokedex ul a.animated--140 {
-  animation: appear 600ms 28000ms both ease-in-out;
+  animation: appear 600ms 14000ms both ease-in-out;
 }
 body .pokedex ul a.animated--141 {
-  animation: appear 600ms 28200ms both ease-in-out;
+  animation: appear 600ms 14100ms both ease-in-out;
 }
 body .pokedex ul a.animated--142 {
-  animation: appear 600ms 28400ms both ease-in-out;
+  animation: appear 600ms 14200ms both ease-in-out;
 }
 body .pokedex ul a.animated--143 {
-  animation: appear 600ms 28600ms both ease-in-out;
+  animation: appear 600ms 14300ms both ease-in-out;
 }
 body .pokedex ul a.animated--144 {
-  animation: appear 600ms 28800ms both ease-in-out;
+  animation: appear 600ms 14400ms both ease-in-out;
 }
 body .pokedex ul a.animated--145 {
-  animation: appear 600ms 29000ms both ease-in-out;
+  animation: appear 600ms 14500ms both ease-in-out;
 }
 body .pokedex ul a.animated--146 {
-  animation: appear 600ms 29200ms both ease-in-out;
+  animation: appear 600ms 14600ms both ease-in-out;
 }
 body .pokedex ul a.animated--147 {
-  animation: appear 600ms 29400ms both ease-in-out;
+  animation: appear 600ms 14700ms both ease-in-out;
 }
 body .pokedex ul a.animated--148 {
-  animation: appear 600ms 29600ms both ease-in-out;
+  animation: appear 600ms 14800ms both ease-in-out;
 }
 body .pokedex ul a.animated--149 {
-  animation: appear 600ms 29800ms both ease-in-out;
+  animation: appear 600ms 14900ms both ease-in-out;
 }
 body .pokedex ul a.animated--150 {
-  animation: appear 600ms 30000ms both ease-in-out;
+  animation: appear 600ms 15000ms both ease-in-out;
 }
 body .pokedex ul a.animated--151 {
-  animation: appear 600ms 30200ms both ease-in-out;
+  animation: appear 600ms 15100ms both ease-in-out;
 }
 body .pokedex ul li {
   display: flex;
@@ -612,65 +637,77 @@ body .pokedex ul li {
   width: 350px;
   font-weight: bold;
   list-style-type: none;
-  background-color: rgb(241, 235, 235);
+  background-color: rgb(211, 211, 211);
   padding: 10px;
   border: 1px solid black;
   border-radius: 15px;
   margin: 30px;
 }
 body .pokedex ul li #plante {
+  color: rgb(85, 64, 37);
   background-color: rgb(97, 179, 97);
 }
 body .pokedex ul li #feu {
+  color: rgb(255, 182, 24);
   background-color: rgb(225, 0, 0);
 }
 body .pokedex ul li #eau {
-  color: rgb(241, 235, 235);
+  color: rgb(170, 189, 225);
   background-color: rgb(34, 34, 223);
 }
 body .pokedex ul li #electrik {
+  color: rgb(0, 0, 0);
   background-color: rgb(255, 241, 39);
 }
 body .pokedex ul li #psy {
+  color: rgb(76, 40, 80);
   background-color: rgb(255, 71, 102);
 }
 body .pokedex ul li #combat {
-  color: rgb(241, 235, 235);
-  background-color: brown;
+  color: rgb(206, 182, 131);
+  background-color: rgb(165, 42, 42);
 }
 body .pokedex ul li #vol {
-  background-color: rgb(190, 178, 178);
+  color: rgb(241, 235, 235);
+  background-color: rgb(184, 175, 169);
 }
 body .pokedex ul li #sol {
+  color: rgb(121, 76, 46);
   background-color: rgb(204, 168, 128);
 }
 body .pokedex ul li #roche {
+  color: rgb(202, 197, 169);
   background-color: rgb(123, 64, 29);
 }
 body .pokedex ul li #glace {
-  background-color: rgb(122, 228, 241);
+  color: rgb(5, 146, 182);
+  background-color: rgb(160, 233, 243);
 }
 body .pokedex ul li #normal {
-  background-color: white;
+  color: rgb(139, 125, 125);
+  background-color: rgb(255, 255, 255);
 }
 body .pokedex ul li #poison {
-  color: rgb(241, 235, 235);
+  color: rgb(203, 237, 109);
   background-color: rgb(84, 28, 148);
 }
 body .pokedex ul li #dragon {
-  background-color: rgb(221, 190, 97);
+  color: rgb(221, 190, 97);
+  background-color: rgb(100, 111, 195);
 }
 body .pokedex ul li #insecte {
-  background-color: rgb(146, 187, 35);
+  color: rgb(99, 104, 86);
+  background-color: rgb(203, 237, 109);
 }
 body .pokedex ul li #fée {
+  color: rgb(255, 240, 73);
   background-color: rgb(152, 73, 241);
 }
 body .pokedex ul li .number {
   align-self: end;
   color: black;
   padding: 4px 8px;
-  border: 1px solid #303541;
+  border: 1px solid rgb(48, 53, 65);
   border-radius: 15px;
 }
 body .pokedex ul li .description {
@@ -689,7 +726,7 @@ body .pokedex ul li .types span {
   color: black;
   padding: 5px 10px 3px 10px;
   border-radius: 15px;
-  border: 1px solid #303541;
+  border: 1px solid rgb(48, 53, 65);
 }
 body .pokedex ul li:hover {
   box-shadow: 2px 2px 8px rgb(70, 69, 69);
@@ -704,76 +741,66 @@ body .pokedex ul li.appear {
   animation: evolveAppear 800ms both ease-in;
 }
 body .pokedex ul .plante:hover {
-  background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(143, 111, 63));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(85, 64, 37));
 }
 body .pokedex ul .feu:hover {
-  background: radial-gradient(ellipse at center, rgb(225, 0, 0), rgb(255, 205, 24));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(255, 182, 24), rgb(225, 0, 0));
 }
 body .pokedex ul .eau:hover {
-  color: rgb(241, 235, 235);
-  background: radial-gradient(ellipse at center, rgb(34, 34, 223), rgb(170, 189, 225));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(170, 189, 225), rgb(34, 34, 223));
 }
 body .pokedex ul .electrik:hover {
-  color: white;
-  background: radial-gradient(ellipse at center, rgb(255, 241, 39), black);
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(255, 241, 39), rgb(0, 0, 0));
 }
 body .pokedex ul .psy:hover {
-  background: radial-gradient(ellipse at center, rgb(255, 71, 102), rgb(166, 127, 171));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(255, 71, 102), rgb(76, 40, 80));
 }
 body .pokedex ul .combat:hover {
-  background: radial-gradient(ellipse at center, brown, rgb(241, 235, 235));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(206, 182, 131), rgb(165, 42, 42));
 }
 body .pokedex ul .vol:hover {
-  background: radial-gradient(ellipse at center, rgb(190, 178, 178), rgb(241, 235, 235));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(184, 175, 169), rgb(241, 235, 235));
 }
 body .pokedex ul .sol:hover {
-  background: radial-gradient(ellipse at center, rgb(204, 168, 128), rgb(241, 235, 235));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(204, 168, 128), rgb(121, 76, 46));
 }
 body .pokedex ul .roche:hover {
-  background: radial-gradient(ellipse at center, rgb(123, 64, 29), rgb(180, 179, 172));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(123, 64, 29), rgb(202, 197, 169));
 }
 body .pokedex ul .glace:hover {
-  background: radial-gradient(ellipse at center, rgb(241, 235, 235), rgb(122, 228, 241));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(160, 233, 243), rgb(5, 146, 182));
 }
 body .pokedex ul .normal:hover {
-  background: radial-gradient(ellipse at center, white, rgb(190, 178, 178));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(255, 255, 255), rgb(139, 125, 125));
 }
 body .pokedex ul .poison:hover {
-  color: white;
+  color: black;
   background: radial-gradient(ellipse at center, rgb(203, 237, 109), rgb(84, 28, 148));
 }
 body .pokedex ul .dragon:hover {
+  color: black;
   background: radial-gradient(ellipse at center, rgb(221, 190, 97), rgb(100, 111, 195));
 }
 body .pokedex ul .insecte:hover {
-  background: radial-gradient(ellipse at center, rgb(112, 118, 96), rgb(203, 237, 109));
+  color: black;
+  background: radial-gradient(ellipse at center, rgb(99, 104, 86), rgb(203, 237, 109));
 }
 body .pokedex ul .fée:hover {
+  color: black;
   background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(255, 240, 73));
 }
-body .pokedex ul.pokemon {
-  justify-content: center;
-}
-body .pokedex ul.pokemon li {
-  height: 600px;
-  width: 525px;
-  padding: 30px;
-}
-body .pokedex ul.pokemon li:hover {
-  background-color: rgb(241, 235, 235);
-  box-shadow: none;
-}
-body .pokedex ul.pokemon li .name {
-  font-size: 22px;
-}
-body .pokedex ul.pokemon li img {
-  height: 300px;
-  width: 300px;
-}
-body .pokedex ul.pokemon li .description {
-  font-weight: bold;
-}
-body .pokedex .error {
+body .pokedex .evolve.error {
   align-self: center;
   font-weight: bold;
   padding: 5px 10px;

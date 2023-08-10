@@ -1,23 +1,37 @@
 /**************************************************************VARIABLES*/
-$primary: salmon;
-$secondary: #303541;
+$primary: rgb(250, 128, 114);
+$secondary: rgb(48, 53, 65);
 $tertiary: rgb(241, 235, 235);
+$types: plante, feu, eau, electrik, psy, combat, vol, sol, roche, glace, normal, poison, dragon, insecte, fée;
 $plante--primary: rgb(97, 179, 97);
-$plante--secondary: rgb(143, 111, 63);
-$feu--primary: rgb(225, 0, 0);
-$feu--secondary: rgb(255, 205, 24);
-$eau--primary: rgb(34, 34, 223);
-$eau--secondary: rgb(170, 189, 225);
+$plante--secondary: rgb(85, 64, 37);
+$feu--primary: rgb(255, 182, 24);
+$feu--secondary: rgb(225, 0, 0);
+$eau--secondary: rgb(34, 34, 223);
+$eau--primary: rgb(170, 189, 225);
 $electrik--primary: rgb(255, 241, 39);
-$electrik--secondary: black;
+$electrik--secondary: rgb(0, 0, 0);
 $psy--primary: rgb(255, 71, 102);
-$psy--secondary: rgb(166, 127, 171);
+$psy--secondary: rgb(76, 40, 80);
+$combat--primary: rgb(165, 42, 42);
+$combat--secondary: rgb(206, 182, 131);  
+$vol--primary: rgb(184, 175, 169);
+$sol--primary: rgb(204, 168, 128);
+$sol--secondary: rgb(121, 76, 46);
 $roche--primary: rgb(123, 64, 29);
-$roche--secondary: rgb(180, 179, 172);
-$fée--primary: rgb(152, 73, 241);
-$fée--secondary: rgb(255, 240, 73);
+$roche--secondary: rgb(202, 197, 169);
+$glace--primary: rgb(160, 233, 243);
+$glace--secondary: rgb(5, 146, 182);
+$normal--primary: rgb(255, 255, 255);
+$normal--secondary: rgb(139, 125, 125);
+$poison--primary: rgb(203, 237, 109);
+$poison--secondary: rgb(84, 28, 148);
 $dragon--primary: rgb(221, 190, 97);
 $dragon--secondary: rgb(100, 111, 195);
+$insecte--primary: rgb(99, 104, 86);
+$insecte--secondary: rgb(203, 237, 109);
+$fairy--primary: rgb(152, 73, 241);
+$fairy--secondary: rgb(255, 240, 73);
 /**************************************************************KEYFRAMES*/
 @keyframes appear {
     0% {
@@ -60,7 +74,7 @@ $dragon--secondary: rgb(100, 111, 195);
         &.animated {
             @for $i from 1 through 151 {
                 &--#{$i} {
-                    animation: appear 600ms ($i * 200ms) both ease-in-out;
+                    animation: appear 600ms ($i * 100ms) both ease-in-out;
                 }
             }
         }
@@ -74,58 +88,19 @@ $dragon--secondary: rgb(100, 111, 195);
         width: 350px;
         font-weight: bold;
         list-style-type: none;
-        background-color: $tertiary;
+        background-color: rgb(211, 211, 211);
         padding: 10px;
         border: 1px solid black;
         border-radius: 15px;
         margin: 30px;
-        #plante {
-            background-color: $plante--primary;
-        }
-        #feu {
-            background-color: $feu--primary;
-        }
-        #eau {
-            color: $tertiary;
-            background-color: $eau--primary;
-        }
-        #electrik {
-            background-color: $electrik--primary;
-        }
-        #psy {
-            background-color: $psy--primary;
-        }
-        #combat {
-            color: $tertiary;
-            background-color: brown;
-        }
-        #vol {
-            background-color: rgb(190, 178, 178);
-        }
-        #sol {
-            background-color: rgb(204, 168, 128);
-        }
-        #roche {
-            background-color: $roche--primary;
-        }
-        #glace {
-            background-color: rgb(122, 228, 241);
-        }
-        #normal {
-            background-color: white;
-        }
-        #poison {
-            color: $tertiary;
-            background-color: rgb(84, 28, 148);
-        }
-        #dragon {
-            background-color: $dragon--primary;
-        }
-        #insecte {
-            background-color: rgb(146, 187, 35);
-        }
-        #fée {
-            background-color: $fée--primary;
+        @for $i from 1 through length($types) {
+            $type: nth($types, $i);
+            $type--primary: if($type == plante, $plante--primary, if($type == feu, $feu--secondary, if($type == eau, $eau--secondary, if($type == electrik, $electrik--primary, if($type == psy, $psy--primary, if($type == combat, $combat--primary, if($type == vol, $vol--primary, if($type == sol, $sol--primary, if($type == roche, $roche--primary, if($type == glace, $glace--primary, if($type == normal, $normal--primary, if($type == poison, $poison--secondary, if($type == dragon, $dragon--secondary, if($type == insecte, $insecte--secondary, if($type == fée, $fairy--primary, rgb(0, 0, 0))))))))))))))));
+            $type--secondary: if($type == plante, $plante--secondary, if($type == feu, $feu--primary, if($type == eau, $eau--primary, if($type == electrik, $electrik--secondary, if($type == psy, $psy--secondary, if($type == combat, $combat--secondary, if($type == vol, $tertiary, if($type == sol, $sol--secondary, if($type == roche, $roche--secondary, if($type == glace, $glace--secondary, if($type == normal, $normal--secondary, if($type == poison, $poison--primary, if($type == dragon, $dragon--primary, if($type == insecte, $insecte--primary, if($type == fée, $fairy--secondary, rgb(0, 0, 0))))))))))))))));
+            ##{$type} {
+                color: $type--secondary;
+                background-color: $type--primary;
+            }
         }
         .number {
             align-self: end;
@@ -165,53 +140,14 @@ $dragon--secondary: rgb(100, 111, 195);
             animation: evolveAppear 800ms both ease-in;
         }
     }
-    .plante:hover {
-        background: radial-gradient(ellipse at center, $plante--primary, $plante--secondary);
-    }
-    .feu:hover {
-        background: radial-gradient(ellipse at center, $feu--primary, $feu--secondary);
-    }
-    .eau:hover {
-        color: $tertiary;
-        background: radial-gradient(ellipse at center, $eau--primary, $eau--secondary);
-    }
-    .electrik:hover {
-        color: white;
-        background: radial-gradient(ellipse at center, $electrik--primary, $electrik--secondary);
-    }
-    .psy:hover {
-        background: radial-gradient(ellipse at center, $psy--primary, $psy--secondary);
-    }
-    .combat:hover {
-        background: radial-gradient(ellipse at center, brown, $tertiary);
-    }
-    .vol:hover {
-        background: radial-gradient(ellipse at center, rgb(190, 178, 178), $tertiary);
-    }
-    .sol:hover {
-        background: radial-gradient(ellipse at center, rgb(204, 168, 128), $tertiary);
-    }
-    .roche:hover {
-        background: radial-gradient(ellipse at center, $roche--primary, $roche--secondary);
-    }
-    .glace:hover {
-        background: radial-gradient(ellipse at center, $tertiary, rgb(122, 228, 241));
-    }
-    .normal:hover {
-        background: radial-gradient(ellipse at center, white, rgb(190, 178, 178));
-    }
-    .poison:hover {
-        color: white;
-        background: radial-gradient(ellipse at center, rgb(203, 237, 109), rgb(84, 28, 148));
-    }
-    .dragon:hover {
-        background: radial-gradient(ellipse at center, $dragon--primary, $dragon--secondary);
-    }
-    .insecte:hover {
-        background: radial-gradient(ellipse at center, rgb(112, 118, 96), rgb(203, 237, 109));
-    }
-    .fée:hover {
-        background: radial-gradient(ellipse at center, $fée--primary, $fée--secondary);
+    @for $i from 1 through length($types) {
+        $type: nth($types, $i);
+        $type--primary: if($type == plante, $plante--primary, if($type == feu, $feu--primary, if($type == eau, $eau--primary, if($type == electrik, $electrik--primary, if($type == psy, $psy--primary, if($type == combat, $combat--secondary, if($type == vol, $vol--primary, if($type == sol, $sol--primary, if($type == roche, $roche--primary, if($type == glace, $glace--primary, if($type == normal, $normal--primary, if($type == poison, $poison--primary, if($type == dragon, $dragon--primary, if($type == insecte, $insecte--primary, if($type == fée, $fairy--primary, rgb(0, 0, 0))))))))))))))));
+        $type--secondary: if($type == plante, $plante--secondary, if($type == feu, $feu--secondary, if($type == eau, $eau--secondary, if($type == electrik, $electrik--secondary, if($type == psy, $psy--secondary, if($type == combat, $combat--primary, if($type == vol, $tertiary, if($type == sol, $sol--secondary, if($type == roche, $roche--secondary, if($type == glace, $glace--secondary, if($type == normal, $normal--secondary, if($type == poison, $poison--secondary, if($type == dragon, $dragon--secondary, if($type == insecte, $insecte--secondary, if($type == fée, $fairy--secondary, rgb(0, 0, 0))))))))))))))));
+        .#{$type}:hover {
+            color: black;
+            background: radial-gradient(ellipse at center, $type--primary, $type--secondary);
+        }
     }
 }
 /*****************************************************************STYLES*/
@@ -319,34 +255,39 @@ body {
                     background-color: white;
                     letter-spacing: 3px;
                 }
+                &:nth-child(1) {
+                    margin-left: 5%;
+                }
+                &:nth-child(3) {
+                    margin-right: 5%;
+                }
             }
         }
         ul {
-            @include ul
-        }
-        ul.pokemon {
-            justify-content: center;
-            li {
-                height: 600px;
-                width: 525px;
-                padding: 30px;
-                &:hover {
-                    background-color: $tertiary;
-                    box-shadow: none;
-                }
-                .name {
-                    font-size: 22px;
-                }
-                img {
-                    height: 300px;
-                    width: 300px;
-                }
-                .description {
-                    font-weight: bold;
+            &.pokemon {
+                li {
+                    height: 600px;
+                    width: 525px;
+                    padding: 30px;
+                    .number, .name, .types {
+                        font-size: 30px;
+                        border-radius: 30px;
+                    }
+                    img {
+                        height: 300px;
+                        width: 300px;
+                    }
+                    .description {
+                        font-weight: bold;
+                    }
+                    &:hover {
+                        cursor: default;
+                    }
                 }
             }
+            @include ul
         }
-        .error {
+        .evolve.error {
             align-self: center;
             font-weight: bold;
             padding: 5px 10px;
