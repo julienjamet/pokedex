@@ -67,15 +67,16 @@ export const Register: FC = () => {
                             const responseData: { message: string } | { errors: { name: string } } = error.response.data as { message: string } | { errors: { name: string } }
 
                             if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                                const regexErrorMessage: string = responseData.message
-
-                                if (regexErrorMessage.includes("nom") && nameError) {
-                                    nameError.textContent = regexErrorMessage
+                                if (responseData.message.includes("nom") && nameError && passwordError) {
+                                    nameError.textContent = responseData.message
                                     nameError.style.color = "red"
                                     nameError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                                    passwordError.textContent = ""
+                                    passwordError.style.backgroundColor = "salmon"
                                 }
-                                else if (regexErrorMessage.includes("mot de passe") && passwordError && nameError) {
-                                    passwordError.textContent = regexErrorMessage
+                                else if (responseData.message.includes("mot de passe") && passwordError && nameError) {
+                                    passwordError.textContent = responseData.message
                                     passwordError.style.color = "red"
                                     passwordError.style.backgroundColor = "rgb(241, 235, 235)"
 

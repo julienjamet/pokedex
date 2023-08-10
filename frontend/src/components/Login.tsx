@@ -31,18 +31,34 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
                         const responseData: { message: string } | { error: string } = error.response.data as { message: string } | { error: string }
 
                         if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                            const regexErrorMessage: string = responseData.message
-
-                            if (regexErrorMessage.includes("dresseur") && nameError && passwordError) {
-                                nameError.textContent = regexErrorMessage
+                            if (responseData.message.includes("dresseur") && nameError && passwordError) {
+                                nameError.textContent = responseData.message
                                 nameError.style.color = "red"
                                 nameError.style.backgroundColor = "rgb(241, 235, 235)"
 
                                 passwordError.textContent = ""
                                 passwordError.style.backgroundColor = "salmon"
                             }
-                            else if (regexErrorMessage.includes("mot de passe") && passwordError && nameError) {
-                                passwordError.textContent = regexErrorMessage
+                            else if (responseData.message.includes("mot de passe") && passwordError && nameError) {
+                                passwordError.textContent = responseData.message
+                                passwordError.style.color = "red"
+                                passwordError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                                nameError.textContent = ""
+                                nameError.style.backgroundColor = "salmon"
+                            }
+                        }
+                        else if (responseData && typeof responseData === 'object' && 'error' in responseData) {
+                            if (responseData.error.includes("dresseur") && nameError && passwordError) {
+                                nameError.textContent = responseData.error
+                                nameError.style.color = "red"
+                                nameError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                                passwordError.textContent = ""
+                                passwordError.style.backgroundColor = "salmon"
+                            }
+                            else if (responseData.error.includes("mot de passe") && passwordError && nameError) {
+                                passwordError.textContent = responseData.error
                                 passwordError.style.color = "red"
                                 passwordError.style.backgroundColor = "rgb(241, 235, 235)"
 

@@ -72,55 +72,80 @@ export const Pokemon: FC = () => {
                 return ""
         }
     }
+    /*************************************************Handle scroll*/
+    const smoothScrollToBottom = (duration: number): void => {
+        if (document.scrollingElement) {
+            const startingY: number = document.scrollingElement.scrollTop
+            const targetY: number = document.scrollingElement.scrollHeight
+            const startTime: number = performance.now()
+
+            const scrollStep = (timestamp: number): void => {
+                const currentTime = timestamp - startTime
+                const scrollDistance = targetY - startingY
+
+                if (document.scrollingElement) {
+                    document.scrollingElement.scrollTop = startingY + scrollDistance * (currentTime / duration)
+
+                    if (currentTime < duration) {
+                        requestAnimationFrame(scrollStep)
+                    }
+                }
+            }
+
+            requestAnimationFrame(scrollStep)
+        }
+    }
     /*************************************************Handle evolve*/
     const handleEvolve = (): void => {
+        const body: HTMLElement | null = document.querySelector("body")
         const evolveError: HTMLElement | null = document.querySelector('.evolve.error')
 
-        axios.put(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, {}, { withCredentials: true })
+        if (body) {
+            axios.put(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, {}, { withCredentials: true })
 
-            .then((response: AxiosResponse): void => {
-                if (evolveError) {
-                    evolveError.textContent = response.data.message
-                    evolveError.style.color = "green"
-                    evolveError.style.backgroundColor = "white"
-
+                .then((response: AxiosResponse): void => {
                     setVanish(true)
 
                     setTimeout((): void => {
                         setIdToChange(response.data.pokemon._id)
+
                         setTimeout((): void => {
                             setAppear(true)
+
+                            setTimeout((): void => {
+                                if (evolveError) {
+                                    evolveError.textContent = response.data.message
+                                    evolveError.style.color = "green"
+                                    evolveError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                                    smoothScrollToBottom(2000)
+                                }
+                            }, 800)
                         }, 200)
                     }, 800)
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                }
-            })
-            .catch((error: AxiosError): void => {
-                if (error.response) {
-                    const responseData: { message: string } = error.response.data as { message: string }
+                })
+                .catch((error: AxiosError): void => {
+                    body.classList.add("error")
 
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message as string
+                    setTimeout((): void => {
+                        body.classList.remove("error")
+                    }, 400)
 
-                        if (evolveError) {
-                            evolveError.textContent = regexErrorMessage
+                    if (error.response) {
+                        const responseData: { message: string } = error.response.data as { message: string }
+
+                        if (responseData && typeof responseData === 'object' && 'message' in responseData && evolveError) {
+                            evolveError.textContent = responseData.message
                             evolveError.style.color = "red"
-                            evolveError.style.backgroundColor = "white"
-                        }
-                        else {
-                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            evolveError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                            if (document.scrollingElement) {
+                                document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
+                            }
                         }
                     }
-                    else {
-                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                    }
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                }
-            })
+                })
+        }
     }
     /*********************************************************Return TSX*/
     return (
@@ -133,7 +158,7 @@ export const Pokemon: FC = () => {
                         <button className="submit" onClick={handleEvolve}>Faire évoluer</button>
 
                         <ul className="pokemon">
-                            <li className={`${getTypeDesign(pokemon.pokemon.type[0])} list-item ${!vanish ? '' : 'vanish'}`}>
+                            <li className={`${getTypeDesign(pokemon.pokemon.type[0])} list-item ${vanish ? 'vanish' : ''}`}>
                                 <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
                                 <span className="name">{pokemon.pokemon.name}</span>
                                 <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />

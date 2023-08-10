@@ -10,13 +10,13 @@ $feu--secondary: rgb(225, 0, 0);
 $eau--secondary: rgb(34, 34, 223);
 $eau--primary: rgb(170, 189, 225);
 $electrik--primary: rgb(255, 241, 39);
-$electrik--secondary: rgb(0, 0, 0);
+$electrik--secondary: rgb(39, 43, 52);
 $psy--primary: rgb(255, 71, 102);
 $psy--secondary: rgb(76, 40, 80);
-$combat--primary: rgb(165, 42, 42);
+$combat--primary: rgb(179, 31, 31);
 $combat--secondary: rgb(206, 182, 131);  
 $vol--primary: rgb(184, 175, 169);
-$sol--primary: rgb(204, 168, 128);
+$sol--primary: rgb(221, 186, 146);
 $sol--secondary: rgb(121, 76, 46);
 $roche--primary: rgb(123, 64, 29);
 $roche--secondary: rgb(202, 197, 169);
@@ -33,6 +33,29 @@ $insecte--secondary: rgb(203, 237, 109);
 $fairy--primary: rgb(152, 73, 241);
 $fairy--secondary: rgb(255, 240, 73);
 /**************************************************************KEYFRAMES*/
+@keyframes error {
+    0% {
+        transform: translateX(-10px);
+    }
+    10% {
+        transform: translateX(10px);
+    }
+    20% {
+        transform: translateX(-10px);
+    }
+    30% {
+        transform: translateX(10px);
+    }
+    40% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 @keyframes appear {
     0% {
         opacity: 0;
@@ -41,6 +64,16 @@ $fairy--secondary: rgb(255, 240, 73);
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+@keyframes verticalAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 @keyframes evolveVanish {
@@ -84,14 +117,14 @@ $fairy--secondary: rgb(255, 240, 73);
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
-        height: 400px;
+        height: 450px;
         width: 350px;
         font-weight: bold;
         list-style-type: none;
         color: black;
         background-color: rgb(211, 211, 211);
         padding: 10px;
-        border: 1px solid black;
+        border: 1px solid $secondary;
         border-radius: 15px;
         margin: 30px;
         @for $i from 1 through length($types) {
@@ -110,10 +143,10 @@ $fairy--secondary: rgb(255, 240, 73);
             border-radius: 15px;
         }
         .description {
-            height: 120px;
+            height: 100px;
             text-align: justify;
-            overflow: auto;
             font-weight: normal;
+            padding: 6px;
         }
         .types {
             display: flex;
@@ -238,8 +271,7 @@ body {
             width: 100%;
             margin-top: -80px;
             button {
-                width: 30%;
-                max-width: 400px;
+                width: 350px;
                 font-weight: bold;
                 padding: 5px 10px;
                 background-color: $tertiary;
@@ -276,10 +308,12 @@ body {
                         width: 300px;
                     }
                     .description {
+                        width: 85%;
                         font-weight: bold;
                     }
                     &:hover {
                         cursor: default;
+                        box-shadow: none;
                     }
                 }
             }
@@ -290,6 +324,38 @@ body {
             font-weight: bold;
             padding: 5px 10px;
             border-radius: 15px;
+        }
+    }
+    &.error {
+        animation: error 400ms forwards;
+    }
+}
+/*************************************************************RESPONSIVE*/
+@media all and (max-width: 600px) {
+    body {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-evenly;
+       align-items: center;
+        .pokedex {
+            h1, .rank, .rank h2 {
+                font-size: 12px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                width: 80%;
+                list-style: none;
+                a {
+                    &.animated {
+                        @for $i from 1 through 151 {
+                            &--#{$i} {
+                                animation: verticalAppear 600ms ($i * 100ms) both ease-in-out;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

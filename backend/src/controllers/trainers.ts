@@ -80,7 +80,7 @@ export const login = (req: Request, res: Response): Response | void => {
             return res.status(400).json({ message: `Ce dresseur n'existe pas !` })
         }
         else if (password.length >= 30) {
-            return res.status(400).json({ message: `Le mot de passe est incorrect !` })
+            return res.status(400).json({ message: `Le mot de passe est forcément incorrect car il ne correspond pas aux normes du Pokedex !` })
         }
         else {
             if (!/^([^\s-<>≤≥«»© ↓¬,?¿;.×:/÷!§¡%´*`€^¨$£²¹&~"#'{(|`_@°=+)}\[\]\\]{2,})$/.test(name)) {

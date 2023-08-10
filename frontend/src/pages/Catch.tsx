@@ -10,44 +10,37 @@ export const Catch: FC = () => {
     const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
 
+        const body: HTMLElement | null = document.querySelector("body")
         const nameError: HTMLElement | null = document.querySelector('.name.error')
 
-        axios.post(`${process.env.REACT_APP_API_URL}/pokemon`, { name: name }, { withCredentials: true })
+        if (body) {
+            axios.post(`${process.env.REACT_APP_API_URL}/pokemon`, { name: name }, { withCredentials: true })
 
-            .then((response: AxiosResponse): void => {
-                if (nameError) {
-                    nameError.textContent = response.data.message
-                    nameError.style.color = "green"
-                    nameError.style.backgroundColor = "white"
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                }
-            })
-            .catch((error: AxiosError): void => {
-                if (error.response) {
-                    const responseData: { message: string } = error.response.data as { message: string }
+                .then((response: AxiosResponse): void => {
+                    if (nameError) {
+                        nameError.textContent = response.data.message
+                        nameError.style.color = "green"
+                        nameError.style.backgroundColor = "rgb(241, 235, 235)"
+                    }
+                })
+                .catch((error: AxiosError): void => {
+                    body.classList.add("error")
 
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message
+                    setTimeout((): void => {
+                        body.classList.remove("error")
+                    }, 400)
 
-                        if (nameError) {
-                            nameError.textContent = regexErrorMessage
+                    if (error.response) {
+                        const responseData: { message: string } = error.response.data as { message: string }
+
+                        if (responseData && typeof responseData === 'object' && 'message' in responseData && nameError) {
+                            nameError.textContent = responseData.message
                             nameError.style.color = "red"
-                            nameError.style.backgroundColor = "white"
-                        }
-                        else {
-                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+                            nameError.style.backgroundColor = "rgb(241, 235, 235)"
                         }
                     }
-                    else {
-                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                    }
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                }
-            })
+                })
+        }
     }
     /*********************************************************Return TSX*/
     return (
