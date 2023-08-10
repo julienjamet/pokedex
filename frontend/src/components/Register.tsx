@@ -16,11 +16,17 @@ export const Register: FC = () => {
         const passwordError: HTMLElement | null = document.querySelector('.password.error')
         const validatePasswordError: HTMLElement | null = document.querySelector('.validatePassword.error')
 
-        if (password !== validatePassword) {
-            if (validatePasswordError) {
+        if (body) {
+            if (password !== validatePassword && validatePasswordError) {
+                body.classList.add("error")
+
+                setTimeout((): void => {
+                    body.classList.remove("error")
+                }, 400)
+
                 validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
                 validatePasswordError.style.color = "red"
-                validatePasswordError.style.backgroundColor = "white"
+                validatePasswordError.style.backgroundColor = "rgb(241, 235, 235)"
 
                 if (nameError && passwordError) {
                     nameError.textContent = ""
@@ -28,101 +34,65 @@ export const Register: FC = () => {
 
                     passwordError.textContent = ""
                     passwordError.style.backgroundColor = "salmon"
-
-                    validatePasswordError.textContent = `Les mots de passe ne correspondent pas !`
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
                 }
             }
-            else {
-                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-            }
-        }
-        else {
-            if (validatePasswordError) {
+            else if (validatePasswordError) {
                 validatePasswordError.textContent = ``
                 validatePasswordError.style.backgroundColor = "salmon"
-            }
-            else {
-                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
+
+                axios.post(`${process.env.REACT_APP_API_URL}/trainer/signup`, { name: name, password: password })
+
+                    .then((): void => {
+                        if (nameError && passwordError) {
+                            nameError.textContent = ""
+                            passwordError.textContent = ""
+                            validatePasswordError.textContent = ""
+
+                            body.style.backgroundColor = "#c9f0d4"
+                            nameError.style.backgroundColor = "#c9f0d4"
+                            passwordError.style.backgroundColor = "#c9f0d4"
+                            validatePasswordError.style.backgroundColor = "#c9f0d4"
+                        }
+
+                        setTimeout((): void => { window.location.reload() }, 500)
+                    })
+                    .catch((error: AxiosError): void => {
+                        body.classList.add("error")
+
+                        setTimeout((): void => {
+                            body.classList.remove("error")
+                        }, 400)
+
+                        if (error.response) {
+                            const responseData: { message: string } | { errors: { name: string } } = error.response.data as { message: string } | { errors: { name: string } }
+
+                            if (responseData && typeof responseData === 'object' && 'message' in responseData) {
+                                const regexErrorMessage: string = responseData.message
+
+                                if (regexErrorMessage.includes("nom") && nameError && passwordError) {
+                                    nameError.textContent = regexErrorMessage
+                                    nameError.style.color = "red"
+                                    nameError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                                    passwordError.textContent = ""
+                                    passwordError.style.backgroundColor = "salmon"
+                                }
+                                if (regexErrorMessage.includes("mot de passe") && passwordError && nameError) {
+                                    passwordError.textContent = regexErrorMessage
+                                    passwordError.style.color = "red"
+                                    passwordError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                                    nameError.textContent = ""
+                                    nameError.style.backgroundColor = "salmon"
+                                }
+                            }
+                            else if (responseData && typeof responseData === 'object' && 'errors' in responseData && nameError) {
+                                nameError.textContent = responseData.errors.name
+                            }
+                        }
+                    })
             }
         }
-
-        axios.post(`${process.env.REACT_APP_API_URL}/trainer/signup`, { name: name, password: password })
-
-            .then((): void => {
-                if (body && nameError && passwordError && validatePasswordError) {
-                    nameError.textContent = ""
-                    passwordError.textContent = ""
-                    validatePasswordError.textContent = ""
-
-                    body.style.backgroundColor = "#c9f0d4"
-                    nameError.style.backgroundColor = "#c9f0d4"
-                    passwordError.style.backgroundColor = "#c9f0d4"
-                    validatePasswordError.style.backgroundColor = "#c9f0d4"
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                }
-
-                setTimeout((): void => { window.location.reload() }, 500)
-            })
-            .catch((error: AxiosError): void => {
-                if (error.response) {
-                    const responseData: { message: string } | { errors: { name: string } } = error.response.data as { message: string } | { errors: { name: string } }
-
-                    if (responseData && typeof responseData === 'object' && 'message' in responseData) {
-                        const regexErrorMessage: string = responseData.message
-
-                        if (regexErrorMessage.includes("nom")) {
-                            if (nameError && passwordError) {
-                                nameError.textContent = regexErrorMessage
-                                nameError.style.color = "red"
-                                nameError.style.backgroundColor = "white"
-
-                                passwordError.textContent = ""
-                                passwordError.style.backgroundColor = "salmon"
-                            }
-                            else {
-                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                            }
-                        }
-                        else if (regexErrorMessage.includes("mot de passe")) {
-                            if (passwordError && nameError) {
-                                passwordError.textContent = regexErrorMessage
-                                passwordError.style.color = "red"
-                                passwordError.style.backgroundColor = "white"
-
-                                nameError.textContent = ""
-                                nameError.style.backgroundColor = "salmon"
-                            }
-                            else {
-                                console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                            }
-                        }
-                        else {
-                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                        }
-                    }
-                    else if (responseData && typeof responseData === 'object' && 'errors' in responseData) {
-                        const nameNotAvailableErrorMessage: string = responseData.errors.name
-
-                        if (nameError) {
-                            nameError.textContent = nameNotAvailableErrorMessage
-                        }
-                        else {
-                            console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                        }
-                    }
-                    else {
-                        console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                    }
-                }
-                else {
-                    console.log(`Le Pokedex est en panne ! Reviens plus tard !`)
-                }
-            })
     }
     /*********************************************************Return TSX*/
     return (
