@@ -637,6 +637,7 @@ body .pokedex ul li {
   width: 350px;
   font-weight: bold;
   list-style-type: none;
+  color: black;
   background-color: rgb(211, 211, 211);
   padding: 10px;
   border: 1px solid black;
@@ -705,7 +706,6 @@ body .pokedex ul li #fée {
 }
 body .pokedex ul li .number {
   align-self: end;
-  color: black;
   padding: 4px 8px;
   border: 1px solid rgb(48, 53, 65);
   border-radius: 15px;
@@ -723,7 +723,6 @@ body .pokedex ul li .types {
   width: 100%;
 }
 body .pokedex ul li .types span {
-  color: black;
   padding: 5px 10px 3px 10px;
   border-radius: 15px;
   border: 1px solid rgb(48, 53, 65);
@@ -740,64 +739,49 @@ body .pokedex ul li.vanish {
 body .pokedex ul li.appear {
   animation: evolveAppear 800ms both ease-in;
 }
-body .pokedex ul .plante:hover {
-  color: black;
+body .pokedex ul .plante {
   background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(85, 64, 37));
 }
-body .pokedex ul .feu:hover {
-  color: black;
+body .pokedex ul .feu {
   background: radial-gradient(ellipse at center, rgb(255, 182, 24), rgb(225, 0, 0));
 }
-body .pokedex ul .eau:hover {
-  color: black;
+body .pokedex ul .eau {
   background: radial-gradient(ellipse at center, rgb(170, 189, 225), rgb(34, 34, 223));
 }
-body .pokedex ul .electrik:hover {
-  color: black;
+body .pokedex ul .electrik {
   background: radial-gradient(ellipse at center, rgb(255, 241, 39), rgb(0, 0, 0));
 }
-body .pokedex ul .psy:hover {
-  color: black;
+body .pokedex ul .psy {
   background: radial-gradient(ellipse at center, rgb(255, 71, 102), rgb(76, 40, 80));
 }
-body .pokedex ul .combat:hover {
-  color: black;
+body .pokedex ul .combat {
   background: radial-gradient(ellipse at center, rgb(206, 182, 131), rgb(165, 42, 42));
 }
-body .pokedex ul .vol:hover {
-  color: black;
+body .pokedex ul .vol {
   background: radial-gradient(ellipse at center, rgb(184, 175, 169), rgb(241, 235, 235));
 }
-body .pokedex ul .sol:hover {
-  color: black;
+body .pokedex ul .sol {
   background: radial-gradient(ellipse at center, rgb(204, 168, 128), rgb(121, 76, 46));
 }
-body .pokedex ul .roche:hover {
-  color: black;
+body .pokedex ul .roche {
   background: radial-gradient(ellipse at center, rgb(123, 64, 29), rgb(202, 197, 169));
 }
-body .pokedex ul .glace:hover {
-  color: black;
+body .pokedex ul .glace {
   background: radial-gradient(ellipse at center, rgb(160, 233, 243), rgb(5, 146, 182));
 }
-body .pokedex ul .normal:hover {
-  color: black;
+body .pokedex ul .normal {
   background: radial-gradient(ellipse at center, rgb(255, 255, 255), rgb(139, 125, 125));
 }
-body .pokedex ul .poison:hover {
-  color: black;
+body .pokedex ul .poison {
   background: radial-gradient(ellipse at center, rgb(203, 237, 109), rgb(84, 28, 148));
 }
-body .pokedex ul .dragon:hover {
-  color: black;
+body .pokedex ul .dragon {
   background: radial-gradient(ellipse at center, rgb(221, 190, 97), rgb(100, 111, 195));
 }
-body .pokedex ul .insecte:hover {
-  color: black;
+body .pokedex ul .insecte {
   background: radial-gradient(ellipse at center, rgb(99, 104, 86), rgb(203, 237, 109));
 }
-body .pokedex ul .fée:hover {
-  color: black;
+body .pokedex ul .fée {
   background: radial-gradient(ellipse at center, rgb(152, 73, 241), rgb(255, 240, 73));
 }
 body .pokedex .evolve.error {

@@ -88,6 +88,7 @@ $fairy--secondary: rgb(255, 240, 73);
         width: 350px;
         font-weight: bold;
         list-style-type: none;
+        color: black;
         background-color: rgb(211, 211, 211);
         padding: 10px;
         border: 1px solid black;
@@ -104,7 +105,6 @@ $fairy--secondary: rgb(255, 240, 73);
         }
         .number {
             align-self: end;
-            color: black;
             padding: 4px 8px;
             border: 1px solid $secondary;
             border-radius: 15px;
@@ -121,7 +121,6 @@ $fairy--secondary: rgb(255, 240, 73);
             align-items: center;
             width: 100%;
             span {
-                color: black;
                 padding: 5px 10px 3px 10px;
                 border-radius: 15px;
                 border: 1px solid $secondary;
@@ -144,8 +143,7 @@ $fairy--secondary: rgb(255, 240, 73);
         $type: nth($types, $i);
         $type--primary: if($type == plante, $plante--primary, if($type == feu, $feu--primary, if($type == eau, $eau--primary, if($type == electrik, $electrik--primary, if($type == psy, $psy--primary, if($type == combat, $combat--secondary, if($type == vol, $vol--primary, if($type == sol, $sol--primary, if($type == roche, $roche--primary, if($type == glace, $glace--primary, if($type == normal, $normal--primary, if($type == poison, $poison--primary, if($type == dragon, $dragon--primary, if($type == insecte, $insecte--primary, if($type == fée, $fairy--primary, rgb(0, 0, 0))))))))))))))));
         $type--secondary: if($type == plante, $plante--secondary, if($type == feu, $feu--secondary, if($type == eau, $eau--secondary, if($type == electrik, $electrik--secondary, if($type == psy, $psy--secondary, if($type == combat, $combat--primary, if($type == vol, $tertiary, if($type == sol, $sol--secondary, if($type == roche, $roche--secondary, if($type == glace, $glace--secondary, if($type == normal, $normal--secondary, if($type == poison, $poison--secondary, if($type == dragon, $dragon--secondary, if($type == insecte, $insecte--secondary, if($type == fée, $fairy--secondary, rgb(0, 0, 0))))))))))))))));
-        .#{$type}:hover {
-            color: black;
+        .#{$type} {
             background: radial-gradient(ellipse at center, $type--primary, $type--secondary);
         }
     }
