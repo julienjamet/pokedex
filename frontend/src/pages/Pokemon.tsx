@@ -133,7 +133,7 @@ export const Pokemon: FC = () => {
                         <button className="submit" onClick={handleEvolve}>Faire évoluer</button>
 
                         <ul className="pokemon">
-                            <li className={`list-item ${!vanish ? '' : 'vanish'}`}>
+                            <li className={`${getTypeDesign(pokemon.pokemon.type[0])} list-item ${!vanish ? '' : 'vanish'}`}>
                                 <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
                                 <span className="name">{pokemon.pokemon.name}</span>
                                 <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />
@@ -145,7 +145,7 @@ export const Pokemon: FC = () => {
                                 </div>
                             </li>
 
-                            <li className={`list-item ${appear ? 'appear' : 'hidden'}`}>
+                            <li className={`${getTypeDesign(pokemon.pokemon.type[0])} list-item ${appear ? 'appear' : 'hidden'}`}>
                                 <span className="number" id={getTypeDesign(pokemon.pokemon.type[0])}>{pokemon.pokemon.number}</span>
                                 <span className="name">{pokemon.pokemon.name}</span>
                                 <img className="image" src={pokemon.pokemon.picture} alt={`${pokemon.pokemon.name} cover`} />
