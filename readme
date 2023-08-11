@@ -1,8 +1,10 @@
-This project has been made to practice Mongoose, Express, Node and TypeScript.
+This project has been made from scratch to practice the MERN stack and TypeScript.
 
-I followed a JavaScript tutorial from the Youtube french channel `Simon Dieny - Code Senior` (link below), that I "translated" into TypeScript.
+Initially, I followed a Node.js tutorial from the Youtube french channel `Simon Dieny - Code Senior` (link below), which I "translated" into TypeScript.
 
 `https://www.youtube.com/watch?v=NRxzvpdduvQ`
+
+This tutorial inspired me to push the boundaries by creating a complete fullstack Pokedex application.
 
 
 
@@ -14,10 +16,6 @@ Root : `https://julienjamet-pokemon.onrender.com/api`
 Trainer
     Sign up :    [POST]    /trainer/signup    { "name": `your_name`, "password": `your_password` }
     Login   :    [POST]    /trainer/login     { "name": `your_name`, "password": `your_password` }
-
-`GUIDE TO TOKEN USAGE`
-
-Once logged in, you will get a token valid for one hour. You will need to add an authorization header with the value "Bearer `your_token`" to all your requests made on the Pokemon routes.
 
 Pokemon
     See all :    [GET]     /pokemon
