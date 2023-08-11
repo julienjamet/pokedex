@@ -11,6 +11,7 @@ export const Pokemon: FC = () => {
     const [pokemon, setPokemon] = useState<IPokemonResponse>()
     const [vanish, setVanish] = useState<boolean>(false)
     const [appear, setAppear] = useState<boolean>(false)
+    const [msgAppear, setMsgAppear] = useState<boolean>(false)
     /********************************************************Middlewares*/
     /******************************************************Get data*/
     useEffect((): void => {
@@ -113,6 +114,8 @@ export const Pokemon: FC = () => {
                             setAppear(true)
 
                             setTimeout((): void => {
+                                setMsgAppear(true)
+
                                 if (evolveError) {
                                     evolveError.textContent = response.data.message
                                     evolveError.style.color = "green"
@@ -131,17 +134,58 @@ export const Pokemon: FC = () => {
                         body.classList.remove("error")
                     }, 400)
 
-                    if (error.response) {
-                        const responseData: { message: string } = error.response.data as { message: string }
+                    const responseData: { message: string } = error.response?.data as { message: string }
 
-                        if (responseData && typeof responseData === 'object' && 'message' in responseData && evolveError) {
-                            evolveError.textContent = responseData.message
-                            evolveError.style.color = "red"
+                    if (responseData && typeof responseData === 'object' && 'message' in responseData && evolveError) {
+                        evolveError.textContent = responseData.message
+                        evolveError.style.color = "red"
+                        evolveError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                        if (document.scrollingElement) {
+                            document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
+                        }
+                    }
+                })
+        }
+    }
+    /*************************************************Handle delete*/
+    const handleDelete = (): void => {
+        const body: HTMLElement | null = document.querySelector("body")
+        const evolveError: HTMLElement | null = document.querySelector('.evolve.error')
+
+        if (body && pokemon && window.confirm(`Veux-tu vraiment relâcher ton ${pokemon.pokemon.name} ?`)) {
+            axios.delete(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, { withCredentials: true })
+
+                .then((response: AxiosResponse): void => {
+                    setVanish(true)
+
+                    setTimeout((): void => {
+                        if (evolveError) {
+                            setMsgAppear(true)
+
+                            evolveError.textContent = response.data.message
+                            evolveError.style.color = "green"
                             evolveError.style.backgroundColor = "rgb(241, 235, 235)"
+                            evolveError.style.marginTop = "-400px"
+                        }
+                    }, 800)
+                })
+                .catch((error: AxiosError): void => {
+                    body.classList.add("error")
 
-                            if (document.scrollingElement) {
-                                document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
-                            }
+                    setTimeout((): void => {
+                        body.classList.remove("error")
+                    }, 400)
+
+                    const responseData: { message: string } = error.response?.data as { message: string }
+
+                    if (responseData && typeof responseData === 'object' && 'message' in responseData && evolveError) {
+                        evolveError.textContent = responseData.message
+                        evolveError.style.color = "red"
+                        evolveError.style.backgroundColor = "rgb(241, 235, 235)"
+
+                        if (document.scrollingElement) {
+                            document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
                         }
                     }
                 })
@@ -155,7 +199,7 @@ export const Pokemon: FC = () => {
                     <h1>{pokemon.message}</h1>
 
                     <div className="managePokemon">
-                        <button className="submit" onClick={handleEvolve}>Faire évoluer</button>
+                        <button onClick={handleEvolve}>Faire évoluer</button>
 
                         <ul className="pokemon">
                             <li className={`${getTypeDesign(pokemon.pokemon.type[0])} list-item ${vanish ? 'vanish' : ''}`}>
@@ -183,10 +227,10 @@ export const Pokemon: FC = () => {
                             </li>
                         </ul>
 
-                        <button>Relâcher</button>
+                        <button onClick={handleDelete}>Relâcher</button>
                     </div>
 
-                    <div className="evolve error"></div>
+                    <div className={`evolve error ${vanish ? 'hidden' : ''} ${msgAppear ? 'appear' : ''}`}></div>
                 </div >
             ) : (
                 <div></div>
