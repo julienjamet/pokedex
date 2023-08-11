@@ -93,6 +93,21 @@ $fairy--secondary: rgb(255, 240, 73);
         opacity: 1;
     }
 }
+@keyframes catchAppear {
+    0% {
+        opacity: 0;
+    }
+    33% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
 /*****************************************************************MIXINS*/
 @mixin ul {
     display: flex;
@@ -171,6 +186,9 @@ $fairy--secondary: rgb(255, 240, 73);
         &.appear {
             animation: evolveAppear 800ms both ease-in;
         }
+        &.catchAppear {
+            animation: catchAppear 1800ms both ease-in;
+        }
     }
     @for $i from 1 through length($types) {
         $type: nth($types, $i);
@@ -228,6 +246,12 @@ body {
                     font-weight: bold;
                     padding: 5px 10px;
                     border-radius: 15px;
+                    &.hidden {
+                        display: none;
+                    }
+                    &.appear {
+                        animation: evolveAppear 800ms both ease-out;
+                    }
                 }
                 .submit {
                     width: 30%;
@@ -239,6 +263,12 @@ body {
                         color: $primary;
                         background-color: white;
                         letter-spacing: 3px;
+                    }
+                    &.hidden {
+                        display: none;
+                    }
+                    &.appear {
+                        animation: evolveAppear 800ms both ease-out;
                     }
                 }
         }
@@ -293,38 +323,45 @@ body {
                 }
             }
         }
-        ul {
-            &.pokemon {
-                li {
-                    height: 600px;
-                    width: 525px;
-                    padding: 30px;
-                    .number, .name, .types {
-                        font-size: 30px;
-                        border-radius: 30px;
-                    }
-                    img {
-                        height: 300px;
-                        width: 300px;
-                    }
-                    .description {
-                        width: 85%;
-                        font-weight: bold;
-                    }
-                    &:hover {
-                        cursor: default;
-                        box-shadow: none;
-                    }
-                }
-            }
-            @include ul
-        }
-        .evolve.error {
+        .error {
             align-self: center;
             font-weight: bold;
             padding: 5px 10px;
             border-radius: 15px;
+            &.hidden {
+                display: none;
+            }
+            &.appear {
+                display: block;
+                animation: evolveAppear 800ms both ease-out;
+            }
         }
+    }
+    ul {
+        &.pokemon {
+            li {
+                height: 600px;
+                width: 525px;
+                padding: 30px;
+                .number, .name, .types {
+                    font-size: 30px;
+                    border-radius: 30px;
+                }
+                img {
+                    height: 300px;
+                    width: 300px;
+                }
+                .description {
+                    width: 85%;
+                    font-weight: bold;
+                }
+                &:hover {
+                    cursor: default;
+                    box-shadow: none;
+                }
+            }
+        }
+        @include ul
     }
     &.error {
         animation: error 400ms forwards;

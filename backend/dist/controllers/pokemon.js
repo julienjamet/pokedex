@@ -140,7 +140,7 @@ const seeOne = (req, res) => {
 exports.seeOne = seeOne;
 /**************************************************************CATCH ONE*/
 const catchOne = (req, res) => {
-    const pokemonName = req.body.name;
+    let pokemonName = req.body.name;
     if (!pokemonName) {
         return res.status(400).json({ message: `Tu dois renseigner le nom du Pokemon à capturer !` });
     }
@@ -158,6 +158,15 @@ const catchOne = (req, res) => {
                 return res.status(400).json({ message: `Le nom du Pokemon doit être composé d'au moins deux lettres et ne doit comporter aucun caractère spécial !` });
             }
             else {
+                if (pokemonName.toUpperCase() === 'NIDORAN ♀' || pokemonName.toUpperCase() === 'NIDORAN F') {
+                    pokemonName = 'nidoran♀';
+                }
+                else if (pokemonName.toUpperCase() === 'NIDORAN ♂' || pokemonName.toUpperCase() === 'NIDORAN M') {
+                    pokemonName = 'nidoran♂';
+                }
+                else if (pokemonName.toUpperCase() === 'M.MIME' || pokemonName.toUpperCase() === 'M MIME') {
+                    pokemonName = 'm. mime';
+                }
                 pokemon_1.default.findOne({ name: pokemonName }).lean()
                     .then((pokemon) => {
                     if (pokemon) {

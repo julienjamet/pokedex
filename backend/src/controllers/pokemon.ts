@@ -136,7 +136,7 @@ export const seeOne = (req: authRequest, res: Response): void => {
 }
 /**************************************************************CATCH ONE*/
 export const catchOne = (req: authRequest, res: Response): Response | void => {
-    const pokemonName: string = req.body.name
+    let pokemonName: string = req.body.name
 
     if (!pokemonName) {
         return res.status(400).json({ message: `Tu dois renseigner le nom du Pokemon à capturer !` })
@@ -156,6 +156,16 @@ export const catchOne = (req: authRequest, res: Response): Response | void => {
                 return res.status(400).json({ message: `Le nom du Pokemon doit être composé d'au moins deux lettres et ne doit comporter aucun caractère spécial !` })
             }
             else {
+                if (pokemonName.toUpperCase() === 'NIDORAN ♀' || pokemonName.toUpperCase() === 'NIDORAN F') {
+                    pokemonName = 'nidoran♀'
+                }
+                else if (pokemonName.toUpperCase() === 'NIDORAN ♂' || pokemonName.toUpperCase() === 'NIDORAN M') {
+                    pokemonName = 'nidoran♂'
+                }
+                else if (pokemonName.toUpperCase() === 'M.MIME' || pokemonName.toUpperCase() === 'M MIME') {
+                    pokemonName = 'm. mime'
+                }
+
                 Pokemon.findOne({ name: pokemonName }).lean()
 
                     .then((pokemon: IPokemon | null): void => {
