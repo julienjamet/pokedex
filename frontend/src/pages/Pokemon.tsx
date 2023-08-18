@@ -153,7 +153,7 @@ export const Pokemon: FC = () => {
         const body: HTMLElement | null = document.querySelector("body")
         const evolveError: HTMLElement | null = document.querySelector('.evolve.error')
 
-        if (body && pokemon && window.confirm(`Veux-tu vraiment relâcher ton ${pokemon.pokemon.name} ?`)) {
+        if (body) {
             axios.delete(`${process.env.REACT_APP_API_URL}/pokemon/${id}`, { withCredentials: true })
 
                 .then((response: AxiosResponse): void => {
