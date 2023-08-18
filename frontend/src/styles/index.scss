@@ -187,7 +187,7 @@ $fairy--secondary: rgb(255, 240, 73);
             animation: evolveAppear 800ms both ease-in;
         }
         &.catchAppear {
-            animation: catchAppear 1800ms both ease-in;
+            animation: catchAppear 3600ms both ease-in;
         }
     }
     @for $i from 1 through length($types) {
@@ -235,42 +235,42 @@ body {
             height: 350px;
             width: 50%;
             font-weight: bold;
-                input {
-                    width: 50%;
-                    background-color: $tertiary;
-                    padding: 5px 10px;
-                    border: 1px solid $secondary;
-                    border-radius: 15px;
+            input {
+                width: 50%;
+                background-color: $tertiary;
+                padding: 5px 10px;
+                border: 1px solid $secondary;
+                border-radius: 15px;
+            }
+            .error {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 15px;
+                &.hidden {
+                    display: none;
                 }
-                .error {
-                    font-weight: bold;
-                    padding: 5px 10px;
-                    border-radius: 15px;
-                    &.hidden {
-                        display: none;
-                    }
-                    &.appear {
-                        animation: evolveAppear 800ms both ease-out;
-                    }
+                &.appear {
+                    animation: evolveAppear 800ms both ease-out;
                 }
-                .submit {
-                    width: 30%;
-                    font-weight: bold;
-                    margin-top: 30px;
-                    transition: all 800ms ease;
-                    &:hover {
-                        cursor: pointer;
-                        color: $primary;
-                        background-color: white;
-                        letter-spacing: 3px;
-                    }
-                    &.hidden {
-                        display: none;
-                    }
-                    &.appear {
-                        animation: evolveAppear 800ms both ease-out;
-                    }
+            }
+            .submit {
+                width: 30%;
+                font-weight: bold;
+                margin-top: 30px;
+                transition: all 800ms ease;
+                &:hover {
+                    cursor: pointer;
+                    color: $primary;
+                    background-color: white;
+                    letter-spacing: 3px;
                 }
+                &.hidden {
+                    display: none;
+                }
+                &.appear {
+                    animation: evolveAppear 800ms both ease-out;
+                }
+            }
         }
     }
     .pokedex {

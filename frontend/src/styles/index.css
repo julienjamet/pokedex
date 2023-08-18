@@ -814,7 +814,7 @@ body ul li.appear {
   animation: evolveAppear 800ms both ease-in;
 }
 body ul li.catchAppear {
-  animation: catchAppear 1800ms both ease-in;
+  animation: catchAppear 3600ms both ease-in;
 }
 body ul .plante {
   background: radial-gradient(ellipse at center, rgb(97, 179, 97), rgb(85, 64, 37));

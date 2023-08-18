@@ -62,17 +62,6 @@ export const Catch: FC = () => {
                 return ""
         }
     }
-    /********************************************Get history to set*/
-    const getHistory = (): string[] => {
-        let history: string | null = localStorage.getItem('history')
-
-        if (!history) {
-            return []
-        }
-        else {
-            return JSON.parse(history)
-        }
-    }
     /***************************************************Handle form*/
     const handleForm = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault()
@@ -84,10 +73,6 @@ export const Catch: FC = () => {
             axios.post(`${process.env.REACT_APP_API_URL}/pokemon`, { name: name }, { withCredentials: true })
 
                 .then((response: AxiosResponse): void => {
-                    let history = getHistory()
-                    history.push(name as string)
-                    localStorage.setItem('history', JSON.stringify(history))
-
                     setName('')
                     setPokemon(response.data.pokemon)
                     setCatchAppear(true)
@@ -102,7 +87,7 @@ export const Catch: FC = () => {
                             nameError.style.backgroundColor = "rgb(241, 235, 235)"
                             nameError.style.marginTop = "-200px"
                         }
-                    }, 1800)
+                    }, 3600)
                 })
                 .catch((error: AxiosError): void => {
                     body.classList.add("error")
@@ -131,8 +116,7 @@ export const Catch: FC = () => {
                     type="text"
                     placeholder="Choisis un Pokemon à attraper !"
                     value={name}
-                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setName(e.target.value)}
-                    onKeyDown={getHistory} />
+                    onChange={(e: ChangeEvent<HTMLInputElement>): void => setName(e.target.value)} />
 
                 {pokemon && (
                     <ul>
