@@ -265,20 +265,12 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
                                             .then((trainer: ITrainer | null) => {
                                                 if (trainer) {
                                                     if (evolution.level <= trainer.level) {
-                                                        Pokemon.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
+                                                        Pokemon.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
 
                                                             .then((): void => {
-                                                                Pokemon.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
-
-                                                                    .then((): void => {
-                                                                        const message: string = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`
-                                                                        const { evolve, __v, trainers, level, isCatchable, ...filteredEvolution } = evolution
-                                                                        res.status(200).json({ message: message, pokemon: filteredEvolution })
-                                                                    })
-                                                                    .catch((error: Error): void => {
-                                                                        const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
-                                                                        res.status(500).json({ message: message, error: error })
-                                                                    })
+                                                                const message: string = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`
+                                                                const { evolve, __v, trainers, level, isCatchable, ...filteredEvolution } = evolution
+                                                                res.status(200).json({ message: message, pokemon: filteredEvolution })
                                                             })
                                                             .catch((error: Error): void => {
                                                                 const message: string = `Le Pokedex est en panne ! Reviens plus tard !`
@@ -289,7 +281,6 @@ export const evolveOne = (req: authRequest, res: Response): Response | void => {
                                                         const message: string = `Tu n'es pas encore assez expérimenté(e) pour faire évoluer ton ${pokemonName.toUpperCase()} ! Entraîne-toi sur des Pokemon moins puissants !`
                                                         res.status(403).json({ message: message })
                                                     }
-
                                                 }
                                                 else {
                                                     const message: string = `Ce dresseur n'existe pas !`

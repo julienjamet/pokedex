@@ -255,18 +255,11 @@ const evolveOne = (req, res) => {
                                     .then((trainer) => {
                                     if (trainer) {
                                         if (evolution.level <= trainer.level) {
-                                            pokemon_1.default.updateOne({ name: pokemonName }, { $pull: { trainers: trainerName } })
+                                            pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
                                                 .then(() => {
-                                                pokemon_1.default.updateOne({ name: evolutionName }, { $push: { trainers: trainerName } })
-                                                    .then(() => {
-                                                    const message = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`;
-                                                    const { evolve, __v, trainers, level, isCatchable } = evolution, filteredEvolution = __rest(evolution, ["evolve", "__v", "trainers", "level", "isCatchable"]);
-                                                    res.status(200).json({ message: message, pokemon: filteredEvolution });
-                                                })
-                                                    .catch((error) => {
-                                                    const message = `Le Pokedex est en panne ! Reviens plus tard !`;
-                                                    res.status(500).json({ message: message, error: error });
-                                                });
+                                                const message = `Bravo ${trainerName.toUpperCase()} ! Ton ${pokemonName.toUpperCase()} évolue en ${evolutionName.toUpperCase()} !`;
+                                                const { evolve, __v, trainers, level, isCatchable } = evolution, filteredEvolution = __rest(evolution, ["evolve", "__v", "trainers", "level", "isCatchable"]);
+                                                res.status(200).json({ message: message, pokemon: filteredEvolution });
                                             })
                                                 .catch((error) => {
                                                 const message = `Le Pokedex est en panne ! Reviens plus tard !`;
