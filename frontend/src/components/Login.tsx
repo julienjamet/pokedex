@@ -16,7 +16,7 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
         const passwordError: HTMLElement | null = document.querySelector('.password.error')
 
         if (body) {
-            axios.post(`${process.env.REACT_APP_API_URL}/trainer/login`, { name: name, password: password }, { withCredentials: true })
+            axios.post(`${process.env.REACT_APP_API_URL}/trainers/login`, { name: name, password: password }, { withCredentials: true })
 
                 .then((): void => { setIsLoggedIn(true) })
 

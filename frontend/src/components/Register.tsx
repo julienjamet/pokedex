@@ -40,7 +40,7 @@ export const Register: FC = () => {
                 validatePasswordError.textContent = ``
                 validatePasswordError.style.backgroundColor = "salmon"
 
-                axios.post(`${process.env.REACT_APP_API_URL}/trainer/signup`, { name: name, password: password })
+                axios.post(`${process.env.REACT_APP_API_URL}/trainers/signup`, { name: name, password: password })
 
                     .then((): void => {
                         if (nameError && passwordError) {

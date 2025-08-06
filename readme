@@ -14,8 +14,8 @@ This tutorial inspired me to push the boundaries by creating a complete fullstac
 Root : `https://julienjamet-pokemon.onrender.com/api`
 
 Trainer
-    Sign up :    [POST]    /trainer/signup    { "name": `your_name`, "password": `your_password` }
-    Login   :    [POST]    /trainer/login     { "name": `your_name`, "password": `your_password` }
+    Sign up :    [POST]    /trainers/signup    { "name": `your_name`, "password": `your_password` }
+    Login   :    [POST]    /trainers/login     { "name": `your_name`, "password": `your_password` }
 
 Pokemon
     See all :    [GET]     /pokemon
